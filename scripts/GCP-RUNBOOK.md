@@ -20,6 +20,9 @@ gcloud compute instances create myy-l4 \
   --image-family=common-cu124 --image-project=deeplearning-platform-release \
   --boot-disk-size=50GB
 # 深度学习镜像自带 NVIDIA 驱动 + CUDA + 常用 ML 栈，免装驱动。
+# 备选：PyTorch 预装镜像（免 pip）——先查当前可用名：
+#   gcloud compute images list --project=deeplearning-platform-release | grep pytorch
+#   然后 --image-family=pytorch-2-x-cu124（以查到的为准）替换 common-cu124。
 ```
 
 首次跑通用 STANDARD 按需；跑通后改 `--provisioning-model=SPOT
