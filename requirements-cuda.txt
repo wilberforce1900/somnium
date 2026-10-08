@@ -1,0 +1,5 @@
+# 云端 CUDA 环境（GCP L4/A100，Linux x86_64）——阶段 1 工程前置
+# torch 官方 Linux 轮子自带 cu12x，直接 pip 安装即可（本机 Intel mac 不适用，
+# 本机见 requirements.txt 的 2.2.2 锁定）
+torch>=2.3
+pytest>=7

@@ -6,3 +6,5 @@ __pycache__/
 .pytest_cache/
 # 诊断/实验临时输出（正式记录在 results/ 与 experiments/*/details_*，均入库）
 *.tmp
+# 模型断点档（云/本机 spot 续跑用，不入库）
+*.pt
