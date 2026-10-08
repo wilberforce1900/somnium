@@ -39,7 +39,11 @@ class DreamConfig:
     rehearsal: bool = True
     noise: float = 0.1          # 反向学习：输入噪声幅度
     rare_bias: float = 3.0      # 排练：rare 转移采样权重倍率
-    div_target: float = 0.3     # 想象：潜态方差下限（反塌缩）
+    # 注（迭代#2 实测）：spawn 潜态方差 ≈ σ²=1.0 > div_target=0.3，此地板在
+    # 全部正式 run 中恒为松弛（从未激活）——想象收益实际全部来自能量平滑项
+    # （更贴近 Crick-Mitchison/Tononi 的"睡眠调节能量地形"理论）。若将来把
+    # div_target 提到激活区间，机制改变，需重跑 E0/E3 再下结论。
+    div_target: float = 0.3     # 想象：潜态方差下限（反塌缩；见上注：正式 run 中未激活）
     lam_smooth: float = 0.1     # 想象：能量平滑权重
     pseudo_scale: float = 1.0   # 想象：伪观测尺度
     batch: int = 16
