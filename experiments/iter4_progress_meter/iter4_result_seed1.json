@@ -1,0 +1,110 @@
+{
+  "pre": {
+    "alpha_A": 0.9692,
+    "corr_alpha_errlat_A": -0.037,
+    "corr_alpha_errew_A": 0.095,
+    "corr_sigma_errlat_A": -0.613,
+    "corr_sigma_errew_A": 0.395,
+    "alpha_B": 0.9069,
+    "corr_alpha_errlat_B": -0.33,
+    "corr_alpha_errew_B": 0.209,
+    "corr_sigma_errlat_B": -0.728,
+    "corr_sigma_errew_B": 0.461,
+    "pooled_corr_alpha_errlat": -0.087,
+    "pooled_corr_alpha_errew": 0.047,
+    "pooled_corr_sigma_errlat": -0.679,
+    "pooled_corr_sigma_errew": 0.435
+  },
+  "trace": [
+    {
+      "cycle": 0,
+      "alpha_B": 0.9607,
+      "alpha_A": 0.9913,
+      "err_lat_B": 3.319
+    },
+    {
+      "cycle": 1,
+      "alpha_B": 0.9755,
+      "alpha_A": 0.9956,
+      "err_lat_B": 3.1063
+    },
+    {
+      "cycle": 2,
+      "alpha_B": 0.9777,
+      "alpha_A": 0.9965,
+      "err_lat_B": 3.4159
+    },
+    {
+      "cycle": 3,
+      "alpha_B": 0.9843,
+      "alpha_A": 0.9976,
+      "err_lat_B": 3.0038
+    },
+    {
+      "cycle": 4,
+      "alpha_B": 0.986,
+      "alpha_A": 0.9978,
+      "err_lat_B": 2.5975
+    },
+    {
+      "cycle": 5,
+      "alpha_B": 0.9885,
+      "alpha_A": 0.9981,
+      "err_lat_B": 2.5835
+    },
+    {
+      "cycle": 6,
+      "alpha_B": 0.9889,
+      "alpha_A": 0.9981,
+      "err_lat_B": 2.5175
+    },
+    {
+      "cycle": 7,
+      "alpha_B": 0.9906,
+      "alpha_A": 0.9983,
+      "err_lat_B": 2.7166
+    },
+    {
+      "cycle": 8,
+      "alpha_B": 0.9908,
+      "alpha_A": 0.9983,
+      "err_lat_B": 2.5563
+    },
+    {
+      "cycle": 9,
+      "alpha_B": 0.9907,
+      "alpha_A": 0.9983,
+      "err_lat_B": 2.0965
+    },
+    {
+      "cycle": 10,
+      "alpha_B": 0.9905,
+      "alpha_A": 0.9982,
+      "err_lat_B": 2.1705
+    },
+    {
+      "cycle": 11,
+      "alpha_B": 0.9925,
+      "alpha_A": 0.9985,
+      "err_lat_B": 2.1096
+    }
+  ],
+  "post": {
+    "alpha_A": 0.9985,
+    "corr_alpha_errlat_A": 0.081,
+    "corr_alpha_errew_A": -0.486,
+    "corr_sigma_errlat_A": 0.022,
+    "corr_sigma_errew_A": 0.904,
+    "alpha_B": 0.9925,
+    "corr_alpha_errlat_B": 0.409,
+    "corr_alpha_errew_B": -0.405,
+    "corr_sigma_errlat_B": -0.552,
+    "corr_sigma_errew_B": 0.533,
+    "pooled_corr_alpha_errlat": 0.432,
+    "pooled_corr_alpha_errew": 0.032,
+    "pooled_corr_sigma_errlat": 0.024,
+    "pooled_corr_sigma_errew": 0.723
+  },
+  "D1": false,
+  "D2": true
+}
