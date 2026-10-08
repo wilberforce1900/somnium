@@ -1,0 +1,21 @@
+{"cycle": 0, "env_steps": 635, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 2.043184}
+{"cycle": 1, "env_steps": 1224, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 1.6346}
+{"cycle": 2, "env_steps": 1821, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 1.349723}
+{"cycle": 3, "env_steps": 2383, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 1.164517}
+{"cycle": 4, "env_steps": 2925, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 1.083661}
+{"cycle": 5, "env_steps": 3351, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 1.052871}
+{"cycle": 6, "env_steps": 3924, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 1.035071}
+{"cycle": 7, "env_steps": 4393, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 1.020875}
+{"cycle": 8, "env_steps": 4921, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 1.005911}
+{"cycle": 9, "env_steps": 5479, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 0.988354}
+{"cycle": 10, "env_steps": 5981, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 0.97748}
+{"cycle": 11, "env_steps": 6677, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 0.958029}
+{"cycle": 12, "env_steps": 7334, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 0.947042}
+{"cycle": 13, "env_steps": 7924, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 0.92502}
+{"cycle": 14, "env_steps": 8466, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 0.905362}
+{"cycle": 15, "env_steps": 9062, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 0.882516}
+{"cycle": 16, "env_steps": 9527, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 0.855165}
+{"cycle": 17, "env_steps": 10115, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 0.834444}
+{"cycle": 18, "env_steps": 10638, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 0.803663}
+{"cycle": 19, "env_steps": 11270, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 0.781501}
+{"hex_trace_last_eval": []}

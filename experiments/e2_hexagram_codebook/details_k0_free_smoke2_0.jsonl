@@ -1,0 +1,6 @@
+{"cycle": 0, "env_steps": 480, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 1.379175}
+{"cycle": 1, "env_steps": 960, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 1.089623}
+{"cycle": 2, "env_steps": 1440, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 1.172986}
+{"cycle": 3, "env_steps": 1920, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 0.871547}
+{"cycle": 4, "env_steps": 2400, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 0.772165}
+{"hex_trace_last_eval": []}

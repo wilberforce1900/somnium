@@ -1,0 +1,1 @@
+{"variant": "no_reverse_learning", "seed": 0, "env_steps": 1844, "phase_end_mse": [0.932721, 0.626304, 0.344109], "final_mse": [0.346541, 0.344098, 0.344109], "retention12": [1.6285, 1.4506], "retention_mean": 1.5395, "robust_ratio": [0.967, 0.935, 0.957]}

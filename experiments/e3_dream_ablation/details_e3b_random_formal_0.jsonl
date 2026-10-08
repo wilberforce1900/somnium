@@ -1,0 +1,1 @@
+{"arm": "random", "seed": 0, "cal_err": 0.034466, "cov95": 0.9655, "sel_gain": 0.001661, "rew_mse": 0.040327, "covered_frac": 0.9722, "dream_log_len": 6}

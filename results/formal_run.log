@@ -1,0 +1,740 @@
+=== FORMAL RUN START Thu Oct  8 16:29:10 CST 2026 ===
+--- E0 formal: 3 schedules x 3 seeds ---
+>>> E0 wake_only seed=0 16:29:10
+[wake_only] cycle 1/20 steps=195 pred_mse=1.9840 mpc=-0.664
+[wake_only] cycle 2/20 steps=386 pred_mse=1.7551 mpc=-0.662
+[wake_only] cycle 3/20 steps=697 pred_mse=1.5484 mpc=-0.202
+[wake_only] cycle 4/20 steps=1076 pred_mse=1.3657 mpc=-0.202
+[wake_only] cycle 5/20 steps=1341 pred_mse=1.2305 mpc=-0.202
+[wake_only] cycle 6/20 steps=1633 pred_mse=1.1481 mpc=-0.202
+[wake_only] cycle 7/20 steps=1863 pred_mse=1.1024 mpc=-0.202
+[wake_only] cycle 8/20 steps=2118 pred_mse=1.0737 mpc=-0.202
+[wake_only] cycle 9/20 steps=2387 pred_mse=1.0532 mpc=-0.202
+[wake_only] cycle 10/20 steps=2700 pred_mse=1.0405 mpc=-0.202
+[wake_only] cycle 11/20 steps=2979 pred_mse=1.0308 mpc=-0.638
+[wake_only] cycle 12/20 steps=3250 pred_mse=1.0194 mpc=-0.638
+[wake_only] cycle 13/20 steps=3524 pred_mse=1.0083 mpc=-0.638
+[wake_only] cycle 14/20 steps=3833 pred_mse=0.9966 mpc=-0.638
+[wake_only] cycle 15/20 steps=4138 pred_mse=0.9843 mpc=-0.202
+[wake_only] cycle 16/20 steps=4394 pred_mse=0.9736 mpc=-0.202
+[wake_only] cycle 17/20 steps=4607 pred_mse=0.9648 mpc=-0.202
+[wake_only] cycle 18/20 steps=4743 pred_mse=0.9549 mpc=-0.202
+[wake_only] cycle 19/20 steps=4998 pred_mse=0.9438 mpc=-0.202
+[wake_only] cycle 20/20 steps=5225 pred_mse=0.9320 mpc=-0.202
+完成：61.8s，已登记 results/registry.md
+>>> E0 dream_first seed=0 16:30:19
+[dream_first] cycle 1/20 steps=195 pred_mse=1.1797 mpc=-0.604
+[dream_first] cycle 2/20 steps=386 pred_mse=1.0783 mpc=-0.604
+[dream_first] cycle 3/20 steps=697 pred_mse=1.0425 mpc=-0.604
+[dream_first] cycle 4/20 steps=1076 pred_mse=1.0259 mpc=-0.604
+[dream_first] cycle 5/20 steps=1341 pred_mse=0.9921 mpc=-0.604
+[dream_first] cycle 6/20 steps=1633 pred_mse=0.9654 mpc=-0.604
+[dream_first] cycle 7/20 steps=1863 pred_mse=0.9406 mpc=-0.604
+[dream_first] cycle 8/20 steps=2118 pred_mse=0.9101 mpc=-0.604
+[dream_first] cycle 9/20 steps=2387 pred_mse=0.8750 mpc=-0.604
+[dream_first] cycle 10/20 steps=2700 pred_mse=0.8355 mpc=-0.604
+[dream_first] cycle 11/20 steps=2979 pred_mse=0.7875 mpc=-0.078
+[dream_first] cycle 12/20 steps=3250 pred_mse=0.7096 mpc=-0.604
+[dream_first] cycle 13/20 steps=3524 pred_mse=0.6318 mpc=-0.500
+[dream_first] cycle 14/20 steps=3833 pred_mse=0.5468 mpc=-0.500
+[dream_first] cycle 15/20 steps=4138 pred_mse=0.4623 mpc=-0.500
+[dream_first] cycle 16/20 steps=4394 pred_mse=0.3880 mpc=-0.500
+[dream_first] cycle 17/20 steps=4607 pred_mse=0.3268 mpc=-0.500
+[dream_first] cycle 18/20 steps=4743 pred_mse=0.2869 mpc=-0.500
+[dream_first] cycle 19/20 steps=4998 pred_mse=0.2632 mpc=-0.500
+[dream_first] cycle 20/20 steps=5225 pred_mse=0.2458 mpc=-0.500
+完成：41.8s，已登记 results/registry.md
+>>> E0 alternate seed=0 16:31:06
+[alternate] cycle 1/20 steps=195 pred_mse=1.8965 mpc=-0.662
+[alternate] cycle 2/20 steps=386 pred_mse=1.6033 mpc=-0.604
+[alternate] cycle 3/20 steps=697 pred_mse=1.3560 mpc=-0.202
+[alternate] cycle 4/20 steps=1076 pred_mse=1.1933 mpc=-0.202
+[alternate] cycle 5/20 steps=1341 pred_mse=1.1074 mpc=-0.202
+[alternate] cycle 6/20 steps=1633 pred_mse=1.0720 mpc=-0.638
+[alternate] cycle 7/20 steps=1863 pred_mse=1.0521 mpc=-0.668
+[alternate] cycle 8/20 steps=2118 pred_mse=1.0304 mpc=-0.638
+[alternate] cycle 9/20 steps=2387 pred_mse=1.0123 mpc=-0.638
+[alternate] cycle 10/20 steps=2700 pred_mse=0.9996 mpc=-0.638
+[alternate] cycle 11/20 steps=2979 pred_mse=0.9861 mpc=-0.638
+[alternate] cycle 12/20 steps=3250 pred_mse=0.9724 mpc=-0.638
+[alternate] cycle 13/20 steps=3524 pred_mse=0.9598 mpc=-0.638
+[alternate] cycle 14/20 steps=3833 pred_mse=0.9452 mpc=-0.638
+[alternate] cycle 15/20 steps=4138 pred_mse=0.9296 mpc=-0.202
+[alternate] cycle 16/20 steps=4394 pred_mse=0.9135 mpc=-0.202
+[alternate] cycle 17/20 steps=4607 pred_mse=0.8980 mpc=-0.202
+[alternate] cycle 18/20 steps=4743 pred_mse=0.8795 mpc=-0.202
+[alternate] cycle 19/20 steps=4998 pred_mse=0.8600 mpc=-0.202
+[alternate] cycle 20/20 steps=5225 pred_mse=0.8387 mpc=-0.202
+完成：31.9s，已登记 results/registry.md
+>>> E0 wake_only seed=1 16:31:43
+[wake_only] cycle 1/20 steps=231 pred_mse=1.8987 mpc=-0.742
+[wake_only] cycle 2/20 steps=528 pred_mse=1.6159 mpc=-0.486
+[wake_only] cycle 3/20 steps=825 pred_mse=1.3735 mpc=0.066
+[wake_only] cycle 4/20 steps=1117 pred_mse=1.2110 mpc=-0.148
+[wake_only] cycle 5/20 steps=1466 pred_mse=1.1158 mpc=0.344
+[wake_only] cycle 6/20 steps=1683 pred_mse=1.0689 mpc=0.018
+[wake_only] cycle 7/20 steps=1941 pred_mse=1.0485 mpc=0.042
+[wake_only] cycle 8/20 steps=2089 pred_mse=1.0341 mpc=0.042
+[wake_only] cycle 9/20 steps=2368 pred_mse=1.0224 mpc=0.042
+[wake_only] cycle 10/20 steps=2602 pred_mse=1.0126 mpc=0.042
+[wake_only] cycle 11/20 steps=2863 pred_mse=1.0033 mpc=0.042
+[wake_only] cycle 12/20 steps=3066 pred_mse=0.9938 mpc=0.042
+[wake_only] cycle 13/20 steps=3395 pred_mse=0.9834 mpc=0.042
+[wake_only] cycle 14/20 steps=3657 pred_mse=0.9730 mpc=0.042
+[wake_only] cycle 15/20 steps=3983 pred_mse=0.9629 mpc=0.042
+[wake_only] cycle 16/20 steps=4252 pred_mse=0.9516 mpc=0.042
+[wake_only] cycle 17/20 steps=4571 pred_mse=0.9392 mpc=-0.500
+[wake_only] cycle 18/20 steps=4878 pred_mse=0.9210 mpc=-0.228
+[wake_only] cycle 19/20 steps=5119 pred_mse=0.9016 mpc=-0.226
+[wake_only] cycle 20/20 steps=5381 pred_mse=0.8835 mpc=-0.500
+完成：41.1s，已登记 results/registry.md
+>>> E0 dream_first seed=1 16:32:27
+[dream_first] cycle 1/20 steps=231 pred_mse=1.2771 mpc=-0.200
+[dream_first] cycle 2/20 steps=528 pred_mse=1.1233 mpc=0.042
+[dream_first] cycle 3/20 steps=825 pred_mse=1.0612 mpc=0.042
+[dream_first] cycle 4/20 steps=1117 pred_mse=1.0193 mpc=-0.500
+[dream_first] cycle 5/20 steps=1466 pred_mse=0.9803 mpc=-0.500
+[dream_first] cycle 6/20 steps=1683 pred_mse=0.9370 mpc=-0.224
+[dream_first] cycle 7/20 steps=1941 pred_mse=0.8976 mpc=-0.224
+[dream_first] cycle 8/20 steps=2089 pred_mse=0.8561 mpc=-0.224
+[dream_first] cycle 9/20 steps=2368 pred_mse=0.8064 mpc=-0.500
+[dream_first] cycle 10/20 steps=2602 pred_mse=0.7371 mpc=-0.500
+[dream_first] cycle 11/20 steps=2863 pred_mse=0.6605 mpc=0.062
+[dream_first] cycle 12/20 steps=3066 pred_mse=0.5859 mpc=-0.500
+[dream_first] cycle 13/20 steps=3395 pred_mse=0.5124 mpc=0.344
+[dream_first] cycle 14/20 steps=3657 pred_mse=0.4396 mpc=0.046
+[dream_first] cycle 15/20 steps=3983 pred_mse=0.3826 mpc=0.228
+[dream_first] cycle 16/20 steps=4252 pred_mse=0.3306 mpc=-0.500
+[dream_first] cycle 17/20 steps=4571 pred_mse=0.2994 mpc=-0.296
+[dream_first] cycle 18/20 steps=4878 pred_mse=0.2728 mpc=-0.500
+[dream_first] cycle 19/20 steps=5119 pred_mse=0.2570 mpc=-0.360
+[dream_first] cycle 20/20 steps=5381 pred_mse=0.2416 mpc=-0.260
+完成：32.0s，已登记 results/registry.md
+>>> E0 alternate seed=1 16:33:04
+[alternate] cycle 1/20 steps=231 pred_mse=1.7868 mpc=-0.742
+[alternate] cycle 2/20 steps=528 pred_mse=1.4385 mpc=-0.022
+[alternate] cycle 3/20 steps=825 pred_mse=1.2066 mpc=-0.500
+[alternate] cycle 4/20 steps=1117 pred_mse=1.0931 mpc=-0.200
+[alternate] cycle 5/20 steps=1466 pred_mse=1.0505 mpc=0.042
+[alternate] cycle 6/20 steps=1683 pred_mse=1.0289 mpc=0.042
+[alternate] cycle 7/20 steps=1941 pred_mse=1.0151 mpc=0.042
+[alternate] cycle 8/20 steps=2089 pred_mse=1.0025 mpc=0.042
+[alternate] cycle 9/20 steps=2368 pred_mse=0.9892 mpc=0.042
+[alternate] cycle 10/20 steps=2602 pred_mse=0.9745 mpc=0.042
+[alternate] cycle 11/20 steps=2863 pred_mse=0.9593 mpc=0.042
+[alternate] cycle 12/20 steps=3066 pred_mse=0.9430 mpc=0.042
+[alternate] cycle 13/20 steps=3395 pred_mse=0.9254 mpc=0.042
+[alternate] cycle 14/20 steps=3657 pred_mse=0.9063 mpc=0.026
+[alternate] cycle 15/20 steps=3983 pred_mse=0.8852 mpc=0.344
+[alternate] cycle 16/20 steps=4252 pred_mse=0.8530 mpc=0.344
+[alternate] cycle 17/20 steps=4571 pred_mse=0.8246 mpc=-0.500
+[alternate] cycle 18/20 steps=4878 pred_mse=0.7940 mpc=-0.500
+[alternate] cycle 19/20 steps=5119 pred_mse=0.7595 mpc=-0.500
+[alternate] cycle 20/20 steps=5381 pred_mse=0.7202 mpc=-0.500
+完成：42.6s，已登记 results/registry.md
+>>> E0 wake_only seed=2 16:33:50
+[wake_only] cycle 1/20 steps=331 pred_mse=1.9021 mpc=-0.610
+[wake_only] cycle 2/20 steps=586 pred_mse=1.6624 mpc=-0.610
+[wake_only] cycle 3/20 steps=956 pred_mse=1.4555 mpc=0.030
+[wake_only] cycle 4/20 steps=1142 pred_mse=1.2839 mpc=-0.708
+[wake_only] cycle 5/20 steps=1451 pred_mse=1.1605 mpc=-0.358
+[wake_only] cycle 6/20 steps=1693 pred_mse=1.0894 mpc=-0.708
+[wake_only] cycle 7/20 steps=2014 pred_mse=1.0539 mpc=-0.716
+[wake_only] cycle 8/20 steps=2256 pred_mse=1.0357 mpc=-0.678
+[wake_only] cycle 9/20 steps=2394 pred_mse=1.0211 mpc=-0.784
+[wake_only] cycle 10/20 steps=2649 pred_mse=1.0109 mpc=-0.784
+[wake_only] cycle 11/20 steps=2954 pred_mse=1.0058 mpc=-0.610
+[wake_only] cycle 12/20 steps=3259 pred_mse=0.9986 mpc=-0.132
+[wake_only] cycle 13/20 steps=3513 pred_mse=0.9842 mpc=-0.610
+[wake_only] cycle 14/20 steps=3911 pred_mse=0.9739 mpc=-0.610
+[wake_only] cycle 15/20 steps=4101 pred_mse=0.9623 mpc=-0.186
+[wake_only] cycle 16/20 steps=4395 pred_mse=0.9471 mpc=-0.678
+[wake_only] cycle 17/20 steps=4684 pred_mse=0.9319 mpc=-0.534
+[wake_only] cycle 18/20 steps=4810 pred_mse=0.9198 mpc=-0.192
+[wake_only] cycle 19/20 steps=5187 pred_mse=0.9097 mpc=-0.808
+[wake_only] cycle 20/20 steps=5363 pred_mse=0.8986 mpc=-0.610
+完成：23.9s，已登记 results/registry.md
+>>> E0 dream_first seed=2 16:34:18
+[dream_first] cycle 1/20 steps=331 pred_mse=1.1751 mpc=-0.610
+[dream_first] cycle 2/20 steps=586 pred_mse=1.0987 mpc=-0.610
+[dream_first] cycle 3/20 steps=956 pred_mse=1.0375 mpc=-0.330
+[dream_first] cycle 4/20 steps=1142 pred_mse=1.0066 mpc=-0.204
+[dream_first] cycle 5/20 steps=1451 pred_mse=0.9755 mpc=-0.204
+[dream_first] cycle 6/20 steps=1693 pred_mse=0.9484 mpc=0.042
+[dream_first] cycle 7/20 steps=2014 pred_mse=0.9164 mpc=-0.204
+[dream_first] cycle 8/20 steps=2256 pred_mse=0.8846 mpc=-0.180
+[dream_first] cycle 9/20 steps=2394 pred_mse=0.8433 mpc=-0.082
+[dream_first] cycle 10/20 steps=2649 pred_mse=0.7766 mpc=-0.218
+[dream_first] cycle 11/20 steps=2954 pred_mse=0.6989 mpc=-0.218
+[dream_first] cycle 12/20 steps=3259 pred_mse=0.6205 mpc=-0.354
+[dream_first] cycle 13/20 steps=3513 pred_mse=0.5386 mpc=-0.204
+[dream_first] cycle 14/20 steps=3911 pred_mse=0.4540 mpc=-0.758
+[dream_first] cycle 15/20 steps=4101 pred_mse=0.3761 mpc=-0.456
+[dream_first] cycle 16/20 steps=4395 pred_mse=0.3196 mpc=-0.322
+[dream_first] cycle 17/20 steps=4684 pred_mse=0.2762 mpc=-0.610
+[dream_first] cycle 18/20 steps=4810 pred_mse=0.2515 mpc=-0.610
+[dream_first] cycle 19/20 steps=5187 pred_mse=0.2324 mpc=-0.630
+[dream_first] cycle 20/20 steps=5363 pred_mse=0.2181 mpc=-0.708
+完成：26.5s，已登记 results/registry.md
+>>> E0 alternate seed=2 16:34:47
+[alternate] cycle 1/20 steps=331 pred_mse=1.8109 mpc=-0.610
+[alternate] cycle 2/20 steps=586 pred_mse=1.5050 mpc=-0.252
+[alternate] cycle 3/20 steps=956 pred_mse=1.2663 mpc=-0.260
+[alternate] cycle 4/20 steps=1142 pred_mse=1.1270 mpc=-0.336
+[alternate] cycle 5/20 steps=1451 pred_mse=1.0607 mpc=-0.346
+[alternate] cycle 6/20 steps=1693 pred_mse=1.0347 mpc=-0.892
+[alternate] cycle 7/20 steps=2014 pred_mse=1.0171 mpc=-0.366
+[alternate] cycle 8/20 steps=2256 pred_mse=1.0075 mpc=-0.794
+[alternate] cycle 9/20 steps=2394 pred_mse=0.9923 mpc=-0.796
+[alternate] cycle 10/20 steps=2649 pred_mse=0.9798 mpc=-0.892
+[alternate] cycle 11/20 steps=2954 pred_mse=0.9627 mpc=-0.192
+[alternate] cycle 12/20 steps=3259 pred_mse=0.9470 mpc=-0.808
+[alternate] cycle 13/20 steps=3513 pred_mse=0.9313 mpc=-0.808
+[alternate] cycle 14/20 steps=3911 pred_mse=0.9168 mpc=-0.808
+[alternate] cycle 15/20 steps=4101 pred_mse=0.8968 mpc=-0.320
+[alternate] cycle 16/20 steps=4395 pred_mse=0.8732 mpc=-0.610
+[alternate] cycle 17/20 steps=4684 pred_mse=0.8531 mpc=-0.340
+[alternate] cycle 18/20 steps=4810 pred_mse=0.8292 mpc=-0.998
+[alternate] cycle 19/20 steps=5187 pred_mse=0.8057 mpc=-0.610
+[alternate] cycle 20/20 steps=5363 pred_mse=0.7785 mpc=-0.630
+完成：25.0s，已登记 results/registry.md
+--- E1 formal: {learned,fixed_yang} x {grid,maze} x 2 seeds ---
+>>> E1 grid learned seed=0 16:35:15
+[grid/learned+r0] cycle 1/20 steps=336 mse=2.0568 acc=0.012 α=0.48 corr=+0.23
+[grid/learned+r0] cycle 2/20 steps=617 mse=1.8391 acc=0.016 α=0.45 corr=+0.17
+[grid/learned+r0] cycle 3/20 steps=1051 mse=1.6454 acc=0.020 α=0.42 corr=+0.16
+[grid/learned+r0] cycle 4/20 steps=1353 mse=1.4794 acc=0.021 α=0.39 corr=+0.18
+[grid/learned+r0] cycle 5/20 steps=1573 mse=1.3443 acc=0.025 α=0.34 corr=+0.21
+[grid/learned+r0] cycle 6/20 steps=1891 mse=1.2423 acc=0.025 α=0.30 corr=+0.24
+[grid/learned+r0] cycle 7/20 steps=2248 mse=1.1729 acc=0.029 α=0.26 corr=+0.26
+[grid/learned+r0] cycle 8/20 steps=2679 mse=1.1330 acc=0.029 α=0.24 corr=+0.26
+[grid/learned+r0] cycle 9/20 steps=3052 mse=1.1080 acc=0.029 α=0.22 corr=+0.27
+[grid/learned+r0] cycle 10/20 steps=3387 mse=1.0893 acc=0.027 α=0.22 corr=+0.27
+[grid/learned+r0] cycle 11/20 steps=3676 mse=1.0768 acc=0.021 α=0.22 corr=+0.28
+[grid/learned+r0] cycle 12/20 steps=4094 mse=1.0683 acc=0.025 α=0.22 corr=+0.27
+[grid/learned+r0] cycle 13/20 steps=4490 mse=1.0594 acc=0.029 α=0.22 corr=+0.27
+[grid/learned+r0] cycle 14/20 steps=4831 mse=1.0509 acc=0.025 α=0.23 corr=+0.27
+[grid/learned+r0] cycle 15/20 steps=5191 mse=1.0403 acc=0.023 α=0.23 corr=+0.26
+[grid/learned+r0] cycle 16/20 steps=5504 mse=1.0296 acc=0.023 α=0.23 corr=+0.26
+[grid/learned+r0] cycle 17/20 steps=5845 mse=1.0202 acc=0.025 α=0.23 corr=+0.25
+[grid/learned+r0] cycle 18/20 steps=6147 mse=1.0106 acc=0.021 α=0.24 corr=+0.25
+[grid/learned+r0] cycle 19/20 steps=6561 mse=1.0006 acc=0.020 α=0.24 corr=+0.24
+[grid/learned+r0] cycle 20/20 steps=6891 mse=0.9891 acc=0.021 α=0.25 corr=+0.24
+完成：4.2s，已登记 results/registry.md
+>>> E1 grid fixed_yang seed=0 16:35:22
+[grid/fixed_yang+r0] cycle 1/20 steps=336 mse=6.4795 acc=0.010 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 2/20 steps=617 mse=5.5741 acc=0.004 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 3/20 steps=1051 mse=4.7080 acc=0.006 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 4/20 steps=1353 mse=3.9932 acc=0.006 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 5/20 steps=1573 mse=3.4266 acc=0.006 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 6/20 steps=1891 mse=2.9732 acc=0.008 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 7/20 steps=2248 mse=2.6079 acc=0.012 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 8/20 steps=2679 mse=2.3162 acc=0.016 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 9/20 steps=3052 mse=2.0837 acc=0.018 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 10/20 steps=3387 mse=1.8971 acc=0.021 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 11/20 steps=3676 mse=1.7438 acc=0.018 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 12/20 steps=4094 mse=1.6154 acc=0.025 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 13/20 steps=4490 mse=1.5061 acc=0.023 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 14/20 steps=4831 mse=1.4111 acc=0.018 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 15/20 steps=5191 mse=1.3287 acc=0.018 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 16/20 steps=5504 mse=1.2549 acc=0.020 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 17/20 steps=5845 mse=1.1894 acc=0.014 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 18/20 steps=6147 mse=1.1324 acc=0.014 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 19/20 steps=6561 mse=1.0819 acc=0.016 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 20/20 steps=6891 mse=1.0354 acc=0.016 α=1.00 corr=+0.00
+完成：3.5s，已登记 results/registry.md
+>>> E1 maze learned seed=0 16:35:28
+[maze/learned+r0] cycle 1/25 steps=1280 mse=1.9442 acc=0.487 α=0.47 corr=-0.07
+[maze/learned+r0] cycle 2/25 steps=2560 mse=1.6600 acc=0.496 α=0.42 corr=-0.04
+[maze/learned+r0] cycle 3/25 steps=3840 mse=1.4185 acc=0.501 α=0.36 corr=-0.08
+[maze/learned+r0] cycle 4/25 steps=5120 mse=1.2429 acc=0.491 α=0.29 corr=-0.15
+[maze/learned+r0] cycle 5/25 steps=6400 mse=1.1441 acc=0.485 α=0.23 corr=-0.20
+[maze/learned+r0] cycle 6/25 steps=7680 mse=1.1041 acc=0.478 α=0.20 corr=-0.22
+[maze/learned+r0] cycle 7/25 steps=8960 mse=1.0871 acc=0.489 α=0.20 corr=-0.21
+[maze/learned+r0] cycle 8/25 steps=10240 mse=1.0767 acc=0.497 α=0.21 corr=-0.19
+[maze/learned+r0] cycle 9/25 steps=11520 mse=1.0650 acc=0.503 α=0.21 corr=-0.17
+[maze/learned+r0] cycle 10/25 steps=12800 mse=1.0521 acc=0.509 α=0.21 corr=-0.16
+[maze/learned+r0] cycle 11/25 steps=14080 mse=1.0381 acc=0.515 α=0.21 corr=-0.15
+[maze/learned+r0] cycle 12/25 steps=15360 mse=1.0249 acc=0.520 α=0.21 corr=-0.14
+[maze/learned+r0] cycle 13/25 steps=16640 mse=1.0137 acc=0.512 α=0.21 corr=-0.12
+[maze/learned+r0] cycle 14/25 steps=17920 mse=1.0015 acc=0.516 α=0.22 corr=-0.11
+[maze/learned+r0] cycle 15/25 steps=19200 mse=0.9882 acc=0.521 α=0.22 corr=-0.10
+[maze/learned+r0] cycle 16/25 steps=20480 mse=0.9745 acc=0.529 α=0.23 corr=-0.09
+[maze/learned+r0] cycle 17/25 steps=21760 mse=0.9608 acc=0.531 α=0.24 corr=-0.08
+[maze/learned+r0] cycle 18/25 steps=23040 mse=0.9464 acc=0.529 α=0.25 corr=-0.07
+[maze/learned+r0] cycle 19/25 steps=24320 mse=0.9310 acc=0.521 α=0.26 corr=-0.05
+[maze/learned+r0] cycle 20/25 steps=25600 mse=0.9142 acc=0.526 α=0.27 corr=-0.04
+[maze/learned+r0] cycle 21/25 steps=26880 mse=0.8969 acc=0.513 α=0.29 corr=-0.02
+[maze/learned+r0] cycle 22/25 steps=28160 mse=0.8781 acc=0.498 α=0.30 corr=-0.01
+[maze/learned+r0] cycle 23/25 steps=29440 mse=0.8573 acc=0.498 α=0.32 corr=+0.01
+[maze/learned+r0] cycle 24/25 steps=30720 mse=0.8349 acc=0.504 α=0.33 corr=+0.02
+[maze/learned+r0] cycle 25/25 steps=32000 mse=0.8111 acc=0.508 α=0.35 corr=+0.03
+完成：5.8s，已登记 results/registry.md
+>>> E1 maze fixed_yang seed=0 16:35:37
+[maze/fixed_yang+r0] cycle 1/25 steps=1280 mse=6.0281 acc=0.504 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 2/25 steps=2560 mse=4.7783 acc=0.504 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 3/25 steps=3840 mse=3.7561 acc=0.506 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 4/25 steps=5120 mse=3.0252 acc=0.503 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 5/25 steps=6400 mse=2.5255 acc=0.495 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 6/25 steps=7680 mse=2.1684 acc=0.491 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 7/25 steps=8960 mse=1.9028 acc=0.493 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 8/25 steps=10240 mse=1.6999 acc=0.492 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 9/25 steps=11520 mse=1.5393 acc=0.492 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 10/25 steps=12800 mse=1.4077 acc=0.492 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 11/25 steps=14080 mse=1.2994 acc=0.495 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 12/25 steps=15360 mse=1.2077 acc=0.500 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 13/25 steps=16640 mse=1.1289 acc=0.499 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 14/25 steps=17920 mse=1.0608 acc=0.498 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 15/25 steps=19200 mse=1.0011 acc=0.501 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 16/25 steps=20480 mse=0.9486 acc=0.506 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 17/25 steps=21760 mse=0.9011 acc=0.508 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 18/25 steps=23040 mse=0.8587 acc=0.508 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 19/25 steps=24320 mse=0.8208 acc=0.507 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 20/25 steps=25600 mse=0.7864 acc=0.517 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 21/25 steps=26880 mse=0.7550 acc=0.518 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 22/25 steps=28160 mse=0.7260 acc=0.519 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 23/25 steps=29440 mse=0.6990 acc=0.517 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 24/25 steps=30720 mse=0.6743 acc=0.520 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 25/25 steps=32000 mse=0.6517 acc=0.521 α=1.00 corr=+0.00
+完成：5.5s，已登记 results/registry.md
+>>> E1 grid learned seed=1 16:35:45
+[grid/learned+r0] cycle 1/20 steps=276 mse=1.9303 acc=0.012 α=0.47 corr=-0.05
+[grid/learned+r0] cycle 2/20 steps=633 mse=1.6937 acc=0.018 α=0.44 corr=-0.08
+[grid/learned+r0] cycle 3/20 steps=1089 mse=1.4936 acc=0.014 α=0.40 corr=-0.07
+[grid/learned+r0] cycle 4/20 steps=1427 mse=1.3262 acc=0.018 α=0.34 corr=-0.09
+[grid/learned+r0] cycle 5/20 steps=1799 mse=1.2075 acc=0.014 α=0.28 corr=-0.12
+[grid/learned+r0] cycle 6/20 steps=2190 mse=1.1400 acc=0.014 α=0.24 corr=-0.14
+[grid/learned+r0] cycle 7/20 steps=2512 mse=1.1068 acc=0.018 α=0.22 corr=-0.14
+[grid/learned+r0] cycle 8/20 steps=2911 mse=1.0889 acc=0.014 α=0.21 corr=-0.13
+[grid/learned+r0] cycle 9/20 steps=3227 mse=1.0776 acc=0.016 α=0.22 corr=-0.12
+[grid/learned+r0] cycle 10/20 steps=3581 mse=1.0679 acc=0.021 α=0.22 corr=-0.11
+[grid/learned+r0] cycle 11/20 steps=3898 mse=1.0587 acc=0.020 α=0.22 corr=-0.10
+[grid/learned+r0] cycle 12/20 steps=4244 mse=1.0485 acc=0.035 α=0.23 corr=-0.09
+[grid/learned+r0] cycle 13/20 steps=4577 mse=1.0401 acc=0.037 α=0.23 corr=-0.08
+[grid/learned+r0] cycle 14/20 steps=4865 mse=1.0323 acc=0.029 α=0.24 corr=-0.07
+[grid/learned+r0] cycle 15/20 steps=5238 mse=1.0230 acc=0.029 α=0.24 corr=-0.06
+[grid/learned+r0] cycle 16/20 steps=5544 mse=1.0134 acc=0.025 α=0.25 corr=-0.05
+[grid/learned+r0] cycle 17/20 steps=5873 mse=1.0038 acc=0.020 α=0.26 corr=-0.05
+[grid/learned+r0] cycle 18/20 steps=6252 mse=0.9938 acc=0.023 α=0.27 corr=-0.04
+[grid/learned+r0] cycle 19/20 steps=6600 mse=0.9830 acc=0.020 α=0.28 corr=-0.03
+[grid/learned+r0] cycle 20/20 steps=6887 mse=0.9708 acc=0.021 α=0.29 corr=-0.03
+完成：3.8s，已登记 results/registry.md
+>>> E1 grid fixed_yang seed=1 16:35:52
+[grid/fixed_yang+r0] cycle 1/20 steps=276 mse=5.9087 acc=0.006 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 2/20 steps=633 mse=4.9280 acc=0.006 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 3/20 steps=1089 mse=4.0564 acc=0.010 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 4/20 steps=1427 mse=3.3491 acc=0.018 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 5/20 steps=1799 mse=2.8214 acc=0.014 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 6/20 steps=2190 mse=2.4352 acc=0.020 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 7/20 steps=2512 mse=2.1477 acc=0.018 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 8/20 steps=2911 mse=1.9254 acc=0.020 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 9/20 steps=3227 mse=1.7470 acc=0.020 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 10/20 steps=3581 mse=1.5998 acc=0.020 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 11/20 steps=3898 mse=1.4765 acc=0.016 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 12/20 steps=4244 mse=1.3713 acc=0.018 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 13/20 steps=4577 mse=1.2831 acc=0.020 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 14/20 steps=4865 mse=1.2077 acc=0.018 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 15/20 steps=5238 mse=1.1396 acc=0.018 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 16/20 steps=5544 mse=1.0805 acc=0.016 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 17/20 steps=5873 mse=1.0300 acc=0.016 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 18/20 steps=6252 mse=0.9836 acc=0.014 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 19/20 steps=6600 mse=0.9405 acc=0.010 α=1.00 corr=+0.00
+[grid/fixed_yang+r0] cycle 20/20 steps=6887 mse=0.9021 acc=0.010 α=1.00 corr=+0.00
+完成：3.5s，已登记 results/registry.md
+>>> E1 maze learned seed=1 16:35:58
+[maze/learned+r0] cycle 1/25 steps=1280 mse=1.9184 acc=0.488 α=0.47 corr=-0.11
+[maze/learned+r0] cycle 2/25 steps=2528 mse=1.6371 acc=0.479 α=0.43 corr=-0.24
+[maze/learned+r0] cycle 3/25 steps=3808 mse=1.4031 acc=0.475 α=0.36 corr=-0.36
+[maze/learned+r0] cycle 4/25 steps=5088 mse=1.2370 acc=0.487 α=0.29 corr=-0.44
+[maze/learned+r0] cycle 5/25 steps=6368 mse=1.1464 acc=0.487 α=0.22 corr=-0.48
+[maze/learned+r0] cycle 6/25 steps=7648 mse=1.1080 acc=0.491 α=0.19 corr=-0.50
+[maze/learned+r0] cycle 7/25 steps=8928 mse=1.0876 acc=0.487 α=0.19 corr=-0.49
+[maze/learned+r0] cycle 8/25 steps=10155 mse=1.0734 acc=0.496 α=0.19 corr=-0.48
+[maze/learned+r0] cycle 9/25 steps=11435 mse=1.0613 acc=0.497 α=0.19 corr=-0.47
+[maze/learned+r0] cycle 10/25 steps=12715 mse=1.0510 acc=0.497 α=0.20 corr=-0.45
+[maze/learned+r0] cycle 11/25 steps=13995 mse=1.0391 acc=0.498 α=0.20 corr=-0.44
+[maze/learned+r0] cycle 12/25 steps=15275 mse=1.0274 acc=0.493 α=0.20 corr=-0.42
+[maze/learned+r0] cycle 13/25 steps=16555 mse=1.0156 acc=0.495 α=0.21 corr=-0.41
+[maze/learned+r0] cycle 14/25 steps=17835 mse=1.0031 acc=0.492 α=0.21 corr=-0.40
+[maze/learned+r0] cycle 15/25 steps=19115 mse=0.9904 acc=0.490 α=0.21 corr=-0.39
+[maze/learned+r0] cycle 16/25 steps=20395 mse=0.9774 acc=0.490 α=0.22 corr=-0.38
+[maze/learned+r0] cycle 17/25 steps=21675 mse=0.9640 acc=0.489 α=0.22 corr=-0.36
+[maze/learned+r0] cycle 18/25 steps=22955 mse=0.9503 acc=0.494 α=0.23 corr=-0.35
+[maze/learned+r0] cycle 19/25 steps=24235 mse=0.9357 acc=0.493 α=0.24 corr=-0.34
+[maze/learned+r0] cycle 20/25 steps=25515 mse=0.9203 acc=0.494 α=0.25 corr=-0.33
+[maze/learned+r0] cycle 21/25 steps=26795 mse=0.9038 acc=0.487 α=0.27 corr=-0.32
+[maze/learned+r0] cycle 22/25 steps=28075 mse=0.8866 acc=0.488 α=0.28 corr=-0.31
+[maze/learned+r0] cycle 23/25 steps=29355 mse=0.8681 acc=0.482 α=0.29 corr=-0.29
+[maze/learned+r0] cycle 24/25 steps=30635 mse=0.8483 acc=0.486 α=0.31 corr=-0.28
+[maze/learned+r0] cycle 25/25 steps=31915 mse=0.8271 acc=0.491 α=0.32 corr=-0.27
+完成：5.3s，已登记 results/registry.md
+>>> E1 maze fixed_yang seed=1 16:36:06
+[maze/fixed_yang+r0] cycle 1/25 steps=1280 mse=5.9913 acc=0.496 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 2/25 steps=2528 mse=4.7873 acc=0.486 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 3/25 steps=3808 mse=3.8136 acc=0.479 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 4/25 steps=5088 mse=3.0990 acc=0.479 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 5/25 steps=6368 mse=2.5812 acc=0.473 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 6/25 steps=7648 mse=2.2039 acc=0.484 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 7/25 steps=8928 mse=1.9222 acc=0.485 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 8/25 steps=10155 mse=1.7067 acc=0.485 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 9/25 steps=11435 mse=1.5380 acc=0.485 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 10/25 steps=12715 mse=1.4043 acc=0.481 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 11/25 steps=13995 mse=1.2938 acc=0.482 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 12/25 steps=15275 mse=1.2007 acc=0.483 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 13/25 steps=16555 mse=1.1213 acc=0.483 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 14/25 steps=17835 mse=1.0524 acc=0.486 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 15/25 steps=19115 mse=0.9929 acc=0.491 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 16/25 steps=20395 mse=0.9409 acc=0.491 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 17/25 steps=21675 mse=0.8939 acc=0.491 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 18/25 steps=22955 mse=0.8521 acc=0.491 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 19/25 steps=24235 mse=0.8143 acc=0.489 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 20/25 steps=25515 mse=0.7801 acc=0.494 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 21/25 steps=26795 mse=0.7489 acc=0.495 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 22/25 steps=28075 mse=0.7208 acc=0.489 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 23/25 steps=29355 mse=0.6948 acc=0.493 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 24/25 steps=30635 mse=0.6705 acc=0.494 α=1.00 corr=+0.00
+[maze/fixed_yang+r0] cycle 25/25 steps=31915 mse=0.6481 acc=0.495 α=1.00 corr=+0.00
+完成：5.4s，已登记 results/registry.md
+--- E2 formal: 6 configs x 2 seeds ---
+>>> E2 k=0 free seed=0 16:36:14
+[k=0/free] cycle 1/20 steps=514 succ=0.56 ret=0.16 rand=0.00 visited=0
+[k=0/free] cycle 2/20 steps=1108 succ=0.75 ret=0.40 rand=0.00 visited=0
+[k=0/free] cycle 3/20 steps=1745 succ=0.75 ret=0.41 rand=0.00 visited=0
+[k=0/free] cycle 4/20 steps=2272 succ=0.75 ret=0.41 rand=0.00 visited=0
+[k=0/free] cycle 5/20 steps=2764 succ=0.38 ret=-0.11 rand=0.00 visited=0
+[k=0/free] cycle 6/20 steps=3276 succ=0.62 ret=0.22 rand=0.00 visited=0
+[k=0/free] cycle 7/20 steps=3867 succ=0.44 ret=-0.03 rand=0.00 visited=0
+[k=0/free] cycle 8/20 steps=4467 succ=0.56 ret=0.10 rand=0.00 visited=0
+[k=0/free] cycle 9/20 steps=5056 succ=0.62 ret=0.23 rand=0.00 visited=0
+[k=0/free] cycle 10/20 steps=5598 succ=0.62 ret=0.20 rand=0.00 visited=0
+[k=0/free] cycle 11/20 steps=6196 succ=0.31 ret=-0.24 rand=0.00 visited=0
+[k=0/free] cycle 12/20 steps=6748 succ=0.75 ret=0.36 rand=0.00 visited=0
+[k=0/free] cycle 13/20 steps=7310 succ=0.50 ret=0.03 rand=0.00 visited=0
+[k=0/free] cycle 14/20 steps=7793 succ=0.31 ret=-0.18 rand=0.00 visited=0
+[k=0/free] cycle 15/20 steps=8252 succ=0.69 ret=0.23 rand=0.00 visited=0
+[k=0/free] cycle 16/20 steps=8929 succ=0.62 ret=0.19 rand=0.00 visited=0
+[k=0/free] cycle 17/20 steps=9546 succ=0.75 ret=0.35 rand=0.00 visited=0
+[k=0/free] cycle 18/20 steps=10121 succ=0.75 ret=0.37 rand=0.00 visited=0
+[k=0/free] cycle 19/20 steps=10629 succ=0.56 ret=0.13 rand=0.00 visited=0
+[k=0/free] cycle 20/20 steps=11159 succ=0.81 ret=0.47 rand=0.00 visited=0
+完成：137.7s，已登记 results/registry.md
+>>> E2 k=64 shaped seed=0 16:38:34
+[k=64/shaped] cycle 1/20 steps=514 succ=0.12 ret=-0.43 rand=0.00 visited=63
+[k=64/shaped] cycle 2/20 steps=1108 succ=0.12 ret=-0.47 rand=0.00 visited=64
+[k=64/shaped] cycle 3/20 steps=1745 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/shaped] cycle 4/20 steps=2272 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/shaped] cycle 5/20 steps=2764 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/shaped] cycle 6/20 steps=3276 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/shaped] cycle 7/20 steps=3867 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/shaped] cycle 8/20 steps=4467 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/shaped] cycle 9/20 steps=5056 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/shaped] cycle 10/20 steps=5598 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/shaped] cycle 11/20 steps=6196 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/shaped] cycle 12/20 steps=6748 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/shaped] cycle 13/20 steps=7310 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/shaped] cycle 14/20 steps=7793 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/shaped] cycle 15/20 steps=8252 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/shaped] cycle 16/20 steps=8929 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/shaped] cycle 17/20 steps=9546 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/shaped] cycle 18/20 steps=10121 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/shaped] cycle 19/20 steps=10629 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/shaped] cycle 20/20 steps=11159 succ=0.00 ret=-0.60 rand=0.00 visited=64
+完成：315.4s，已登记 results/registry.md
+>>> E2 k=64 free seed=0 16:43:55
+[k=64/free] cycle 1/20 steps=514 succ=0.12 ret=-0.43 rand=0.00 visited=63
+[k=64/free] cycle 2/20 steps=1108 succ=0.12 ret=-0.47 rand=0.00 visited=64
+[k=64/free] cycle 3/20 steps=1745 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free] cycle 4/20 steps=2272 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free] cycle 5/20 steps=2764 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free] cycle 6/20 steps=3276 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free] cycle 7/20 steps=3867 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free] cycle 8/20 steps=4467 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free] cycle 9/20 steps=5056 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free] cycle 10/20 steps=5598 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free] cycle 11/20 steps=6196 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free] cycle 12/20 steps=6748 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free] cycle 13/20 steps=7310 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free] cycle 14/20 steps=7793 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free] cycle 15/20 steps=8252 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free] cycle 16/20 steps=8929 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free] cycle 17/20 steps=9546 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free] cycle 18/20 steps=10121 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free] cycle 19/20 steps=10629 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free] cycle 20/20 steps=11159 succ=0.00 ret=-0.60 rand=0.00 visited=64
+完成：161.0s，已登记 results/registry.md
+>>> E2 k=64 free_match seed=0 16:46:41
+[k=64/free_match] cycle 1/20 steps=514 succ=0.19 ret=-0.40 rand=0.00 visited=63
+[k=64/free_match] cycle 2/20 steps=1108 succ=0.06 ret=-0.53 rand=0.00 visited=64
+[k=64/free_match] cycle 3/20 steps=1745 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free_match] cycle 4/20 steps=2272 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free_match] cycle 5/20 steps=2764 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free_match] cycle 6/20 steps=3276 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free_match] cycle 7/20 steps=3867 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free_match] cycle 8/20 steps=4467 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free_match] cycle 9/20 steps=5056 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free_match] cycle 10/20 steps=5598 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free_match] cycle 11/20 steps=6196 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free_match] cycle 12/20 steps=6748 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free_match] cycle 13/20 steps=7310 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free_match] cycle 14/20 steps=7793 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free_match] cycle 15/20 steps=8252 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free_match] cycle 16/20 steps=8929 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free_match] cycle 17/20 steps=9546 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free_match] cycle 18/20 steps=10121 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free_match] cycle 19/20 steps=10629 succ=0.00 ret=-0.60 rand=0.00 visited=64
+[k=64/free_match] cycle 20/20 steps=11159 succ=0.00 ret=-0.60 rand=0.00 visited=64
+完成：36.3s，已登记 results/registry.md
+>>> E2 k=32 shaped seed=0 16:47:20
+[k=32/shaped] cycle 1/20 steps=514 succ=0.44 ret=-0.04 rand=0.00 visited=32
+[k=32/shaped] cycle 2/20 steps=1108 succ=0.19 ret=-0.38 rand=0.00 visited=32
+[k=32/shaped] cycle 3/20 steps=1745 succ=0.19 ret=-0.39 rand=0.00 visited=32
+[k=32/shaped] cycle 4/20 steps=2272 succ=0.19 ret=-0.38 rand=0.00 visited=32
+[k=32/shaped] cycle 5/20 steps=2764 succ=0.06 ret=-0.54 rand=0.00 visited=32
+[k=32/shaped] cycle 6/20 steps=3276 succ=0.00 ret=-0.60 rand=0.00 visited=32
+[k=32/shaped] cycle 7/20 steps=3867 succ=0.00 ret=-0.60 rand=0.00 visited=32
+[k=32/shaped] cycle 8/20 steps=4467 succ=0.00 ret=-0.60 rand=0.00 visited=32
+[k=32/shaped] cycle 9/20 steps=5056 succ=0.00 ret=-0.60 rand=0.00 visited=32
+[k=32/shaped] cycle 10/20 steps=5598 succ=0.00 ret=-0.60 rand=0.00 visited=32
+[k=32/shaped] cycle 11/20 steps=6196 succ=0.00 ret=-0.60 rand=0.00 visited=32
+[k=32/shaped] cycle 12/20 steps=6748 succ=0.00 ret=-0.60 rand=0.00 visited=32
+[k=32/shaped] cycle 13/20 steps=7310 succ=0.00 ret=-0.60 rand=0.00 visited=32
+[k=32/shaped] cycle 14/20 steps=7793 succ=0.00 ret=-0.60 rand=0.00 visited=32
+[k=32/shaped] cycle 15/20 steps=8252 succ=0.00 ret=-0.60 rand=0.00 visited=32
+[k=32/shaped] cycle 16/20 steps=8929 succ=0.00 ret=-0.60 rand=0.00 visited=32
+[k=32/shaped] cycle 17/20 steps=9546 succ=0.00 ret=-0.60 rand=0.00 visited=32
+[k=32/shaped] cycle 18/20 steps=10121 succ=0.00 ret=-0.60 rand=0.00 visited=32
+[k=32/shaped] cycle 19/20 steps=10629 succ=0.06 ret=-0.52 rand=0.00 visited=32
+[k=32/shaped] cycle 20/20 steps=11159 succ=0.06 ret=-0.52 rand=0.00 visited=32
+完成：284.8s，已登记 results/registry.md
+>>> E2 k=128 shaped seed=0 16:52:08
+[k=128/shaped] cycle 1/20 steps=514 succ=0.19 ret=-0.38 rand=0.00 visited=125
+[k=128/shaped] cycle 2/20 steps=1108 succ=0.12 ret=-0.45 rand=0.00 visited=128
+[k=128/shaped] cycle 3/20 steps=1745 succ=0.12 ret=-0.46 rand=0.00 visited=128
+[k=128/shaped] cycle 4/20 steps=2272 succ=0.06 ret=-0.53 rand=0.00 visited=128
+[k=128/shaped] cycle 5/20 steps=2764 succ=0.00 ret=-0.60 rand=0.00 visited=128
+[k=128/shaped] cycle 6/20 steps=3276 succ=0.12 ret=-0.47 rand=0.00 visited=128
+[k=128/shaped] cycle 7/20 steps=3867 succ=0.12 ret=-0.46 rand=0.00 visited=128
+[k=128/shaped] cycle 8/20 steps=4467 succ=0.25 ret=-0.30 rand=0.00 visited=128
+[k=128/shaped] cycle 9/20 steps=5056 succ=0.25 ret=-0.29 rand=0.00 visited=128
+[k=128/shaped] cycle 10/20 steps=5598 succ=0.06 ret=-0.52 rand=0.00 visited=128
+[k=128/shaped] cycle 11/20 steps=6196 succ=0.00 ret=-0.60 rand=0.00 visited=128
+[k=128/shaped] cycle 12/20 steps=6748 succ=0.06 ret=-0.52 rand=0.00 visited=128
+[k=128/shaped] cycle 13/20 steps=7310 succ=0.06 ret=-0.53 rand=0.00 visited=128
+[k=128/shaped] cycle 14/20 steps=7793 succ=0.06 ret=-0.53 rand=0.00 visited=128
+[k=128/shaped] cycle 15/20 steps=8252 succ=0.50 ret=0.01 rand=0.00 visited=128
+[k=128/shaped] cycle 16/20 steps=8929 succ=0.19 ret=-0.39 rand=0.00 visited=128
+[k=128/shaped] cycle 17/20 steps=9546 succ=0.31 ret=-0.24 rand=0.00 visited=128
+[k=128/shaped] cycle 18/20 steps=10121 succ=0.19 ret=-0.37 rand=0.00 visited=128
+[k=128/shaped] cycle 19/20 steps=10629 succ=0.25 ret=-0.31 rand=0.00 visited=128
+[k=128/shaped] cycle 20/20 steps=11159 succ=0.19 ret=-0.35 rand=0.00 visited=128
+完成：370.1s，已登记 results/registry.md
+>>> E2 k=0 free seed=1 16:58:24
+[k=0/free] cycle 1/20 steps=635 succ=0.00 ret=-0.60 rand=0.06 visited=0
+[k=0/free] cycle 2/20 steps=1224 succ=0.00 ret=-0.60 rand=0.06 visited=0
+[k=0/free] cycle 3/20 steps=1821 succ=0.00 ret=-0.60 rand=0.06 visited=0
+[k=0/free] cycle 4/20 steps=2383 succ=0.00 ret=-0.60 rand=0.06 visited=0
+[k=0/free] cycle 5/20 steps=2925 succ=0.00 ret=-0.60 rand=0.06 visited=0
+[k=0/free] cycle 6/20 steps=3351 succ=0.00 ret=-0.60 rand=0.06 visited=0
+[k=0/free] cycle 7/20 steps=3924 succ=0.00 ret=-0.60 rand=0.06 visited=0
+[k=0/free] cycle 8/20 steps=4393 succ=0.00 ret=-0.60 rand=0.06 visited=0
+[k=0/free] cycle 9/20 steps=4921 succ=0.00 ret=-0.60 rand=0.06 visited=0
+[k=0/free] cycle 10/20 steps=5479 succ=0.00 ret=-0.60 rand=0.06 visited=0
+[k=0/free] cycle 11/20 steps=5981 succ=0.00 ret=-0.60 rand=0.06 visited=0
+[k=0/free] cycle 12/20 steps=6677 succ=0.00 ret=-0.60 rand=0.06 visited=0
+[k=0/free] cycle 13/20 steps=7334 succ=0.00 ret=-0.60 rand=0.06 visited=0
+[k=0/free] cycle 14/20 steps=7924 succ=0.00 ret=-0.60 rand=0.06 visited=0
+[k=0/free] cycle 15/20 steps=8466 succ=0.00 ret=-0.60 rand=0.06 visited=0
+[k=0/free] cycle 16/20 steps=9062 succ=0.00 ret=-0.60 rand=0.06 visited=0
+[k=0/free] cycle 17/20 steps=9527 succ=0.00 ret=-0.60 rand=0.06 visited=0
+[k=0/free] cycle 18/20 steps=10115 succ=0.00 ret=-0.60 rand=0.06 visited=0
+[k=0/free] cycle 19/20 steps=10638 succ=0.00 ret=-0.60 rand=0.06 visited=0
+[k=0/free] cycle 20/20 steps=11270 succ=0.00 ret=-0.60 rand=0.06 visited=0
+完成：460.4s，已登记 results/registry.md
+>>> E2 k=64 shaped seed=1 17:06:12
+[k=64/shaped] cycle 1/20 steps=635 succ=0.06 ret=-0.52 rand=0.06 visited=64
+[k=64/shaped] cycle 2/20 steps=1224 succ=0.06 ret=-0.52 rand=0.06 visited=64
+[k=64/shaped] cycle 3/20 steps=1821 succ=0.12 ret=-0.45 rand=0.06 visited=64
+[k=64/shaped] cycle 4/20 steps=2383 succ=0.25 ret=-0.32 rand=0.06 visited=64
+[k=64/shaped] cycle 5/20 steps=2925 succ=0.06 ret=-0.53 rand=0.06 visited=64
+[k=64/shaped] cycle 6/20 steps=3351 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/shaped] cycle 7/20 steps=3924 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/shaped] cycle 8/20 steps=4393 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/shaped] cycle 9/20 steps=4921 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/shaped] cycle 10/20 steps=5479 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/shaped] cycle 11/20 steps=5981 succ=0.12 ret=-0.46 rand=0.06 visited=64
+[k=64/shaped] cycle 12/20 steps=6677 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/shaped] cycle 13/20 steps=7334 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/shaped] cycle 14/20 steps=7924 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/shaped] cycle 15/20 steps=8466 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/shaped] cycle 16/20 steps=9062 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/shaped] cycle 17/20 steps=9527 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/shaped] cycle 18/20 steps=10115 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/shaped] cycle 19/20 steps=10638 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/shaped] cycle 20/20 steps=11270 succ=0.00 ret=-0.60 rand=0.06 visited=64
+完成：627.4s，已登记 results/registry.md
+>>> E2 k=64 free seed=1 17:16:46
+[k=64/free] cycle 1/20 steps=635 succ=0.06 ret=-0.52 rand=0.06 visited=64
+[k=64/free] cycle 2/20 steps=1224 succ=0.06 ret=-0.52 rand=0.06 visited=64
+[k=64/free] cycle 3/20 steps=1821 succ=0.12 ret=-0.45 rand=0.06 visited=64
+[k=64/free] cycle 4/20 steps=2383 succ=0.19 ret=-0.39 rand=0.06 visited=64
+[k=64/free] cycle 5/20 steps=2925 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free] cycle 6/20 steps=3351 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free] cycle 7/20 steps=3924 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free] cycle 8/20 steps=4393 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free] cycle 9/20 steps=4921 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free] cycle 10/20 steps=5479 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free] cycle 11/20 steps=5981 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free] cycle 12/20 steps=6677 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free] cycle 13/20 steps=7334 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free] cycle 14/20 steps=7924 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free] cycle 15/20 steps=8466 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free] cycle 16/20 steps=9062 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free] cycle 17/20 steps=9527 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free] cycle 18/20 steps=10115 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free] cycle 19/20 steps=10638 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free] cycle 20/20 steps=11270 succ=0.00 ret=-0.60 rand=0.06 visited=64
+完成：339.2s，已登记 results/registry.md
+>>> E2 k=64 free_match seed=1 17:22:31
+[k=64/free_match] cycle 1/20 steps=635 succ=0.12 ret=-0.46 rand=0.06 visited=64
+[k=64/free_match] cycle 2/20 steps=1224 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free_match] cycle 3/20 steps=1821 succ=0.19 ret=-0.38 rand=0.06 visited=64
+[k=64/free_match] cycle 4/20 steps=2383 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free_match] cycle 5/20 steps=2925 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free_match] cycle 6/20 steps=3351 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free_match] cycle 7/20 steps=3924 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free_match] cycle 8/20 steps=4393 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free_match] cycle 9/20 steps=4921 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free_match] cycle 10/20 steps=5479 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free_match] cycle 11/20 steps=5981 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free_match] cycle 12/20 steps=6677 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free_match] cycle 13/20 steps=7334 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free_match] cycle 14/20 steps=7924 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free_match] cycle 15/20 steps=8466 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free_match] cycle 16/20 steps=9062 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free_match] cycle 17/20 steps=9527 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free_match] cycle 18/20 steps=10115 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free_match] cycle 19/20 steps=10638 succ=0.00 ret=-0.60 rand=0.06 visited=64
+[k=64/free_match] cycle 20/20 steps=11270 succ=0.00 ret=-0.60 rand=0.06 visited=64
+完成：105.5s，已登记 results/registry.md
+>>> E2 k=32 shaped seed=1 17:24:24
+[k=32/shaped] cycle 1/20 steps=635 succ=0.19 ret=-0.40 rand=0.06 visited=32
+[k=32/shaped] cycle 2/20 steps=1224 succ=0.12 ret=-0.46 rand=0.06 visited=32
+[k=32/shaped] cycle 3/20 steps=1821 succ=0.25 ret=-0.32 rand=0.06 visited=32
+[k=32/shaped] cycle 4/20 steps=2383 succ=0.00 ret=-0.60 rand=0.06 visited=32
+[k=32/shaped] cycle 5/20 steps=2925 succ=0.00 ret=-0.60 rand=0.06 visited=32
+[k=32/shaped] cycle 6/20 steps=3351 succ=0.00 ret=-0.60 rand=0.06 visited=32
+[k=32/shaped] cycle 7/20 steps=3924 succ=0.00 ret=-0.60 rand=0.06 visited=32
+[k=32/shaped] cycle 8/20 steps=4393 succ=0.00 ret=-0.60 rand=0.06 visited=32
+[k=32/shaped] cycle 9/20 steps=4921 succ=0.00 ret=-0.60 rand=0.06 visited=32
+[k=32/shaped] cycle 10/20 steps=5479 succ=0.00 ret=-0.60 rand=0.06 visited=32
+[k=32/shaped] cycle 11/20 steps=5981 succ=0.00 ret=-0.60 rand=0.06 visited=32
+[k=32/shaped] cycle 12/20 steps=6677 succ=0.00 ret=-0.60 rand=0.06 visited=32
+[k=32/shaped] cycle 13/20 steps=7334 succ=0.00 ret=-0.60 rand=0.06 visited=32
+[k=32/shaped] cycle 14/20 steps=7924 succ=0.00 ret=-0.60 rand=0.06 visited=32
+[k=32/shaped] cycle 15/20 steps=8466 succ=0.00 ret=-0.60 rand=0.06 visited=32
+[k=32/shaped] cycle 16/20 steps=9062 succ=0.00 ret=-0.60 rand=0.06 visited=32
+[k=32/shaped] cycle 17/20 steps=9527 succ=0.06 ret=-0.52 rand=0.06 visited=32
+[k=32/shaped] cycle 18/20 steps=10115 succ=0.12 ret=-0.43 rand=0.06 visited=32
+[k=32/shaped] cycle 19/20 steps=10638 succ=0.06 ret=-0.52 rand=0.06 visited=32
+[k=32/shaped] cycle 20/20 steps=11270 succ=0.00 ret=-0.60 rand=0.06 visited=32
+完成：264.3s，已登记 results/registry.md
+>>> E2 k=128 shaped seed=1 17:28:53
+[k=128/shaped] cycle 1/20 steps=635 succ=0.00 ret=-0.60 rand=0.06 visited=122
+[k=128/shaped] cycle 2/20 steps=1224 succ=0.00 ret=-0.60 rand=0.06 visited=126
+[k=128/shaped] cycle 3/20 steps=1821 succ=0.00 ret=-0.60 rand=0.06 visited=128
+[k=128/shaped] cycle 4/20 steps=2383 succ=0.00 ret=-0.60 rand=0.06 visited=128
+[k=128/shaped] cycle 5/20 steps=2925 succ=0.00 ret=-0.60 rand=0.06 visited=128
+[k=128/shaped] cycle 6/20 steps=3351 succ=0.00 ret=-0.60 rand=0.06 visited=128
+[k=128/shaped] cycle 7/20 steps=3924 succ=0.00 ret=-0.60 rand=0.06 visited=128
+[k=128/shaped] cycle 8/20 steps=4393 succ=0.00 ret=-0.60 rand=0.06 visited=128
+[k=128/shaped] cycle 9/20 steps=4921 succ=0.00 ret=-0.60 rand=0.06 visited=128
+[k=128/shaped] cycle 10/20 steps=5479 succ=0.00 ret=-0.60 rand=0.06 visited=128
+[k=128/shaped] cycle 11/20 steps=5981 succ=0.00 ret=-0.60 rand=0.06 visited=128
+[k=128/shaped] cycle 12/20 steps=6677 succ=0.00 ret=-0.60 rand=0.06 visited=128
+[k=128/shaped] cycle 13/20 steps=7334 succ=0.00 ret=-0.60 rand=0.06 visited=128
+[k=128/shaped] cycle 14/20 steps=7924 succ=0.00 ret=-0.60 rand=0.06 visited=128
+[k=128/shaped] cycle 15/20 steps=8466 succ=0.00 ret=-0.60 rand=0.06 visited=128
+[k=128/shaped] cycle 16/20 steps=9062 succ=0.00 ret=-0.60 rand=0.06 visited=128
+[k=128/shaped] cycle 17/20 steps=9527 succ=0.00 ret=-0.60 rand=0.06 visited=128
+[k=128/shaped] cycle 18/20 steps=10115 succ=0.00 ret=-0.60 rand=0.06 visited=128
+[k=128/shaped] cycle 19/20 steps=10638 succ=0.00 ret=-0.60 rand=0.06 visited=128
+[k=128/shaped] cycle 20/20 steps=11270 succ=0.00 ret=-0.60 rand=0.06 visited=128
+完成：222.7s，已登记 results/registry.md
+=== FORMAL RUN DONE Thu Oct  8 17:32:39 CST 2026 ===
+--- 汇总 ---
+registry 中暂无 formal 行。
+=== E3 FORMAL START Thu Oct  8 17:41:03 CST 2026 ===
+>>> E3 full seed=0 17:41:03
+[full] phase 1/3 done mse=0.9053 steps=695
+[full] phase 2/3 done mse=0.5673 steps=1277
+[full] phase 3/3 done mse=0.2989 steps=1844
+完成：5.3s retention_mean=1.5829 robust=[1.00121378082745, 0.9716660719132938, 0.9870492404216907]
+>>> E3 none seed=0 17:41:17
+[none] phase 1/3 done mse=0.9748 steps=695
+[none] phase 2/3 done mse=0.7723 steps=1277
+[none] phase 3/3 done mse=0.5347 steps=1844
+完成：3.4s retention_mean=1.3598 robust=[0.9740433784041217, 0.9619563081712008, 0.9816193470512878]
+>>> E3 no_imagination seed=0 17:41:25
+[no_imagination] phase 1/3 done mse=0.9126 steps=695
+[no_imagination] phase 2/3 done mse=0.5954 steps=1277
+[no_imagination] phase 3/3 done mse=0.3266 steps=1844
+完成：3.7s retention_mean=1.5637 robust=[0.9243289697845661, 0.8959529517066395, 0.9216591270549594]
+>>> E3 no_consolidation seed=0 17:41:33
+[no_consolidation] phase 1/3 done mse=0.9334 steps=695
+[no_consolidation] phase 2/3 done mse=0.6238 steps=1277
+[no_consolidation] phase 3/3 done mse=0.3482 steps=1844
+完成：4.0s retention_mean=1.5298 robust=[0.9695124879902771, 0.9468240734162116, 0.9613301074257359]
+>>> E3 no_reverse_learning seed=0 17:41:41
+[no_reverse_learning] phase 1/3 done mse=0.9327 steps=695
+[no_reverse_learning] phase 2/3 done mse=0.6263 steps=1277
+[no_reverse_learning] phase 3/3 done mse=0.3441 steps=1844
+完成：4.4s retention_mean=1.5395 robust=[0.9665082156101668, 0.9350052676123771, 0.9571771560689476]
+>>> E3 no_rehearsal seed=0 17:41:49
+[no_rehearsal] phase 1/3 done mse=0.9340 steps=695
+[no_rehearsal] phase 2/3 done mse=0.6238 steps=1277
+[no_rehearsal] phase 3/3 done mse=0.3438 steps=1844
+完成：6.1s retention_mean=1.5351 robust=[0.9700986899039432, 0.9477839859943091, 0.9624155155405814]
+>>> E3 full seed=1 17:42:00
+[full] phase 1/3 done mse=0.9275 steps=624
+[full] phase 2/3 done mse=0.6273 steps=1266
+[full] phase 3/3 done mse=0.3292 steps=1827
+完成：8.2s retention_mean=1.556 robust=[1.0093672066791468, 1.0160056253612624, 1.0132615354727426]
+>>> E3 none seed=1 17:42:15
+[none] phase 1/3 done mse=0.9703 steps=624
+[none] phase 2/3 done mse=0.8331 steps=1266
+[none] phase 3/3 done mse=0.6074 steps=1827
+完成：3.5s retention_mean=1.3172 robust=[0.9981331745206619, 0.9981286810960376, 1.000843812131053]
+>>> E3 no_imagination seed=1 17:42:24
+[no_imagination] phase 1/3 done mse=0.9340 steps=624
+[no_imagination] phase 2/3 done mse=0.6674 steps=1266
+[no_imagination] phase 3/3 done mse=0.3570 steps=1827
+完成：4.7s retention_mean=1.5404 robust=[0.9762996921509833, 0.9761557330764936, 0.966016103131632]
+>>> E3 no_consolidation seed=1 17:42:33
+[no_consolidation] phase 1/3 done mse=0.9439 steps=624
+[no_consolidation] phase 2/3 done mse=0.6912 steps=1266
+[no_consolidation] phase 3/3 done mse=0.4038 steps=1827
+完成：8.7s retention_mean=1.4869 robust=[0.9679494812042865, 0.9776185703047957, 0.9691148333374415]
+>>> E3 no_reverse_learning seed=1 17:42:51
+[no_reverse_learning] phase 1/3 done mse=0.9498 steps=624
+[no_reverse_learning] phase 2/3 done mse=0.6921 steps=1266
+[no_reverse_learning] phase 3/3 done mse=0.4136 steps=1827
+完成：16.0s retention_mean=1.4788 robust=[0.9715485519589924, 0.9721070025984184, 0.9632394767087851]
+>>> E3 no_rehearsal seed=1 17:43:18
+[no_rehearsal] phase 1/3 done mse=0.9431 steps=624
+[no_rehearsal] phase 2/3 done mse=0.6878 steps=1266
+[no_rehearsal] phase 3/3 done mse=0.3948 steps=1827
+完成：5.5s retention_mean=1.4974 robust=[0.9743094213794832, 0.9900451117684547, 0.9797379518565662]
+=== E3 FORMAL DONE Thu Oct  8 17:43:31 CST 2026 ===
+formal 行数：41
+
+== E3 · 梦功能分解 (A4) ==
+  dream_full               retention=+1.569 (n=2) robust≈1.00
+  dream_none               retention=+1.338 (n=2) robust≈0.99
+  dream_no_imagination     retention=+1.552 (n=2) robust≈0.95
+  dream_no_consolidation   retention=+1.508 (n=2) robust≈0.97
+  dream_no_reverse_learning retention=+1.509 (n=2) robust≈0.97
+  dream_no_rehearsal       retention=+1.516 (n=2) robust≈0.97
+  full − none = +0.231 → ✅ A4 正信号
+  组件贡献：关 consolidation 后保持率降 +0.061 ≥5pp → 有独立贡献
+  组件贡献：关 reverse_learning 后保持率降 +0.060 ≥5pp → 有独立贡献
+  组件贡献：关 rehearsal 后保持率降 +0.053 ≥5pp → 有独立贡献

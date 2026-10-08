@@ -1,0 +1,6 @@
+{"cycle": 0, "env_steps": 240, "pred_mse": 2.452559, "acc": 0.479492, "alpha_mean": 1.0, "alpha_diff_corr": 0.0}
+{"cycle": 1, "env_steps": 480, "pred_mse": 1.424181, "acc": 0.429688, "alpha_mean": 1.0, "alpha_diff_corr": 0.0}
+{"cycle": 2, "env_steps": 720, "pred_mse": 0.980484, "acc": 0.488281, "alpha_mean": 1.0, "alpha_diff_corr": 0.0}
+{"cycle": 3, "env_steps": 952, "pred_mse": 0.901249, "acc": 0.46582, "alpha_mean": 1.0, "alpha_diff_corr": 0.0}
+{"cycle": 4, "env_steps": 1192, "pred_mse": 0.633159, "acc": 0.473633, "alpha_mean": 1.0, "alpha_diff_corr": 0.0}
+{"cycle": 5, "env_steps": 1432, "pred_mse": 0.579881, "acc": 0.485352, "alpha_mean": 1.0, "alpha_diff_corr": 0.0}

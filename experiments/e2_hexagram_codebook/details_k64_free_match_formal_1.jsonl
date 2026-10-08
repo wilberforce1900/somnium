@@ -1,0 +1,21 @@
+{"cycle": 0, "env_steps": 635, "success": 0.125, "return": -0.4625, "mean_steps": 58.9, "pred_mse": 1.985417, "visited_codes": 64, "cb_loss": 2.575152}
+{"cycle": 1, "env_steps": 1224, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 1.597367, "visited_codes": 64, "cb_loss": 2.186527}
+{"cycle": 2, "env_steps": 1821, "success": 0.1875, "return": -0.3794, "mean_steps": 56.9, "pred_mse": 1.325621, "visited_codes": 64, "cb_loss": 1.935819}
+{"cycle": 3, "env_steps": 2383, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 1.134708, "visited_codes": 64, "cb_loss": 1.679377}
+{"cycle": 4, "env_steps": 2925, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 1.123287, "visited_codes": 64, "cb_loss": 1.566449}
+{"cycle": 5, "env_steps": 3351, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 1.003091, "visited_codes": 64, "cb_loss": 1.485797}
+{"cycle": 6, "env_steps": 3924, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 1.113769, "visited_codes": 64, "cb_loss": 1.589478}
+{"cycle": 7, "env_steps": 4393, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 0.946138, "visited_codes": 64, "cb_loss": 1.567105}
+{"cycle": 8, "env_steps": 4921, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 0.947636, "visited_codes": 64, "cb_loss": 1.531215}
+{"cycle": 9, "env_steps": 5479, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 0.96084, "visited_codes": 64, "cb_loss": 1.575671}
+{"cycle": 10, "env_steps": 5981, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 0.923544, "visited_codes": 64, "cb_loss": 1.516573}
+{"cycle": 11, "env_steps": 6677, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 0.958252, "visited_codes": 64, "cb_loss": 1.402762}
+{"cycle": 12, "env_steps": 7334, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 0.990475, "visited_codes": 64, "cb_loss": 1.45034}
+{"cycle": 13, "env_steps": 7924, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 0.905004, "visited_codes": 64, "cb_loss": 1.460141}
+{"cycle": 14, "env_steps": 8466, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 0.934373, "visited_codes": 64, "cb_loss": 1.478565}
+{"cycle": 15, "env_steps": 9062, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 0.871685, "visited_codes": 64, "cb_loss": 1.244421}
+{"cycle": 16, "env_steps": 9527, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 0.857903, "visited_codes": 64, "cb_loss": 1.21163}
+{"cycle": 17, "env_steps": 10115, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 0.843852, "visited_codes": 64, "cb_loss": 1.281699}
+{"cycle": 18, "env_steps": 10638, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 0.864541, "visited_codes": 64, "cb_loss": 1.333323}
+{"cycle": 19, "env_steps": 11270, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 0.847496, "visited_codes": 64, "cb_loss": 1.265555}
+{"hex_trace_last_eval": ["110101", "110101", "110101", "110101", "110101", "110101", "110101", "110101", "110101", "110101", "110101", "110101", "110101", "110101", "110101", "110101", "110101", "110101", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001", "111001"]}

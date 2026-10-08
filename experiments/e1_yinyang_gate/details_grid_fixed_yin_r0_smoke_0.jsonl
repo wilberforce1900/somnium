@@ -1,0 +1,4 @@
+{"cycle": 0, "env_steps": 59, "pred_mse": 1.001453, "acc": 0.0, "alpha_mean": 0.0, "alpha_diff_corr": 0.0}
+{"cycle": 1, "env_steps": 107, "pred_mse": 1.063148, "acc": 0.035156, "alpha_mean": 0.0, "alpha_diff_corr": 0.0}
+{"cycle": 2, "env_steps": 178, "pred_mse": 1.000411, "acc": 0.027344, "alpha_mean": 0.0, "alpha_diff_corr": 0.0}
+{"cycle": 3, "env_steps": 254, "pred_mse": 0.98642, "acc": 0.011719, "alpha_mean": 0.0, "alpha_diff_corr": 0.0}

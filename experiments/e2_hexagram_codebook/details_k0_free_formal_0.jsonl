@@ -1,0 +1,21 @@
+{"cycle": 0, "env_steps": 514, "success": 0.5625, "return": 0.1569, "mean_steps": 41.1, "pred_mse": 2.159026}
+{"cycle": 1, "env_steps": 1108, "success": 0.75, "return": 0.3962, "mean_steps": 36.1, "pred_mse": 1.805522}
+{"cycle": 2, "env_steps": 1745, "success": 0.75, "return": 0.4075, "mean_steps": 35.0, "pred_mse": 1.490874}
+{"cycle": 3, "env_steps": 2272, "success": 0.75, "return": 0.4056, "mean_steps": 35.2, "pred_mse": 1.366824}
+{"cycle": 4, "env_steps": 2764, "success": 0.375, "return": -0.1094, "mean_steps": 48.8, "pred_mse": 1.114208}
+{"cycle": 5, "env_steps": 3276, "success": 0.625, "return": 0.2225, "mean_steps": 40.9, "pred_mse": 1.144554}
+{"cycle": 6, "env_steps": 3867, "success": 0.4375, "return": -0.0256, "mean_steps": 46.8, "pred_mse": 1.004494}
+{"cycle": 7, "env_steps": 4467, "success": 0.5625, "return": 0.1012, "mean_steps": 46.7, "pred_mse": 0.95621}
+{"cycle": 8, "env_steps": 5056, "success": 0.625, "return": 0.2281, "mean_steps": 40.3, "pred_mse": 1.02546}
+{"cycle": 9, "env_steps": 5598, "success": 0.625, "return": 0.2012, "mean_steps": 43.0, "pred_mse": 1.013891}
+{"cycle": 10, "env_steps": 6196, "success": 0.3125, "return": -0.2363, "mean_steps": 55.2, "pred_mse": 0.966221}
+{"cycle": 11, "env_steps": 6748, "success": 0.75, "return": 0.3556, "mean_steps": 40.2, "pred_mse": 1.003876}
+{"cycle": 12, "env_steps": 7310, "success": 0.5, "return": 0.0281, "mean_steps": 47.7, "pred_mse": 0.991702}
+{"cycle": 13, "env_steps": 7793, "success": 0.3125, "return": -0.18, "mean_steps": 49.6, "pred_mse": 0.938262}
+{"cycle": 14, "env_steps": 8252, "success": 0.6875, "return": 0.23, "mean_steps": 46.4, "pred_mse": 1.060002}
+{"cycle": 15, "env_steps": 8929, "success": 0.625, "return": 0.1912, "mean_steps": 44.0, "pred_mse": 0.896644}
+{"cycle": 16, "env_steps": 9546, "success": 0.75, "return": 0.3487, "mean_steps": 40.9, "pred_mse": 0.926211}
+{"cycle": 17, "env_steps": 10121, "success": 0.75, "return": 0.3725, "mean_steps": 38.5, "pred_mse": 0.887778}
+{"cycle": 18, "env_steps": 10629, "success": 0.5625, "return": 0.1281, "mean_steps": 44.0, "pred_mse": 0.966467}
+{"cycle": 19, "env_steps": 11159, "success": 0.8125, "return": 0.4706, "mean_steps": 35.0, "pred_mse": 0.889495}
+{"hex_trace_last_eval": []}

@@ -1,0 +1,8 @@
+# 环境（700MB torch venv 不入库；重建：python3.9 -m venv .venv && 镜像装 requirements.txt）
+.venv/
+# 可再生缓存
+__pycache__/
+*.pyc
+.pytest_cache/
+# 诊断/实验临时输出（正式记录在 results/ 与 experiments/*/details_*，均入库）
+*.tmp

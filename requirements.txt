@@ -1,0 +1,7 @@
+# 阶段 0 公共底座最小依赖（本机 Intel Mac → CPU 版 torch 2.2.2）
+# 注意：macOS x86_64 的 torch 二进制上限为 2.2.2，故锁定（Apple Silicon 机可放开）
+# 本机网络 PyPI 直连慢/易断，装包用清华镜像：
+#   pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
+torch==2.2.2
+numpy<2          # torch 2.2.2 按numpy1.x编译，2.x仅告警不影响功能
+pytest>=7
