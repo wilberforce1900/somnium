@@ -80,3 +80,14 @@ class TaijiGate(nn.Module):
         dh_i = s_yin.h - state.h
         h_new = state.h + a * dh_y + (1.0 - a) * dh_i
         return advance(state, h_new), a
+
+    @torch.no_grad()
+    def reset_gate(self, bias: float = 0.0) -> None:
+        """再入梦：门重置（迭代#5 接口）。bias=0 → σ(0)=0.5 阴阳各半；
+        bias<0 偏阴（如 -2 → α≈0.12，重回纠错态）。
+
+        依据：门是阅历棘轮（迭代#4），梦回放拉不动它（迭代#5 P3 实测）——
+        显式重置是重回学习态的唯一通道。任务切换/持续学习场景的工程杠杆。
+        """
+        self.gate_net.weight.zero_()
+        self.gate_net.bias.fill_(float(bias))
