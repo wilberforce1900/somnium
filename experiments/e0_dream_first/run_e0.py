@@ -75,7 +75,13 @@ def eval_mse(model, eval_buf, cfg, rng):
 
 
 def mpc_return(model, cfg, seed):
-    """MPC 回报探头：独立环境上跑几局（P1-4：锁 seed 4243）。"""
+    """MPC 回报探头：独立环境上跑几局（P1-4：锁 seed 4243）。
+
+    2026-10-08 伪影修复：初始潜态改用 ground(obs)（取象于当下）。诊断
+    （diag_mpc_gap.py）证实 spawn 随机起点会因两日程模型吸引子结构不同
+    制造虚假的"预测-控制分离"；接地起点下 dream_first 控制不劣反优。
+    E0 正式行的 mpc 列含此伪影（主指标 pred/steps_to_target 不受影响）。
+    """
     torch.manual_seed(4243)
     env = LatentGrid(grid=cfg["grid"], slip=0.1, p_threat_move=0.02,
                      horizon=cfg["horizon"], seed=seed)
@@ -84,7 +90,7 @@ def mpc_return(model, cfg, seed):
     with torch.no_grad():
         for _ in range(cfg["mpc_episodes"]):
             obs = env.reset()
-            h = model.substrate.spawn(1).h[0]
+            h = model.ground(obs)  # 接地起点（伪影修复，见 docstring）
             total, done = 0.0, False
             while not done:
                 a, _ = model.plan(obs, h, horizon=cfg["mpc_horizon"], k=cfg["mpc_k"])

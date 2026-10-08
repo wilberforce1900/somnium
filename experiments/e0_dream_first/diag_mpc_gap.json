@@ -1,0 +1,32 @@
+{
+  "wake_only": {
+    "pred_mse": 0.955793,
+    "rew_mse": 0.020978,
+    "dec_mse": 0.180796,
+    "alpha_mean": 0.165627,
+    "alpha_std": 0.058919,
+    "R_std_mean": 0.012345,
+    "endpoint_disp": 0.008094,
+    "mpc_return": -0.266
+  },
+  "dream_first": {
+    "pred_mse": 0.327541,
+    "rew_mse": 0.013706,
+    "dec_mse": 0.126384,
+    "alpha_mean": 0.964212,
+    "alpha_std": 0.019694,
+    "R_std_mean": 0.025277,
+    "endpoint_disp": 0.050927,
+    "mpc_return": -0.5
+  },
+  "f2": {
+    "wake_only_lam0.0": -0.5,
+    "wake_only_lam0.5": -0.5,
+    "wake_only_lam1.0": 0.05,
+    "wake_only_lam2.0": -0.378,
+    "dream_first_lam0.0": -0.13,
+    "dream_first_lam0.5": -0.646,
+    "dream_first_lam1.0": -0.354,
+    "dream_first_lam2.0": -0.736
+  }
+}
