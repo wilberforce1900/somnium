@@ -1,0 +1,4 @@
+{"cycle": 0, "env_steps": 59, "pred_mse": 1.45465, "mpc_return": 0.18, "dream_log_len": 0}
+{"cycle": 1, "env_steps": 107, "pred_mse": 1.11339, "mpc_return": -0.0767, "dream_log_len": 0}
+{"cycle": 2, "env_steps": 178, "pred_mse": 1.066031, "mpc_return": 0.1933, "dream_log_len": 0}
+{"cycle": 3, "env_steps": 254, "pred_mse": 0.947154, "mpc_return": 0.1467, "dream_log_len": 0}

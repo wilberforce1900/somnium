@@ -1,0 +1,21 @@
+{"cycle": 0, "env_steps": 514, "success": 0.1875, "return": -0.3819, "mean_steps": 57.1, "pred_mse": 1.698684, "visited_codes": 125, "cb_loss": 2.445022}
+{"cycle": 1, "env_steps": 1108, "success": 0.125, "return": -0.4506, "mean_steps": 57.7, "pred_mse": 1.63916, "visited_codes": 128, "cb_loss": 2.328003}
+{"cycle": 2, "env_steps": 1745, "success": 0.125, "return": -0.4638, "mean_steps": 59.0, "pred_mse": 1.330276, "visited_codes": 128, "cb_loss": 1.913233}
+{"cycle": 3, "env_steps": 2272, "success": 0.0625, "return": -0.5256, "mean_steps": 58.9, "pred_mse": 1.170863, "visited_codes": 128, "cb_loss": 1.6507}
+{"cycle": 4, "env_steps": 2764, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 1.127525, "visited_codes": 128, "cb_loss": 1.680876}
+{"cycle": 5, "env_steps": 3276, "success": 0.125, "return": -0.47, "mean_steps": 59.6, "pred_mse": 0.95167, "visited_codes": 128, "cb_loss": 1.486483}
+{"cycle": 6, "env_steps": 3867, "success": 0.125, "return": -0.4569, "mean_steps": 58.3, "pred_mse": 1.004617, "visited_codes": 128, "cb_loss": 1.496282}
+{"cycle": 7, "env_steps": 4467, "success": 0.25, "return": -0.3025, "mean_steps": 55.5, "pred_mse": 1.096548, "visited_codes": 128, "cb_loss": 1.589048}
+{"cycle": 8, "env_steps": 5056, "success": 0.25, "return": -0.2913, "mean_steps": 54.4, "pred_mse": 1.038207, "visited_codes": 128, "cb_loss": 1.52917}
+{"cycle": 9, "env_steps": 5598, "success": 0.0625, "return": -0.5213, "mean_steps": 58.4, "pred_mse": 0.989921, "visited_codes": 128, "cb_loss": 1.521127}
+{"cycle": 10, "env_steps": 6196, "success": 0.0, "return": -0.6, "mean_steps": 60.0, "pred_mse": 0.989862, "visited_codes": 128, "cb_loss": 1.446241}
+{"cycle": 11, "env_steps": 6748, "success": 0.0625, "return": -0.5219, "mean_steps": 58.5, "pred_mse": 0.929847, "visited_codes": 128, "cb_loss": 1.407301}
+{"cycle": 12, "env_steps": 7310, "success": 0.0625, "return": -0.53, "mean_steps": 59.3, "pred_mse": 1.042621, "visited_codes": 128, "cb_loss": 1.52566}
+{"cycle": 13, "env_steps": 7793, "success": 0.0625, "return": -0.5306, "mean_steps": 59.4, "pred_mse": 0.918465, "visited_codes": 128, "cb_loss": 1.37643}
+{"cycle": 14, "env_steps": 8252, "success": 0.5, "return": 0.0081, "mean_steps": 49.7, "pred_mse": 0.880642, "visited_codes": 128, "cb_loss": 1.346263}
+{"cycle": 15, "env_steps": 8929, "success": 0.1875, "return": -0.3894, "mean_steps": 57.9, "pred_mse": 0.828744, "visited_codes": 128, "cb_loss": 1.277168}
+{"cycle": 16, "env_steps": 9546, "success": 0.3125, "return": -0.2406, "mean_steps": 55.6, "pred_mse": 0.871038, "visited_codes": 128, "cb_loss": 1.281899}
+{"cycle": 17, "env_steps": 10121, "success": 0.1875, "return": -0.365, "mean_steps": 55.4, "pred_mse": 0.897192, "visited_codes": 128, "cb_loss": 1.340821}
+{"cycle": 18, "env_steps": 10629, "success": 0.25, "return": -0.3075, "mean_steps": 56.0, "pred_mse": 0.892667, "visited_codes": 128, "cb_loss": 1.324783}
+{"cycle": 19, "env_steps": 11159, "success": 0.1875, "return": -0.3519, "mean_steps": 54.1, "pred_mse": 0.900995, "visited_codes": 128, "cb_loss": 1.299886}
+{"hex_trace_last_eval": ["0100101", "0100101", "1000110", "1000110", "1000110", "1000110", "1000110", "1000110", "1000110", "1000110", "1000110", "1100001", "1100001", "1100001", "1100001", "1100001", "1100001", "1100001", "1100001", "1100001", "1100001", "1100001"]}

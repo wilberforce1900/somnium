@@ -1,0 +1,1 @@
+{"variant": "none", "seed": 0, "env_steps": 1844, "phase_end_mse": [0.974758, 0.772315, 0.534691], "final_mse": [0.556935, 0.547562, 0.534691], "retention12": [1.4286, 1.291], "retention_mean": 1.3598, "robust_ratio": [0.974, 0.962, 0.982]}

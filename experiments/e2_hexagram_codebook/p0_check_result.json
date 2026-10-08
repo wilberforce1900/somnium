@@ -1,0 +1,11 @@
+{
+  "v2_results": {
+    "k0-free": 0.5,
+    "k64-shaped": 0.675,
+    "k64-free": 0.75,
+    "k64-free_match": 0.8500000000000001,
+    "k64-graph": 0.175
+  },
+  "pass": false,
+  "v1_record": "graph 单步落卦打分 0.17 vs free_match 0.85，不通过，已弃用"
+}
