@@ -1,6 +1,7 @@
-# mission_yin_yang · 模型架构介绍
+# Somnium · 模型架构介绍
 
-> v1.0 · 2026-10-09 · 基于 53 个正式 run + 六轮本机迭代的实证状态撰写。
+> v1.1 · 2026-10-09 · 模型定名 **Somnium**（拉丁语"梦"，昵称晓梦，见 MODEL-NAME.md）。
+> 基于 53 个正式 run + 六轮本机迭代的实证状态撰写。
 > 配套文档：PRINCIPLES（原理→机制映射）、ARCHITECTURE（工程参考）、ROADMAP（实验史）。
 
 ## 一句话
