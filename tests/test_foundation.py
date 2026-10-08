@@ -156,6 +156,25 @@ class TestGateAblation:  # A2 消融开关（PRINCIPLES §11）
             raise AssertionError("非法 gate_mode 应被拒绝")
 
 
+class TestGateReset:
+    def test_reset_gate(self):
+        """再入梦接口：重置后 α 回 0.5（bias=0）或偏阴（bias<0）。"""
+        sub, yang, yin, gate, s0, xs = make()
+        opt = torch.optim.Adam(gate.parameters(), lr=1e-2)
+        # 先训练几步让门偏离 0.5
+        s = s0
+        for x in xs:
+            s, a = gate.mixed_step(s, x)
+        s.h.sum().backward()
+        opt.step(); opt.zero_grad()
+        gate.reset_gate()
+        _, a0 = gate.mixed_step(s0, xs[0])
+        assert abs(float(a0.mean()) - 0.5) < 1e-5
+        gate.reset_gate(bias=-2.0)
+        _, am = gate.mixed_step(s0, xs[0])
+        assert float(am.mean()) < 0.2
+
+
 class TestDeterminism:
     def test_same_seed_same_trajectory(self):
         def run(seed):
