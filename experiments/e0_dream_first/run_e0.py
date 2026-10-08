@@ -30,10 +30,12 @@ import torch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
+from src.checkpoint import load_checkpoint, save_checkpoint  # noqa: E402
 from src.core import WorldModel            # noqa: E402
 from src.dream import (DreamConfig, DreamLog,   # noqa: E402
                        DreamScheduler, EpisodeBuffer)
 from src.envs.latent_grid import LatentGrid, guided_rollout, random_rollout  # noqa: E402
+from src.substrate import default_device   # noqa: E402
 
 REPO = Path(__file__).resolve().parents[2]
 REGISTRY = REPO / "results" / "registry.md"
@@ -57,6 +59,13 @@ def parse_args():
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--tag", default=None, help="登记表备注标签（如 smoke / run1）")
     ap.add_argument("--full", action="store_true", help="正式全量配置（默认 smoke）")
+    ap.add_argument("--device", choices=["auto", "cpu", "cuda"], default="auto",
+                    help="auto=本机降级 cpu；云端传 cuda（阶段1工程前置）")
+    ap.add_argument("--save-every", type=int, default=5,
+                    help="每 N cycle 存 checkpoint（0=关；Spot 必开）")
+    ap.add_argument("--resume", default=None, help="断点档路径（Spot 续跑）")
+    ap.add_argument("--d-h", type=int, default=None,
+                    help="覆盖 d_h（R1 规模阶梯 64/256/1024；缺省用配置默认）")
     return ap.parse_args()
 
 
@@ -107,13 +116,16 @@ def mpc_return(model, cfg, seed):
 def main():
     args = parse_args()
     cfg = dict(FULL if args.full else SMALL)
+    if args.d_h:
+        cfg["d_h"] = args.d_h  # R1 规模阶梯
     tag = args.tag or "untagged"
+    dev = default_device() if args.device == "auto" else torch.device(args.device)
     torch.manual_seed(args.seed)
     random.seed(args.seed)
 
     env = LatentGrid(grid=cfg["grid"], slip=0.1, p_threat_move=0.02,
                      horizon=cfg["horizon"], seed=args.seed)
-    model = WorldModel(d_obs=env.d_obs, n_actions=env.n_actions, d_h=cfg["d_h"])
+    model = WorldModel(d_obs=env.d_obs, n_actions=env.n_actions, d_h=cfg["d_h"]).to(dev)
     opt = torch.optim.Adam(model.parameters(), lr=cfg["lr"])
     buffer = EpisodeBuffer(capacity=cfg["buffer_cap"])
     dream_log = DreamLog()
@@ -130,13 +142,22 @@ def main():
     t0 = time.time()
     env_steps = 0
     details = []
+    start_cycle = 0
+    ckpt_path = REPO / f"experiments/e0_dream_first/ckpt_e0_{args.schedule}_{args.seed}_{tag}.pt"
 
-    # 梦期先行：buffer 为空，自动只剩内生想象（E0-b 的"先梦"阶段）
-    if args.schedule == "dream_first":
+    # 断点续跑（Spot）：恢复模型/优化器/全部随机态/缓冲/进度
+    if args.resume:
+        start_cycle, extra = load_checkpoint(
+            args.resume, model=model, optimizer=opt, env_rng=env.rng, buffer=buffer)
+        env_steps = int(extra.get("env_steps", 0))
+        print(f"[resume] 从 cycle {start_cycle} 续（env_steps={env_steps}）")
+
+    # 梦期先行：buffer 为空，自动只剩内生想象（E0-b 的"先梦"阶段）；续跑不重做
+    if args.schedule == "dream_first" and start_cycle == 0:
         for _ in range(cfg["dream_pre_batches"]):
             sched.dream_phase(opt)
 
-    for cycle in range(cfg["cycles"]):
+    for cycle in range(start_cycle, cfg["cycles"]):
         # 醒期数据收集（各日程一致；P0-1 课程：混入 30% 贪心引导局）
         for _ in range(cfg["episodes_per_cycle"]):
             roll = guided_rollout if env.rng.random() < cfg["guided_frac"] else random_rollout
@@ -160,6 +181,9 @@ def main():
                         "dream_log_len": len(dream_log)})
         print(f"[{args.schedule}] cycle {cycle + 1}/{cfg['cycles']} "
               f"steps={env_steps} pred_mse={mse:.4f} mpc={ret:.3f}")
+        if args.save_every and (cycle + 1) % args.save_every == 0:
+            save_checkpoint(ckpt_path, model=model, optimizer=opt, cycle=cycle + 1,
+                            extra={"env_steps": env_steps}, env_rng=env.rng, buffer=buffer)
 
     dream_log.save(REPO / "experiments/e0_dream_first/details_dream.jsonl")
 
@@ -168,7 +192,8 @@ def main():
         for d in details:
             f.write(json.dumps(d) + "\n")
 
-    final = details[-1]
+    final = details[-1] if details else {
+        "cycle": start_cycle, "env_steps": env_steps, "pred_mse": -1, "mpc_return": -1}
     scale = "full" if args.full else "smoke"
     REGISTRY.parent.mkdir(parents=True, exist_ok=True)
     if not REGISTRY.exists():

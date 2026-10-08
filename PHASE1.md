@@ -39,15 +39,17 @@
 - 纪律：预算告警设在额度 50%/80%；**每次用完即删机**（防闲置计费）；
   Spot 实例必须配 checkpoint/resume（见工程前置）。
 
-## 3. 工程前置（本机完成，不花云钱，约 1-2 小时）
+## 3. 工程前置（✅ 2026-10-09 完成，84 测试绿，未花云钱）
 
-1. **device 接线**：runners 目前 CPU-only → 加 `--device` 参数与 `.to(device)`
-  （`substrate.default_device()` 已支持 cuda 自动降级）。
-2. **checkpoint/resume**：当前不存模型 → 周期存档 + 断点续训（Spot 必需，
-  里程碑存档策略与 ROADMAP §5 存储评估一致）。
-3. **打包回传**：`requirements-cuda.txt`（torch cu12x + 清华/官方源）、
-   rsync 上行/下行脚本、结果 jsonl 回传本地 registry 合并。
-4. 红线自查：纯合成环境无隐私数据（出境风险零）；云凭证/密钥不进 git。
+1. ✅ **device 接线**：WorldModel 入口统一收敛（`_x`/`loss_on_batch`/`plan`/
+  `ground`），E0 runner 加 `--device {auto,cpu,cuda}`（auto 本机降级 cpu）。
+2. ✅ **checkpoint/resume**：`src/checkpoint.py`（模型/优化器/循环位/全部随机态/
+  缓冲，原子写）+ E0 runner `--save-every`/`--resume`（Spot 必需）；端到端验证过。
+3. ✅ **打包回传**：`requirements-cuda.txt`、`scripts/cloud_up.sh|cloud_down.sh`、
+   `scripts/GCP-RUNBOOK.md`（含 R1 命令矩阵与故障速查）。
+4. ✅ **R1 载具就绪**：E0 runner 加 `--d-h`（规模阶梯 64/256/1024）。
+5. ✅ 红线自查：纯合成环境无隐私数据；`.gitignore` 已排除 `*.pt` 断点档；
+   云凭证不进 git（runbook 红线节）。
 
 ## 4. 待拍板（决策点）
 

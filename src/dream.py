@@ -255,8 +255,8 @@ class DreamScheduler:
         hs = []
         alpha_sum = 0.0
         for t in range(L):
-            pseudo = (self.coverage.pseudo_obs(B) if self.coverage is not None
-                      else torch.randn(B, m.d_obs) * c.pseudo_scale)
+            pseudo = (self.coverage.pseudo_obs(B).to(h.device) if self.coverage is not None
+                      else torch.randn(B, m.d_obs, device=h.device) * c.pseudo_scale)
             acts = torch.randint(0, m.n_actions, (B,))
             h, a = m.rollout_step(h, pseudo, acts)
             hs.append(h)

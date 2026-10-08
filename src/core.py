@@ -69,7 +69,7 @@ class WorldModel(nn.Module):
         self.var_head = nn.Linear(d_h, 1)
 
     def embed(self, obs: torch.Tensor) -> torch.Tensor:
-        return self.encoder(obs)
+        return self.encoder(obs.to(self.substrate.cell.weight.device))
 
     def ground(self, obs: torch.Tensor) -> torch.Tensor:
         """取象于当下：行动用的接地初始潜态（编码器直出）。
@@ -77,9 +77,13 @@ class WorldModel(nn.Module):
         训练序列从混沌出生（substrate.spawn，保多样性）；行动/规划时
         从当前观测接地初始化，避免随机潜态污染首步决策。
         """
-        return self.encoder(obs)
+        return self.encoder(obs.to(self.substrate.cell.weight.device))
 
     def _x(self, obs: torch.Tensor, action: torch.Tensor) -> torch.Tensor:
+        # 设备收敛（阶段1工程前置）：CPU 环境数据 → 模型设备，no-op 时零开销
+        dev = self.substrate.cell.weight.device
+        obs = obs.to(dev)
+        action = action.to(dev)
         a = F.one_hot(action.long(), self.n_actions).to(obs.dtype)
         return torch.cat([self.embed(obs), a], dim=-1)
 
@@ -124,6 +128,11 @@ class WorldModel(nn.Module):
         input_noise > 0：输入加噪、目标保持干净——反向学习的去噪回放入口
         （dream.py 用）。返回 (total_loss, parts dict)。
         """
+        dev = self.substrate.cell.weight.device
+        obs_seq = obs_seq.to(dev)
+        act_seq = act_seq.to(dev)
+        obs_next_seq = obs_next_seq.to(dev)
+        rew_seq = rew_seq.to(dev)
         B, T, _ = obs_seq.shape
         obs_in = (
             obs_seq + input_noise * torch.randn_like(obs_seq)
@@ -178,6 +187,9 @@ class WorldModel(nn.Module):
     @torch.no_grad()
     def plan(self, obs: torch.Tensor, h: torch.Tensor, horizon: int = 6, k: int = 64):
         """MPC random-shooting：返回 (最优首动作 int, 各轨迹预测回报 (k,))。"""
+        dev = self.substrate.cell.weight.device
+        obs = obs.to(dev)
+        h = h.to(dev)
         k_obs = obs.unsqueeze(0).expand(k, -1)
         h_b = h.unsqueeze(0).expand(k, -1)
         acts = torch.randint(0, self.n_actions, (k, horizon))
