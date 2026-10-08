@@ -86,3 +86,7 @@ E1 预注册偏离（2026-10-08）：A2 判定任务集 ENV-B+ENV-C → ENV-A+EN
 | 2026-10-08 | E3b | read_dream_random | 1 | - | 0.015387 | cal=0.048058 sel=0.00454 | 对照（均匀回放） | full/formal2 |
 | 2026-10-08 | E3b | read_dream_none | 0 | - | 0.074125 | cal=0.037767 sel=0.010347 | 无梦参考：var_head 校准即达 95–97%（无余量可补） | full/formal2 |
 | 2026-10-08 | E3b | read_dream_none | 1 | - | 0.031219 | cal=0.048058 sel=0.005107 | 无梦参考：var_head 校准即达 95–97%（无余量可补） | full/formal2 |
+| 2026-10-08 | E0 | dream_first+g0.3 | 7 | 280 | 0.882604 | -1.0333 | 流水线验证 | smoke/infratest |
+| 2026-10-08 | E0 | dream_first+g0.3 | 7 | 280 | -1 | -1 | 流水线验证 | smoke/infratest |
+| 2026-10-08 | E0 | wake_only+g0.3 | 0 | 5225 | 0.939097 | -0.638 | 流水线验证 | full/bench |
+| 2026-10-08 | E0 | wake_only+g0.3 | 0 | 5225 | 0.9995 | -0.338 | 流水线验证 | full/bench |
