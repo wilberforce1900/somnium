@@ -192,8 +192,8 @@ class WorldModel(nn.Module):
         h = h.to(dev)
         k_obs = obs.unsqueeze(0).expand(k, -1)
         h_b = h.unsqueeze(0).expand(k, -1)
-        acts = torch.randint(0, self.n_actions, (k, horizon))
-        R = torch.zeros(k)
+        acts = torch.randint(0, self.n_actions, (k, horizon), device=dev)
+        R = torch.zeros(k, device=dev)
         for t in range(horizon):
             h_b, _ = self.rollout_step(h_b, k_obs, acts[:, t])
             R += self.predict_reward(h_b)
