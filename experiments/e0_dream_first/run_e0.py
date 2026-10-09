@@ -66,6 +66,8 @@ def parse_args():
     ap.add_argument("--resume", default=None, help="断点档路径（Spot 续跑）")
     ap.add_argument("--d-h", type=int, default=None,
                     help="覆盖 d_h（R1 规模阶梯 64/256/1024；缺省用配置默认）")
+    ap.add_argument("--dream-pre", type=int, default=None,
+                    help="覆盖梦预训练批数（R1b 剂量实验：∝d_h 放大；缺省用配置默认）")
     return ap.parse_args()
 
 
@@ -118,6 +120,8 @@ def main():
     cfg = dict(FULL if args.full else SMALL)
     if args.d_h:
         cfg["d_h"] = args.d_h  # R1 规模阶梯
+    if args.dream_pre:
+        cfg["dream_pre_batches"] = args.dream_pre  # R1b 剂量阶梯
     tag = args.tag or "untagged"
     dev = default_device() if args.device == "auto" else torch.device(args.device)
     torch.manual_seed(args.seed)
