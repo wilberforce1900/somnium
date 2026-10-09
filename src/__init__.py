@@ -15,14 +15,16 @@ from .yin import YinMode
 from .taiji import TaijiGate
 from .core import WorldModel
 from .dream import DreamConfig, DreamLog, DreamScheduler, EpisodeBuffer
+from .growth import widen_world_model
 from .envs import LatentGrid, Maze, random_rollout
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 __all__ = [
     "LatentState", "NoisePrior", "Substrate", "advance", "default_device",
     "YangMode", "YinMode", "TaijiGate",
     "WorldModel",
     "DreamConfig", "DreamLog", "DreamScheduler", "EpisodeBuffer",
+    "widen_world_model",
     "LatentGrid", "Maze", "random_rollout",
 ]

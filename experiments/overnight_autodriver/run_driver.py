@@ -1,0 +1,195 @@
+#!/usr/bin/env python
+"""Somnium 过夜自驱迭代 · 工程探索档（2026-10-09）
+
+⚠ 基本法合规声明（PRINCIPLES 纪律）：本回路是**工程探索**，不是预注册实验——
+其产物是种子库与假设，供次日人审/后续预注册实验取材，不直接产生科学判定。
+
+用户规格：Somnium 连续自驱——每轮训练的"自我疑问"（四探针：σ 不确定度 /
+覆盖盲区 / 预测残差 / 门极性）与"梦境残留"（buffer + 梦 log）作为下一轮自主
+搜索学习的种子；有效成分与"灰度"（阈间/看不懂的观察）留**种子库**。
+
+轮结构（全部确定性规则，落盘可审计）：
+    wake(env_t) → dream（四开关，回放=残留）→ probe → choose → maybe grow → 落盘
+  - 探针：residual（eval 窗潜态残差范数）、sigma（σ 均值）、coverage、alpha
+  - choose 规则 v0：
+      residual > 0.9                → 环境收缩（grid −1，巩固）
+      residual < 0.6 且 coverage>0.9 → 环境扩张（grid +1，探索）
+      连续两轮 residual 改善 >10%   → 生长事件（widen ×1.5 + 梦剂量 ×1.5）
+      其余 → 保持；任何探针落入阈间 → 记 gray（灰度，留种子库待审）
+  - 生长：d_h 阶梯 64→96→144→216→324→486→729（cap 1024），梦养大梦者；
+    生长后重建优化器（Adam 矩清零，文档化）
+  - 硬停：--end-utc（默认 23:00 UTC=明早 07:00 CST）或 --max-rounds
+  - 异常：捕获 → 记 gray → 续；连续 3 次 → 安全停止
+
+用法：python experiments/overnight_autodriver/run_driver.py [--end-utc ...]
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import random
+import sys
+import time
+import traceback
+from datetime import datetime, timezone
+from pathlib import Path
+
+import torch
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+
+from src.checkpoint import save_checkpoint            # noqa: E402
+from src.core import WorldModel                       # noqa: E402
+from src.dream import (DreamConfig, DreamLog,         # noqa: E402
+                       DreamScheduler, EpisodeBuffer, ObsCoverage)
+from src.envs import LatentGrid, guided_rollout, random_rollout  # noqa: E402
+from src.growth import widen_world_model              # noqa: E402
+
+REPO = Path(__file__).resolve().parents[2]
+OUT = REPO / "experiments/overnight_autodriver/out"
+
+D_H_LADDER = [64, 96, 144, 216, 324, 486, 729, 1024]
+
+
+def make_env(grid, seed):
+    return LatentGrid(grid=grid, slip=0.1, p_threat_move=0.1,
+                      horizon=4 * grid, seed=seed, with_hazard=True,
+                      fixed_start=(0, 0), fixed_goal=(grid - 1, grid - 1))
+
+
+def probes(model, eval_buf, sched):
+    """四探针：自我疑问的工程化。"""
+    torch.manual_seed(4242)
+    model.eval()
+    b = eval_buf.sample_windows(32, 8, rng=random.Random(4242))
+    with torch.no_grad():
+        h = model.substrate.spawn(32).h
+        err = sig = alp = 0.0
+        for t in range(8):
+            h, a = model.rollout_step(h, b["obs"][:, t], b["act"][:, t])
+            tgt = model.embed(b["obs_next"][:, t])
+            err += float((h - tgt).norm(dim=-1).mean())
+            sig += float(model.predict_uncertainty(h).mean())
+            alp += float(a.mean())
+    model.train()
+    return {"residual": round(err / 8, 4), "sigma": round(sig / 8, 4),
+            "alpha": round(alp / 8, 4),
+            "coverage": round(sched.coverage.covered_frac(), 4) if sched.coverage else None}
+
+
+def build_eval(env_grid, seed):
+    ev = make_env(env_grid, seed + 900)
+    eb = EpisodeBuffer(capacity=99)
+    for _ in range(6):
+        eb.add_episode(*random_rollout(ev))
+    return eb
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--end-utc", default="2026-10-09T23:00:00")
+    ap.add_argument("--max-rounds", type=int, default=999)
+    ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--cycles", type=int, default=6, help="每轮 wake cycle 数（smoke 可调小）")
+    args = ap.parse_args()
+    end = datetime.fromisoformat(args.end_utc).replace(tzinfo=timezone.utc)
+    OUT.mkdir(parents=True, exist_ok=True)
+    (OUT / "seeds").mkdir(exist_ok=True)
+    (OUT / "ckpts").mkdir(exist_ok=True)
+    torch.manual_seed(args.seed)
+    random.seed(args.seed)
+
+    grid, d_h_i, dream_dose = 6, 0, 200
+    model = WorldModel(d_obs=8, n_actions=4, d_h=D_H_LADDER[0])
+    opt = torch.optim.Adam(model.parameters(), lr=2e-3)
+    buffer = EpisodeBuffer(capacity=1200)
+    cov = ObsCoverage(d_obs=8, bins=grid)
+    sched = DreamScheduler(model, buffer,
+                           DreamConfig(batch=16, t_win=8, rare_bias=3.0),
+                           log=DreamLog(), rng=random.Random(args.seed), coverage=cov)
+    prev_residual, improve_streak, err_streak, round_id = None, 0, 0, 0
+    t0 = time.time()
+
+    while round_id < args.max_rounds:
+        if datetime.now(timezone.utc) >= end:
+            (OUT / "final_report.md").write_text(
+                f"# Somnium 过夜自驱 · 终报\n\n硬停于 {datetime.now(timezone.utc).isoformat()}"
+                f"（共 {round_id} 轮，{time.time()-t0:.0f}s）。种子库见 seeds/，模型见 ckpts/。\n",
+                encoding="utf-8")
+            print("== END（时间到）==")
+            break
+        round_id += 1
+        try:
+            env = make_env(grid, args.seed * 100 + round_id)
+            eval_buf = build_eval(grid, args.seed + round_id)
+            # ---- wake：采集 + 更新（梦残留=buffer 全量回放）----
+            for cyc in range(args.cycles):
+                for _ in range(8):
+                    roll = guided_rollout if env.rng.random() < 0.3 else random_rollout
+                    buffer.add_episode(*roll(env))
+                for i in range(8):
+                    b = buffer.sample_windows(16, 8,
+                                              rng=random.Random(round_id * 1000 + cyc * 10 + i),
+                                              only_last=8)
+                    sched.wake_update(opt, b)
+                sched.dream_phase(opt)  # 梦加深（剂量=dream_dose 累计次数由 dose 控制）
+            # ---- 梦剂量：额外梦期（回放=残留；生长事件后 ×1.5）----
+            for _ in range(max(1, dream_dose // 200)):
+                sched.dream_phase(opt)
+            # ---- probe：自我疑问 ----
+            p = probes(model, eval_buf, sched)
+            # ---- choose：确定性规则 + 灰度（阈值按 64 维 L2 残差实测标定：
+            #      未训 ~9 / 收敛 ~3-4.5 → 收缩>6.0，探索<4.0，其间灰度）----
+            gray = []
+            if 4.0 <= p["residual"] <= 6.0:
+                gray.append(f"residual 阈间 {p['residual']}")
+            if p["coverage"] is not None and 0.5 <= p["coverage"] <= 0.9:
+                gray.append(f"coverage 阈间 {p['coverage']}")
+            action = "hold"
+            if p["residual"] > 6.0 and grid > 5:
+                grid -= 1
+                action = f"shrink→grid{grid}"
+            elif p["residual"] < 4.0 and p["coverage"] and p["coverage"] > 0.9 and grid < 10:
+                grid += 1
+                action = f"expand→grid{grid}"
+            grew = False
+            if prev_residual is not None and prev_residual - p["residual"] > 0.1 * prev_residual:
+                improve_streak += 1
+            else:
+                improve_streak = 0
+            if improve_streak >= 2 and d_h_i < len(D_H_LADDER) - 1:
+                d_h_i += 1
+                widen_world_model(model, D_H_LADDER[d_h_i],
+                                  rng=random.Random(round_id), noise=0.01)
+                opt = torch.optim.Adam(model.parameters(), lr=2e-3)  # 生长后重建
+                dream_dose = int(dream_dose * 1.5)
+                improve_streak = 0
+                grew = True
+                action += f" +GROW→d_h{D_H_LADDER[d_h_i]}"
+            prev_residual = p["residual"]
+            # ---- 落盘：种子库 + ckpt ----
+            seed_rec = {"round": round_id, "utc": datetime.now(timezone.utc).isoformat(),
+                        "grid": grid, "d_h": model.substrate.d_h, "dream_dose": dream_dose,
+                        "probes": p, "action": action, "grew": grew, "gray": gray,
+                        "dream_log_len": len(sched.log)}
+            (OUT / f"seeds/round_{round_id:03d}.json").write_text(
+                json.dumps(seed_rec, ensure_ascii=False, indent=1), encoding="utf-8")
+            save_checkpoint(OUT / f"ckpts/round_{round_id:03d}.pt", model=model,
+                            optimizer=opt, cycle=round_id, extra={"seed_rec": seed_rec},
+                            buffer=buffer)
+            sched.log.save(OUT / f"seeds/dreamlog_{round_id:03d}.jsonl")
+            print(f"[round {round_id}] {seed_rec}", flush=True)
+        except Exception:
+            err_streak += 1
+            tb = traceback.format_exc()
+            (OUT / f"seeds/round_{round_id:03d}_ERROR.json").write_text(tb, encoding="utf-8")
+            print(f"[round {round_id}] 异常已入种子库（连续 {err_streak}）", flush=True)
+            if err_streak >= 3:
+                print("== END（连续异常安全停止）==")
+                break
+        else:
+            err_streak = 0
+
+
+if __name__ == "__main__":
+    main()
