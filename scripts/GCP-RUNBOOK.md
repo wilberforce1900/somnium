@@ -48,16 +48,16 @@ sh scripts/cloud_up.sh <用户名>@<VM外网IP>
 
 ```sh
 for dh in 64 256 1024; do
-  for sched in wake_only dream_first; do
+  for sched in wake_only dream_first alternate; do
     for seed in 0 1; do
       python3 experiments/e0_dream_first/run_e0.py --schedule $sched --seed $seed \
-        --full --device cuda --save-every 5 --tag r1-dh$dh
+        --full --d-h $dh --device cuda --save-every 5 --tag r1-dh$dh
     done
   done
 done
 ```
-注：R1 需要 `d_h` 可配——当前 FULL 固定 d_h=64；上云第一步加 `--d-h` 参数
-（5 行改动，含在工程前置验收里）。L4 上单 run 预计 <1 分钟量级。
+3 日程 × 2 seed × 3 规模 = 18 run（含 alternate，与 PHASE1 §1 口径一致）。
+L4 上单 run 预计 <1 分钟量级（d_h=1024 档约 2–3 分钟）。
 
 ## 4. 回传与合并
 
