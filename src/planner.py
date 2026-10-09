@@ -55,11 +55,15 @@ def plan_shaped(model, codebook: HexagramCodebook, obs: torch.Tensor,
     """
     V = value_iteration(codebook, gamma, depth)
     with torch.no_grad():
+        dev = model.substrate.cell.weight.device
+        obs = obs.to(dev)
+        h = h.to(dev)
         k_obs = obs.unsqueeze(0).expand(k, -1)
         h_b = h.unsqueeze(0).expand(k, -1)
-        acts = torch.randint(0, model.n_actions, (k, horizon))
+        acts = torch.randint(0, model.n_actions, (k, horizon), device=dev)
         idx_prev = codebook.assign(h_b)
-        R = torch.zeros(k)
+        R = torch.zeros(k, device=dev)
+        V = V.to(dev)
         for t in range(horizon):
             h_b, _ = model.rollout_step(h_b, k_obs, acts[:, t])
             R += model.predict_reward(h_b)
