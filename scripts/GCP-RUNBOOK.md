@@ -7,12 +7,12 @@
 
 | 项 | 值 |
 |---|---|
-| 项目 / VM | `ai-somnium-experiments` / `ai-somnium-trainer` |
+| 项目 / VM | `<PROJECT-ID>` / `ai-somnium-trainer` |
 | Zone | **us-west4-c**（us-west1 三区均不支持 g2+L4，勿回退）|
 | 规格 | g2-standard-4（4vCPU/16GB）+ 1×L4 + Ubuntu 22.04.5 minimal + 50GB 盘 |
 | 驱动 | Google cuda_installer.pyz 安装，nvidia-smi 验证通过 |
 | Python 环境 | `~/venvs/torch`（torch 2.14.1+cu126，CUDA 可用，L4 实测矩阵乘法通过）|
-| VM 用户 | `willsfitzgerald` |
+| VM 用户 | `<USER>` |
 | 额度 | $300 至 2026-12-15；已实测覆盖 GPU 训练；注意 us-west4 费率或略高于 us-central1 |
 | 额外依赖 | 只需 `pip install pytest`（torch 已装，勿重装）|
 
@@ -21,7 +21,7 @@
 - 本机已生成专用密钥 `~/.ssh/somnium_gcp`（ed25519）。
 - 用户在浏览器 Console SSH 里执行一次：
   `echo '<公钥>' >> ~/.ssh/authorized_keys`
-- 之后本机直连：`ssh -i ~/.ssh/somnium_gcp -o ConnectTimeout=8 willsfitzgerald@<外网IP>`
+- 之后本机直连：`ssh -i ~/.ssh/somnium_gcp -o ConnectTimeout=8 <USER>@<外网IP>`
 - VM 生命周期（启停/删）留用户控制台操作；科学侧全走上述 SSH。
 - 注意：VM Stop 后临时外网 IP 释放，重启后 IP 会变——每次点火前重取 IP。
 
@@ -29,7 +29,7 @@
 
 ```sh
 # 本机：上行（排除 venv/git/断点档）
-sh scripts/cloud_up.sh willsfitzgerald@<IP>
+sh scripts/cloud_up.sh <USER>@<IP>
 # VM：装 pytest + 环境验证
 source ~/venvs/torch/bin/activate
 cd ~/mission_yin_yang && pip install pytest && python -m pytest tests -q
@@ -55,7 +55,7 @@ L4 上单 run 预计 <1 分钟量级（d_h=1024 档约 2–3 分钟）。
 ## 3. 回传与合并
 
 ```sh
-sh scripts/cloud_down.sh willsfitzgerald@<VM外网IP>   # 结果回本机
+sh scripts/cloud_down.sh <USER>@<VM外网IP>   # 结果回本机
 # registry_cloud.md 为云端新增行，核对后合并进本机 registry.md
 ```
 

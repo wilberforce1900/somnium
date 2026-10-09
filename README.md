@@ -1,10 +1,39 @@
 # mission_yin_yang · **Somnium**
 
+**[English](#english) | 中文**
+
 以中国传统哲学（阴阳 / 易经 / 数术）为归纳偏置来源的自组织认知架构研究项目；
 模型产物名为 **Somnium**（拉丁语"梦"，昵称晓梦，命名册见 [MODEL-NAME.md](MODEL-NAME.md)）。
 
-> *"Do androids dream? Yes — and it saves 60% of the data."*
+> *"Do androids dream? Yes — and it saves 60% of the data... when the model is small."*
 > AGI 是硅基生命的梦醒时刻——不是造神，是唤醒。
+
+**头条结果**：梦期预训练（先梦后醒）在 16K 参数尺度三次独立复现 ~40% 真实数据
+样本效率增益（E0 三 seed + R1 跨平台两 seed，全部预注册）；R1 规模阶梯显示该增益
+随容量衰减（210K/3.2M 档不再过阈）——"从做梦开始"是**容量受限 regime 的真实现象**，
+机制为能量平滑（睡眠调节能量地形理论的工程对应）。完整证伪史见登记表。
+
+## English
+
+**Somnium** (Latin for "dream"; nicknamed *Xiaomeng*, "the dream before dawn") is a
+non-Transformer world model trained under a developmental curriculum:
+**chaos → dream → wake → reflection**. A single recurrent substrate carries two
+dynamics — *yang* (fast streaming expansion) and *yin* (energy-relaxation contraction) —
+softly mixed by a gate; prediction happens in latent space (JEPA-style next-latent,
+no next-token), and training begins with a **dream phase** (self-generated latent
+rollouts + energy smoothing + replay consolidation) before any real data arrives.
+
+What survives experiments: dream-first pretraining cuts the real-interaction steps
+needed to reach a fixed accuracy by ~60% — replicated three times at 16K params,
+and shown to **fade with scale** (R1 ladder, pre-registered). What doesn't:
+hexagram VQ codebooks, gate-over-fixed advantages, dream-reading calibration
+feedback — all falsified with pre-registered thresholds and kept in the registry,
+because *a theory that can be killed is a theory that can evolve*.
+
+Docs: [MODEL-INTRO](MODEL-INTRO.md) · [PRINCIPLES](PRINCIPLES.md) ·
+[ROADMAP/experiment history](ROADMAP.md) · [MODEL-NAME](MODEL-NAME.md) ·
+[PHASE1](PHASE1.md) · [run registry](results/registry.md). License: MIT.
+
 
 核心主张：模型发育**从做梦开始**——混沌（噪声底质）→ 梦（内生潜空间滚动）→ 醒（现实锚定）
 → 反思（元认知读梦）；思想在连续潜空间进行，语言仅为 I/O 外设。
@@ -30,9 +59,10 @@
 
 ## 当前状态
 
-底座 + E0/E1/E2 三条实验流水线就绪（66 测试绿，smoke 均登记 `results/registry.md`）。
-下一步：E0/E1/E2 正式全量跑（预注册阈值已锁定于 ROADMAP）；ENV-B（ARC）待网络。
-三大消融入口全部可跑：A3 梦（E0）、A2 阴阳（E1）、A1 六十四卦（E2）。
+阶段 0 收官（六消融判定）+ 六轮本机迭代 + **R1 云端规模阶梯已判定**
+（GCP L4，18 run）。开源决策门已执行（本仓库即产物）。待办：R1b（梦剂量∝规模）、
+R2-R4、ENV-B（ARC 数据集）。三大纪律：预注册阈值跑前锁定、负结果照记登记表、
+哲学词必须绑定机制。
 
 ## 纪律
 
