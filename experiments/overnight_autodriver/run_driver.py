@@ -38,7 +38,7 @@ import torch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from src.checkpoint import save_checkpoint            # noqa: E402
+from src.checkpoint import load_checkpoint, save_checkpoint  # noqa: E402
 from src.core import WorldModel                       # noqa: E402
 from src.dream import (DreamConfig, DreamLog,         # noqa: E402
                        DreamScheduler, EpisodeBuffer, ObsCoverage)
@@ -49,6 +49,12 @@ REPO = Path(__file__).resolve().parents[2]
 OUT = REPO / "experiments/overnight_autodriver/out"
 
 D_H_LADDER = [64, 96, 144, 216, 324, 486, 729, 1024]
+CLIP = 1.0            # v2.2：梯度裁剪（夜二 ~870 轮无裁剪长训发散之鉴）
+
+
+def _finite(x) -> bool:
+    import math
+    return x is not None and math.isfinite(x)
 
 
 def make_env(grid, seed):
@@ -91,9 +97,11 @@ def build_eval(env_grid, seed):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--end-utc", default="2026-10-09T23:00:00")
-    ap.add_argument("--max-rounds", type=int, default=999)
+    ap.add_argument("--max-rounds", type=int, default=99999)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--cycles", type=int, default=6, help="每轮 wake cycle 数（smoke 可调小）")
+    ap.add_argument("--resume", default=None,
+                    help="从断点续跑（v2.2）：模型/优化器/缓冲/控制态全恢复")
     args = ap.parse_args()
     end = datetime.fromisoformat(args.end_utc).replace(tzinfo=timezone.utc)
     OUT.mkdir(parents=True, exist_ok=True)
@@ -106,12 +114,35 @@ def main():
     model = WorldModel(d_obs=8, n_actions=4, d_h=D_H_LADDER[0])
     opt = torch.optim.Adam(model.parameters(), lr=2e-3)
     buffer = EpisodeBuffer(capacity=1200)
+    prev_residual, improve_streak, err_streak, round_id = None, 0, 0, 0
+    wall, wall_strikes, rounds_since_growth = False, 0, 99
+    last_healthy = None
+
+    def restore_from(ckpt_path):
+        """从断点恢复模型/优化器/缓冲/控制态（resume 与发散自愈共用）。"""
+        nonlocal grid, d_h_i, dream_dose, wall, prev_residual, round_id
+        nonlocal improve_streak, wall_strikes, rounds_since_growth, opt
+        cyc, extra = load_checkpoint(ckpt_path, model=model, optimizer=opt,
+                                     buffer=buffer)
+        rec = extra.get("seed_rec", {})
+        round_id = int(cyc)
+        grid = int(rec.get("grid", grid))
+        dh = int(rec.get("d_h", D_H_LADDER[0]))
+        d_h_i = D_H_LADDER.index(dh) if dh in D_H_LADDER else 0
+        dream_dose = int(rec.get("dream_dose", 200))
+        wall = bool(rec.get("wall", False))
+        rn = rec.get("probes", {}).get("res_norm")
+        prev_residual = rn if _finite(rn) else None
+        improve_streak, wall_strikes, rounds_since_growth = 0, 0, 99
+        print(f"[resume] 轮 {round_id} d_h{dh} grid{grid} 剂量{dream_dose} 墙{wall}")
+
+    if args.resume:
+        restore_from(args.resume)
+
     cov = ObsCoverage(d_obs=8, bins=grid)
     sched = DreamScheduler(model, buffer,
                            DreamConfig(batch=16, t_win=8, rare_bias=3.0),
                            log=DreamLog(), rng=random.Random(args.seed), coverage=cov)
-    prev_residual, improve_streak, err_streak, round_id = None, 0, 0, 0
-    wall, wall_strikes, rounds_since_growth = False, 0, 99
     t0 = time.time()
 
     while round_id < args.max_rounds:
@@ -135,13 +166,32 @@ def main():
                     b = buffer.sample_windows(16, 8,
                                               rng=random.Random(round_id * 1000 + cyc * 10 + i),
                                               only_last=8)
-                    sched.wake_update(opt, b)
-                sched.dream_phase(opt)  # 梦加深（剂量=dream_dose 累计次数由 dose 控制）
+                    sched.wake_update(opt, b, clip=CLIP)
+                sched.dream_phase(opt, clip=CLIP)  # 梦加深（剂量=dream_dose 累计次数由 dose 控制）
             # ---- 梦剂量：额外梦期（回放=残留；生长事件后 ×1.5）----
             for _ in range(max(1, dream_dose // 200)):
-                sched.dream_phase(opt)
+                sched.dream_phase(opt, clip=CLIP)
             # ---- probe：自我疑问 ----
             p = probes(model, eval_buf, sched)
+            # ---- v2.2 发散自愈：病了就回到上次健康的自己 ----
+            gray_pre = []
+            if (not _finite(p["res_norm"]) or p["res_norm"] > 3.0
+                    or not _finite(p["sigma"])):
+                cands = sorted(int(f.stem.split("_")[1])
+                               for f in (OUT / "ckpts").glob("round_*.pt"))
+                healthy = [r for r in cands
+                           if last_healthy is not None and r <= last_healthy]
+                if healthy:
+                    tgt = max(healthy)
+                    gray_pre.append(
+                        f"divergence(res={p['res_norm']},σ={p['sigma']})→回滚 round {tgt}")
+                    restore_from(OUT / "ckpts" / f"round_{tgt:03d}.pt")
+                    eval_buf = build_eval(grid, args.seed + round_id)
+                    p = probes(model, eval_buf, sched)
+                else:
+                    gray_pre.append("divergence 无健康断点，继续观察")
+            elif 0 < p["res_norm"] < 2.0 and _finite(p["sigma"]):
+                last_healthy = round_id
             # ---- choose：确定性规则 + 灰度（v2.1：并入夜一全部教训）----
             # 教训①阈值用 √d_h 归一残差（健康带 0.29–0.6，墙 0.9+）；
             # 教训②反饥饿：残差高但覆盖高 = 容量失配而非环境太难——只有
@@ -149,7 +199,7 @@ def main():
             # 教训③生长门槛：仅当前规模健康(res_norm<0.6)才允许生长；
             # 教训④墙检测：生长后 4 轮内 res_norm 恶化>1.2 连续 3 次 →
             #      标记容量墙，本夜不再生长（夜一 729→1024 爆 6.8× 后无路可退）。
-            gray = []
+            gray = list(gray_pre)
             if 0.55 <= p["res_norm"] <= 0.8:
                 gray.append(f"res_norm 阈间 {p['res_norm']}")
             if p["coverage"] is not None and 0.5 <= p["coverage"] <= 0.9:
