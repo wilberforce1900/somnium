@@ -293,8 +293,11 @@ class DreamScheduler:
         return loss, parts, b
 
     # ---- 梦期主入口 ----
-    def dream_phase(self, optimizer, batches_per_component: int = 1) -> Dict:
-        """执行一轮梦期：每个启用组件 backward+step。返回摘要并写梦 log。"""
+    def dream_phase(self, optimizer, batches_per_component: int = 1,
+                    clip: float = 0.0) -> Dict:
+        """执行一轮梦期：每个启用组件 backward+step。返回摘要并写梦 log。
+        clip>0 时对梯度做范数裁剪（夜二教训：长训练发散，v2.2 加）。"""
+        import torch.nn.utils as tnu
         summary: Dict[str, Dict] = {}
         enabled = [
             name
@@ -317,6 +320,8 @@ class DreamScheduler:
                     st = dict(st, rare_frac=b["rare_frac"])
                 optimizer.zero_grad()
                 loss.backward()
+                if clip > 0:
+                    tnu.clip_grad_norm_(self.model.parameters(), clip)
                 optimizer.step()
                 summary[name] = st
         with torch.no_grad():
@@ -336,12 +341,16 @@ class DreamScheduler:
         return summary
 
     # ---- 醒期统一入口（各日程共用，保证真实数据消耗一致） ----
-    def wake_update(self, optimizer, batch: Dict[str, torch.Tensor]) -> Dict:
+    def wake_update(self, optimizer, batch: Dict[str, torch.Tensor],
+                    clip: float = 0.0) -> Dict:
         loss, parts = self.model.loss_on_batch(
             batch["obs"], batch["act"], batch["obs_next"], batch["rew"]
         )
         optimizer.zero_grad()
         loss.backward()
+        if clip > 0:
+            import torch.nn.utils as tnu
+            tnu.clip_grad_norm_(self.model.parameters(), clip)
         optimizer.step()
         if self.coverage is not None:
             self.coverage.update(batch["obs"])  # 读梦：醒期喂覆盖统计
