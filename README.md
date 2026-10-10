@@ -18,7 +18,9 @@
 
 **Somnium: A Recurrent World Model that Learns to Dream Before It Wakes** · Xiaoming (Will) Wang
 
-📄 [PDF](paper/somnium-paper.pdf) · [LaTeX 源码](paper/main.tex) · [参考文献](paper/refs.bib)
+📄 [PDF](paper/somnium-paper.pdf) · [LaTeX 源码](paper/main.tex) · [参考文献](paper/refs.bib) · [Zenodo 记录](https://zenodo.org/records/23278220)
+
+**Cite as:** Wang, X. (2026). *Somnium: A Recurrent World Model that Learns to Dream Before It Wakes*. Zenodo. [10.5281/zenodo.23278220](https://doi.org/10.5281/zenodo.23278220)
 
 > 7 页完整研究报告：预注册协议、五个独立复现的梦增益、规模/剂量/生长三线收敛的
 > 容量边界、负结果登记册（A1/A2/A5）、两夜自主训练（871 轮生长与自愈回滚）。
@@ -43,10 +45,11 @@ hexagram VQ codebooks, gate-over-fixed advantages, dream-reading calibration
 feedback — all falsified with pre-registered thresholds and kept in the registry,
 because *a theory that can be killed is a theory that can evolve*.
 
-Docs: [Paper (PDF)](paper/somnium-paper.pdf) · [MODEL-INTRO](MODEL-INTRO.md) ·
+Docs: [Paper (PDF)](paper/somnium-paper.pdf) · [DOI: 10.5281/zenodo.23278220](https://doi.org/10.5281/zenodo.23278220) ·
+[MODEL-INTRO](MODEL-INTRO.md) ·
 [PRINCIPLES](PRINCIPLES.md) · [ROADMAP/experiment history](ROADMAP.md) ·
 [MODEL-NAME](MODEL-NAME.md) · [PHASE1](PHASE1.md) ·
-[run registry](results/registry.md). License: MIT.
+[run registry](results/registry.md). License: MIT (code); paper: CC BY 4.0.
 
 
 核心主张：模型发育**从做梦开始**——混沌（噪声底质）→ 梦（内生潜空间滚动）→ 醒（现实锚定）
