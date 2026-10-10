@@ -111,7 +111,12 @@ def main():
     random.seed(args.seed)
 
     grid, d_h_i, dream_dose = 6, 0, 200
-    model = WorldModel(d_obs=8, n_actions=4, d_h=D_H_LADDER[0])
+    if args.resume:  # v2.2.1：先按断点宽度建身，再装权重（729 装不进 64 之鉴）
+        st = torch.load(args.resume, map_location="cpu", weights_only=False)
+        dh0 = int(st["extra"].get("seed_rec", {}).get("d_h", D_H_LADDER[0]))
+        d_h_i = D_H_LADDER.index(dh0) if dh0 in D_H_LADDER else 0
+        del st
+    model = WorldModel(d_obs=8, n_actions=4, d_h=D_H_LADDER[d_h_i])
     opt = torch.optim.Adam(model.parameters(), lr=2e-3)
     buffer = EpisodeBuffer(capacity=1200)
     prev_residual, improve_streak, err_streak, round_id = None, 0, 0, 0
