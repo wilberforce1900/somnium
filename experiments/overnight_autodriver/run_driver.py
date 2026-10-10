@@ -111,6 +111,7 @@ def main():
                            DreamConfig(batch=16, t_win=8, rare_bias=3.0),
                            log=DreamLog(), rng=random.Random(args.seed), coverage=cov)
     prev_residual, improve_streak, err_streak, round_id = None, 0, 0, 0
+    wall, wall_strikes, rounds_since_growth = False, 0, 99
     t0 = time.time()
 
     while round_id < args.max_rounds:
@@ -141,16 +142,21 @@ def main():
                 sched.dream_phase(opt)
             # ---- probe：自我疑问 ----
             p = probes(model, eval_buf, sched)
-            # ---- choose：确定性规则 + 灰度（v2 教训修正：阈值改用 √d_h 归一残差
-            #      res_norm——夜长数据实测健康带 0.29–0.6，容量墙 0.9+；
-            #      收缩>0.8，探索<0.55，其间灰度）----
+            # ---- choose：确定性规则 + 灰度（v2.1：并入夜一全部教训）----
+            # 教训①阈值用 √d_h 归一残差（健康带 0.29–0.6，墙 0.9+）；
+            # 教训②反饥饿：残差高但覆盖高 = 容量失配而非环境太难——只有
+            #      覆盖不足(<0.85)时才收缩环境（夜一曾缩到 grid5 地板空转 667 轮）；
+            # 教训③生长门槛：仅当前规模健康(res_norm<0.6)才允许生长；
+            # 教训④墙检测：生长后 4 轮内 res_norm 恶化>1.2 连续 3 次 →
+            #      标记容量墙，本夜不再生长（夜一 729→1024 爆 6.8× 后无路可退）。
             gray = []
             if 0.55 <= p["res_norm"] <= 0.8:
                 gray.append(f"res_norm 阈间 {p['res_norm']}")
             if p["coverage"] is not None and 0.5 <= p["coverage"] <= 0.9:
                 gray.append(f"coverage 阈间 {p['coverage']}")
             action = "hold"
-            if p["res_norm"] > 0.8 and grid > 5:
+            if (p["res_norm"] > 0.8 and p["coverage"] is not None
+                    and p["coverage"] < 0.85 and grid > 6):
                 grid -= 1
                 action = f"shrink→grid{grid}"
             elif p["res_norm"] < 0.55 and p["coverage"] and p["coverage"] > 0.9 and grid < 10:
@@ -161,7 +167,8 @@ def main():
                 improve_streak += 1
             else:
                 improve_streak = 0
-            if improve_streak >= 2 and d_h_i < len(D_H_LADDER) - 1:
+            if (improve_streak >= 2 and not wall
+                    and p["res_norm"] < 0.6 and d_h_i < len(D_H_LADDER) - 1):
                 d_h_i += 1
                 widen_world_model(model, D_H_LADDER[d_h_i],
                                   rng=random.Random(round_id), noise=0.01)
@@ -169,13 +176,25 @@ def main():
                 dream_dose = int(dream_dose * 1.5)
                 improve_streak = 0
                 grew = True
+                rounds_since_growth = 0
                 action += f" +GROW→d_h{D_H_LADDER[d_h_i]}"
+            else:
+                rounds_since_growth += 1
+            # 墙检测：生长后短窗内急剧恶化 → 停止本夜生长
+            if (not wall and grew is False and rounds_since_growth <= 4
+                    and prev_residual is not None and p["res_norm"] > 1.2 * prev_residual):
+                wall_strikes += 1
+                if wall_strikes >= 3:
+                    wall = True
+                    gray.append(f"capacity wall @d_h{D_H_LADDER[d_h_i]} → 本夜停止生长")
+            else:
+                wall_strikes = 0
             prev_residual = p["res_norm"]
             # ---- 落盘：种子库 + ckpt ----
             seed_rec = {"round": round_id, "utc": datetime.now(timezone.utc).isoformat(),
                         "grid": grid, "d_h": model.substrate.d_h, "dream_dose": dream_dose,
                         "probes": p, "action": action, "grew": grew, "gray": gray,
-                        "dream_log_len": len(sched.log)}
+                        "wall": wall, "dream_log_len": len(sched.log)}
             (OUT / f"seeds/round_{round_id:03d}.json").write_text(
                 json.dumps(seed_rec, ensure_ascii=False, indent=1), encoding="utf-8")
             save_checkpoint(OUT / f"ckpts/round_{round_id:03d}.pt", model=model,
