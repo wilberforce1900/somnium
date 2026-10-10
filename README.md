@@ -79,7 +79,9 @@ Docs: [Paper (PDF)](paper/somnium-paper.pdf) · [DOI: 10.5281/zenodo.23278220](h
 阶段 0 收官（六消融判定）+ 六轮本机迭代 + R1 规模阶梯 + R1b 剂量对照 +
 两夜自主训练（871 轮生长/自愈回滚）。开源决策门已执行（本仓库即产物）。
 arXiv 首次提交需个人背书（2026-01 新政），暂以本仓库 + 可引用 DOI 路线替代。
-待办：R2-R4、ENV-B（ARC 数据集）、Zenodo DOI（待拍板）。
+待办：**迭代 #7「世界先变大」**（环境族升级 ENV-D + 世界校准 + R5，设计见
+[ITER7-WORLD-FIRST.md](ITER7-WORLD-FIRST.md)）、R2-R4、ENV-B（ARC 数据集）。
+Zenodo DOI 闭环已完成（[10.5281/zenodo.23278220](https://doi.org/10.5281/zenodo.23278220)）。
 三大纪律：预注册阈值跑前锁定、负结果照记登记表、哲学词必须绑定机制。
 
 ## 纪律
