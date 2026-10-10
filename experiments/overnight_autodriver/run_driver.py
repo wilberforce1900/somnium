@@ -72,7 +72,10 @@ def probes(model, eval_buf, sched):
             sig += float(model.predict_uncertainty(h).mean())
             alp += float(a.mean())
     model.train()
-    return {"residual": round(err / 8, 4), "sigma": round(sig / 8, 4),
+    import math
+    return {"residual": round(err / 8, 4),
+            "res_norm": round(err / 8 / math.sqrt(model.substrate.d_h), 4),
+            "sigma": round(sig / 8, 4),
             "alpha": round(alp / 8, 4),
             "coverage": round(sched.coverage.covered_frac(), 4) if sched.coverage else None}
 
@@ -138,22 +141,23 @@ def main():
                 sched.dream_phase(opt)
             # ---- probe：自我疑问 ----
             p = probes(model, eval_buf, sched)
-            # ---- choose：确定性规则 + 灰度（阈值按 64 维 L2 残差实测标定：
-            #      未训 ~9 / 收敛 ~3-4.5 → 收缩>6.0，探索<4.0，其间灰度）----
+            # ---- choose：确定性规则 + 灰度（v2 教训修正：阈值改用 √d_h 归一残差
+            #      res_norm——夜长数据实测健康带 0.29–0.6，容量墙 0.9+；
+            #      收缩>0.8，探索<0.55，其间灰度）----
             gray = []
-            if 4.0 <= p["residual"] <= 6.0:
-                gray.append(f"residual 阈间 {p['residual']}")
+            if 0.55 <= p["res_norm"] <= 0.8:
+                gray.append(f"res_norm 阈间 {p['res_norm']}")
             if p["coverage"] is not None and 0.5 <= p["coverage"] <= 0.9:
                 gray.append(f"coverage 阈间 {p['coverage']}")
             action = "hold"
-            if p["residual"] > 6.0 and grid > 5:
+            if p["res_norm"] > 0.8 and grid > 5:
                 grid -= 1
                 action = f"shrink→grid{grid}"
-            elif p["residual"] < 4.0 and p["coverage"] and p["coverage"] > 0.9 and grid < 10:
+            elif p["res_norm"] < 0.55 and p["coverage"] and p["coverage"] > 0.9 and grid < 10:
                 grid += 1
                 action = f"expand→grid{grid}"
             grew = False
-            if prev_residual is not None and prev_residual - p["residual"] > 0.1 * prev_residual:
+            if prev_residual is not None and prev_residual - p["res_norm"] > 0.1 * prev_residual:
                 improve_streak += 1
             else:
                 improve_streak = 0
@@ -166,7 +170,7 @@ def main():
                 improve_streak = 0
                 grew = True
                 action += f" +GROW→d_h{D_H_LADDER[d_h_i]}"
-            prev_residual = p["residual"]
+            prev_residual = p["res_norm"]
             # ---- 落盘：种子库 + ckpt ----
             seed_rec = {"round": round_id, "utc": datetime.now(timezone.utc).isoformat(),
                         "grid": grid, "d_h": model.substrate.d_h, "dream_dose": dream_dose,
@@ -177,6 +181,12 @@ def main():
             save_checkpoint(OUT / f"ckpts/round_{round_id:03d}.pt", model=model,
                             optimizer=opt, cycle=round_id, extra={"seed_rec": seed_rec},
                             buffer=buffer)
+            # v2 教训修正：ckpt 保留上限（最近 5 份 + 每 50 轮里程碑），防写满盘
+            keep = {f"round_{r:03d}.pt" for r in range(max(1, round_id - 4), round_id + 1)}
+            keep |= {f"round_{r:03d}.pt" for r in range(50, round_id + 1, 50)}
+            for f in (OUT / "ckpts").glob("round_*.pt"):
+                if f.name not in keep:
+                    f.unlink(missing_ok=True)
             sched.log.save(OUT / f"seeds/dreamlog_{round_id:03d}.jsonl")
             print(f"[round {round_id}] {seed_rec}", flush=True)
         except Exception:
