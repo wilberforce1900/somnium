@@ -8,3 +8,4 @@ __pycache__/
 *.tmp
 # 模型断点档（云/本机 spot 续跑用，不入库）
 *.pt
+.DS_Store
