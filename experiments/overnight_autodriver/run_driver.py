@@ -48,7 +48,8 @@ from src.growth import widen_world_model              # noqa: E402
 REPO = Path(__file__).resolve().parents[2]
 OUT = REPO / "experiments/overnight_autodriver/out"
 
-D_H_LADDER = [64, 96, 144, 216, 324, 486, 729, 1024]
+D_H_LADDER = [64, 80, 100, 125, 156, 195, 244, 305, 381, 476, 595, 744,
+              930, 1163, 1454, 1818]  # ×1.25 细化（迭代#7 拍板；原 ×1.5 阶梯弃用）
 CLIP = 1.0            # v2.2：梯度裁剪（夜二 ~870 轮无裁剪长训发散之鉴）
 
 
