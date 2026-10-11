@@ -71,11 +71,16 @@ class Substrate(nn.Module):
     - 近线性小初始化：出生时贴近混沌（太极未分），训练中秩序渐生
     """
 
-    def __init__(self, d_x: int = 32, d_h: int = 64, init_scale: float = 0.1) -> None:
+    def __init__(self, d_x: int = 32, d_h: int = 64, init_scale: float = 0.1,
+                 cell_kind: str = "linear") -> None:
         super().__init__()
         self.d_x = d_x
         self.d_h = d_h
-        self.cell = nn.Linear(d_h + d_x, d_h)
+        self.cell_kind = cell_kind
+        # cell 工厂（迭代#7 方向 a）：linear=v0 原样；gated/twolayer 见 cell_variants。
+        # 变体自带合理初始化，不走下方线性小初始化（init_scale 仅作用于 linear）。
+        from .cell_variants import build_cell
+        self.cell = build_cell(cell_kind, d_h, d_x)
         self.energy_head = nn.Sequential(
             nn.Linear(d_h, d_h),
             nn.GELU(),
@@ -83,14 +88,26 @@ class Substrate(nn.Module):
         )
         self.noise = NoisePrior()
         with torch.no_grad():
-            for lin in (self.cell, self.energy_head[0], self.energy_head[2]):
-                lin.weight.uniform_(-init_scale, init_scale)
-                lin.bias.zero_()
+            if cell_kind == "linear":
+                for lin in (self.cell, self.energy_head[0], self.energy_head[2]):
+                    lin.weight.uniform_(-init_scale, init_scale)
+                    lin.bias.zero_()
+            else:
+                for lin in (self.energy_head[0], self.energy_head[2]):
+                    lin.weight.uniform_(-init_scale, init_scale)
+                    lin.bias.zero_()
 
     # ---- 阳侧动力学核（yang.py 调用） ----
     def forward_delta(self, h: torch.Tensor, x: torch.Tensor) -> torch.Tensor:
-        """共享正向动力学：Δ = tanh(cell([h, x]))。"""
-        return torch.tanh(self.cell(torch.cat([h, x], dim=-1)))
+        """共享正向动力学：Δ = tanh(cell([h, x]))。
+
+        linear cell 与变体（gated/twolayer 自带末端 tanh）统一套外层 tanh：
+        变体输出再过一次 tanh 会压缩梯度——故变体分支直接返回 cell 输出。
+        """
+        z = self.cell(torch.cat([h, x], dim=-1))
+        if self.cell_kind == "linear":
+            return torch.tanh(z)
+        return z
 
     # ---- 阴侧能量地形（yin.py 调用） ----
     def energy_of(self, h: torch.Tensor) -> torch.Tensor:
@@ -100,7 +117,7 @@ class Substrate(nn.Module):
     # ---- L0 混沌入口（dream.py 将复用） ----
     def spawn(self, batch_size: int) -> LatentState:
         """从噪声先验采样初始潜态（混沌中出生）。"""
-        p = self.cell.weight
+        p = next(self.cell.parameters())  # 变体 cell 无单 .weight，取任意参数定设备
         h = torch.randn(batch_size, self.d_h, device=p.device, dtype=p.dtype)
         return LatentState(h * self.noise.sigma, t=0)
 

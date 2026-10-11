@@ -41,7 +41,7 @@ def widen_world_model(model: WorldModel, new_d_h: int,
     n = model.n_actions
     if new_d_h <= m:
         raise ValueError(f"new_d_h({new_d_h}) 必须大于当前({m})")
-    dev = model.substrate.cell.weight.device
+    dev = next(model.substrate.cell.parameters()).device
     idx = _dup_index(m, new_d_h, rng, dev)          # 新维 → 源维
 
     def copy_rows(lin: nn.Linear) -> None:           # 生产者：输出维复制+噪声

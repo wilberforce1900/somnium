@@ -55,7 +55,7 @@ def plan_shaped(model, codebook: HexagramCodebook, obs: torch.Tensor,
     """
     V = value_iteration(codebook, gamma, depth)
     with torch.no_grad():
-        dev = model.substrate.cell.weight.device
+        dev = next(model.substrate.cell.parameters()).device
         obs = obs.to(dev)
         h = h.to(dev)
         k_obs = obs.unsqueeze(0).expand(k, -1)
