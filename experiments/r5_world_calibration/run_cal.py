@@ -79,8 +79,8 @@ def train_eval(k, d_h, seed, device):
         if first is None:
             first = mse
         if cycle % 5 == 0 or cycle == 29:
-            print(f"[k={k} dh={dh} s{seed}] cyc{cycle+1}/30 mse={mse:.4f} steps={total_steps}",
-                  flush=True)
+            print(f"[k={k} d_h={args.d_h} s{seed}] cyc{cycle+1}/30 mse={mse:.4f} "
+                  f"steps={total_steps}", flush=True)
     return {"k": k, "d_h": d_h, "seed": seed, "first_mse": round(first, 5),
             "final_mse": round(mse, 5)}
 

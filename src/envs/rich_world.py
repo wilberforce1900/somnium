@@ -73,7 +73,7 @@ class RichWorld:
         self.G = 10 if self.k >= 2 else 8
         self.H = horizon or (60 + 40 * self.k)
         self._rng = random.Random(seed)
-        self.d_obs = 4 + self.view * self.view + (2 if self.k >= 2 else 0) + 2
+        self.d_obs = 2 + self.view * self.view + (2 if self.k >= 2 else 0) + 2
         #        位置2  视野 view²          钥匙/目标进度(k≥2)  时钟1 + 常量1
         self.n_actions = 4
         self._build()
