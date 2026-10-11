@@ -1,0 +1,22 @@
+{
+ "round": 1884,
+ "utc": "2026-10-10T09:36:09.795552+00:00",
+ "grid": 9,
+ "d_h": 729,
+ "dream_dose": 2277,
+ "probes": {
+  "residual": 16.2837,
+  "res_norm": 0.6031,
+  "sigma": 0.0362,
+  "alpha": 0.1727,
+  "coverage": 0.88
+ },
+ "action": "hold",
+ "grew": false,
+ "gray": [
+  "res_norm 阈间 0.6031",
+  "coverage 阈间 0.88"
+ ],
+ "wall": false,
+ "dream_log_len": 17
+}

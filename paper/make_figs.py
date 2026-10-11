@@ -5,6 +5,7 @@ Fig2 两夜自驱：梦长模型的生长曲线与归一残差轨迹。
 """
 import json
 import math
+import math
 from pathlib import Path
 
 import matplotlib
@@ -59,35 +60,42 @@ def load_night(path_glob):
         try:
             d = json.loads(f.read_text())
             p = d["probes"]
-            if p.get("res_norm") is None:
+            rn = p.get("res_norm")
+            if rn is None:  # 夜一为 v2.0 格式：现场归一（定义与 v2.1 等价）
+                rn = p["residual"] / math.sqrt(d["d_h"])
+            if rn > 6:      # 发散尖峰裁掉（σ=inf 时刻残差飞出）
                 continue
-            rows.append((d["round"], d["d_h"], p["res_norm"]))
+            rows.append((d["round"], d["d_h"], rn))
         except Exception:
             pass
     return rows
 
-n1 = load_night(R / "experiments/overnight_autodriver/out_night1_local/seeds") \
-    if (R / "experiments/overnight_autodriver/out_night1_local").exists() else load_night("/tmp/nonexist")
-if not n1:
-    # 夜一种子在仓库内（dabf471 入库），定位之
-    n1 = load_night(R / "experiments/overnight_autodriver/out/seeds")
-n2 = load_night("/tmp/somnium_n2/seeds")
+n1 = load_night(R / "experiments/overnight_autodriver/out/seeds")
+n2 = load_night(R / "experiments/overnight_autodriver/out_night2/seeds")
 
 fig, (a1, a2) = plt.subplots(2, 1, figsize=(4.6, 3.6), sharex=True,
                              gridspec_kw={"hspace": 0.12})
-for rows, color, label in ((n1, "gray", "night 1 (no guards)"),
-                           (n2, "tab:blue", "night 2 (guards)")):
+for rows, color, label, lw, al in ((n1, "dimgray", "night 1 (no guards)", 2.2, 1.0),
+                                   (n2, "tab:blue", "night 2 (guards)", 1.0, 0.85)):
     r = [x[0] for x in rows]
-    a1.step(r, [x[1] for x in rows], where="post", color=color, lw=1.3, label=label)
-    a2.semilogy(r, [max(x[2], 1e-2) for x in rows], color=color, lw=0.8, alpha=0.9)
+    a1.step(r, [x[1] for x in rows], where="post", color=color, lw=lw,
+            alpha=al, label=label)
+    a2.semilogy(r, [max(x[2], 1e-2) for x in rows], color=color, lw=lw * 0.6,
+                alpha=al)
+n1_end = max(x[0] for x in n1)
+for ax in (a1, a2):
+    ax.axvline(n1_end, color="k", ls="-", lw=0.7, alpha=0.5)
+a1.annotate("night 1 ends", (n1_end + 60, 300), fontsize=6.5, color="dimgray")
 a1.set_ylabel(r"$d_h$")
-a1.legend(fontsize=7, frameon=False, loc="upper left")
+a1.legend(fontsize=7, frameon=False, loc="center right")
 a2.set_xlabel("autonomous round")
 a2.set_ylabel(r"res$_{norm}$")
 a2.axhline(0.6, color="crimson", ls="--", lw=0.8)
 a2.axhline(1.2, color="tab:red", ls=":", lw=0.8)
-a2.annotate("night1: unclipped divergence\nafter growth to $d_h{=}1024$",
-            (760, 2.3), fontsize=6.5, color="dimgray", ha="right")
+a2.annotate("night 1: unclipped divergence at $d_h{=}729$",
+            (n1_end - 100, 2.6), fontsize=6.5, color="dimgray", ha="right")
+a2.annotate("night 2: clipped, stable\nat $d_h{=}1024$ for 3000+ rounds",
+            (2400, 1.9), fontsize=6.5, color="tab:blue", ha="left")
 fig.savefig(FIG / "fig_overnight.pdf")
 plt.close(fig)
 print("figures written:", list(p.name for p in FIG.glob("*.pdf")))

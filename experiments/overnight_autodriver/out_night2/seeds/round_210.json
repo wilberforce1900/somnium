@@ -1,0 +1,19 @@
+{
+ "round": 210,
+ "utc": "2026-10-10T02:18:55.351597+00:00",
+ "grid": 10,
+ "d_h": 729,
+ "dream_dose": 2277,
+ "probes": {
+  "residual": 31.9485,
+  "res_norm": 1.1833,
+  "sigma": 0.1292,
+  "alpha": 0.0479,
+  "coverage": 0.9722
+ },
+ "action": "hold",
+ "grew": false,
+ "gray": [],
+ "wall": false,
+ "dream_log_len": 17
+}
