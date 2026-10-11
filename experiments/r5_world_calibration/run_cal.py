@@ -34,7 +34,7 @@ def make_env(k, seed):
     return RichWorld(complexity=k, seed=seed)
 
 
-def train_eval(k, d_h, seed, device):
+def train_eval(k, d_h, seed, device, cycles=30):
     torch.manual_seed(seed)
     random.seed(seed)
     env = make_env(k, seed)
@@ -64,7 +64,7 @@ def train_eval(k, d_h, seed, device):
 
     total_steps = 0
     first = None
-    for cycle in range(args.cycles):
+    for cycle in range(cycles):
         for _ in range(8):
             roll = guided_rollout if env.rng.random() < 0.3 else random_rollout
             buffer.add_episode(*roll(env))
@@ -78,7 +78,7 @@ def train_eval(k, d_h, seed, device):
         mse = eval_mse()
         if first is None:
             first = mse
-        if cycle % 5 == 0 or cycle == args.cycles - 1:
+        if cycle % 5 == 0 or cycle == cycles - 1:
             print(f"[k={k} d_h={d_h} s{seed}] cyc{cycle+1}/30 mse={mse:.4f} "
                   f"steps={total_steps}", flush=True)
     return {"k": k, "d_h": d_h, "seed": seed, "first_mse": round(first, 5),
@@ -95,7 +95,8 @@ def main():
     args = ap.parse_args()
     dev = torch.device(args.device) if args.device != "auto" else torch.device(
         "cuda" if torch.cuda.is_available() else "cpu")
-    rec = train_eval(args.complexity, args.d_h, args.seed, dev)
+    rec = train_eval(args.complexity, args.d_h, args.seed, dev,
+                     cycles=args.cycles)
     with open(OUT / f"cal_k{args.complexity}_dh{args.d_h}_s{args.seed}.json", "w") as f:
         json.dump(rec, f, indent=1)
     print("RECORD:", json.dumps(rec))
