@@ -64,7 +64,7 @@ def train_eval(k, d_h, seed, device):
 
     total_steps = 0
     first = None
-    for cycle in range(30):
+    for cycle in range(args.cycles):
         for _ in range(8):
             roll = guided_rollout if env.rng.random() < 0.3 else random_rollout
             buffer.add_episode(*roll(env))
@@ -78,7 +78,7 @@ def train_eval(k, d_h, seed, device):
         mse = eval_mse()
         if first is None:
             first = mse
-        if cycle % 5 == 0 or cycle == 29:
+        if cycle % 5 == 0 or cycle == args.cycles - 1:
             print(f"[k={k} d_h={d_h} s{seed}] cyc{cycle+1}/30 mse={mse:.4f} "
                   f"steps={total_steps}", flush=True)
     return {"k": k, "d_h": d_h, "seed": seed, "first_mse": round(first, 5),
@@ -91,6 +91,7 @@ def main():
     ap.add_argument("--d-h", type=int, required=True)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--device", default="auto")
+    ap.add_argument("--cycles", type=int, default=30)
     args = ap.parse_args()
     dev = torch.device(args.device) if args.device != "auto" else torch.device(
         "cuda" if torch.cuda.is_available() else "cpu")
