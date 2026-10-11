@@ -114,3 +114,20 @@ E1 预注册偏离（2026-10-08）：A2 判定任务集 ENV-B+ENV-C → ENV-A+EN
 | 2026-10-09 | E0 | dream_first+g0.3 | 1 | 5381 | 0.968525 | -0.088 | R1b ❌ 0.88/0.79 剂量×4 无改善 | full/r1b-dh256 |
 | 2026-10-09 | E0 | dream_first+g0.3 | 0 | 5225 | 1.00992 | -0.62 | R1b ❌ 剂量×16 全程未达标（更差） | full/r1b-dh1024 |
 | 2026-10-09 | E0 | dream_first+g0.3 | 1 | 5381 | 1.029312 | 0.174 | R1b ❌ 剂量×16 全程未达标（更差） | full/r1b-dh1024 |
+
+登记说明（2026-10-11 起）：本表登记新增实验；(a)/(b) 之前的 R5-cal 全链（v1 30cyc 15 份、
+v2.2 阶梯、排除链五大假设）以 ITER7-WORLD-FIRST.md §2.1–2.4 表格 + experiments/r5_world_calibration/
+全量 json（40 份）为准，不逐行补登。日期=run 的 UTC 日。
+
+| 2026-10-11 | R5-cal(a) | k0/dh1024/linear 60cyc | 0 | ~2.5K | 1.02962 | 三 cell 对照参照 | ❌ (a) 线：cell 变体全灭（最佳改善 1.2%） | full·cuda/celltest s0 |
+| 2026-10-11 | R5-cal(a) | k0/dh1024/gated 60cyc | 0 | ~2.9K | 1.08062 | — | ❌ (a) 对照（更差 +5%） | full·cuda/celltest s0 |
+| 2026-10-11 | R5-cal(a) | k0/dh1024/twolayer 60cyc | 0 | ~1.9K | 1.01732 | — | ❌ (a) 对照（+1.2% 远未治愈） | full·cuda/celltest s0 |
+| 2026-10-11 | R5-cal(b) | k0/dh1024/none 120cyc | 0 | ~2.5K | 1.02962 | α→0.016 门坍缩；hN→1.00 冻结 | ❌ (b) 参照（与 (a) 逐位一致，确定性 ✓） | full·cuda/b-line s0 |
+| 2026-10-11 | R5-cal(b) | k0/dh1024/ln_post 120cyc | 0 | 14.8K | 0.16566 | α 谷→0.999；hN 1.00→0.65 | ✅ 治愈（≤0.30；间隙闭合 96%） | full·cuda/b-line s0 |
+| 2026-10-11 | R5-cal(b) | k0/dh1024/rms_post 120cyc | 0 | 14.8K | 0.19745 | α≈0.2–0.8；阴步幅 0.008→0.56 | ✅ 治愈（≤0.30） | full·cuda/b-line s0 |
+| 2026-10-11 | R5-cal(b) | k0/dh1024/ln_pre 120cyc | 0 | ~2.0K | 1.03551 | α→0.016（同 none 坍缩） | ❌ 无效→病根在写侧非 cell 输入 | full·cuda/b-line s0 |
+| 2026-10-11 | R5-cal(b) | k0/dh256/ln_post 120cyc | 0 | 14.8K | 0.11465 | — | ✅ ladder 悬崖压平（none 0.957→0.115） | full·cuda/b-ladder s0 |
+| 2026-10-11 | R5-cal(b) | k0/dh64/ln_post 120cyc | 0 | 14.8K | 0.17508 | — | ◐ 健康档轻损（none 0.134→0.175 同量级） | full·cuda/b-ladder s0 |
+| 2026-10-11 | R5-cal(b) | k0/dh256/rms_post 120cyc | 0 | 14.8K | 0.13315 | — | ✅ 交叉验证 ≈64 档 | full·cuda/b-ladder s0 |
+| 2026-10-11 | R5-cal(b) | k0/dh1024/ln_post seed1 | 1 | 15.0K | 0.17040 | — | ✅ 复现稳健（s0 0.16566，轨迹逐段重合） | full·cuda/b-rep |
+| 2026-10-11 | R5-cal(b) | k0/dh1024/rms_post seed1 | 1 | 15.0K | 0.37153 | s1 掉回坍缩陷阱（α 谷 0.004 ~70cyc）晚期自救 | ◐ 种子敏感（s0 0.19745）——主解=ln_post | full·cuda/b-rep |

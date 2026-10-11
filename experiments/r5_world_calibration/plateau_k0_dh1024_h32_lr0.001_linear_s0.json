@@ -6,7 +6,8 @@
  "hidden": 32,
  "lr": 0.001,
  "cell_kind": "linear",
- "max_cycles": 60,
+ "norm_kind": "none",
+ "max_cycles": 120,
  "stopped_at": 17,
  "plateau_at": 17,
  "plateau_mse": 1.02962,
@@ -29,5 +30,128 @@
   1.02443,
   1.02318,
   1.02317
- ]
+ ],
+ "probes": [
+  {
+   "alpha": 0.15171,
+   "h_norm": 1.19693,
+   "dy_norm": 0.81643,
+   "di_norm": 0.00924,
+   "sat_frac": 0.38947
+  },
+  {
+   "alpha": 0.05682,
+   "h_norm": 1.03546,
+   "dy_norm": 0.81421,
+   "di_norm": 0.01096,
+   "sat_frac": 0.36889
+  },
+  {
+   "alpha": 0.03261,
+   "h_norm": 1.01185,
+   "dy_norm": 0.8205,
+   "di_norm": 0.01229,
+   "sat_frac": 0.3838
+  },
+  {
+   "alpha": 0.0253,
+   "h_norm": 1.00668,
+   "dy_norm": 0.82412,
+   "di_norm": 0.01458,
+   "sat_frac": 0.39334
+  },
+  {
+   "alpha": 0.02282,
+   "h_norm": 1.00572,
+   "dy_norm": 0.82588,
+   "di_norm": 0.01811,
+   "sat_frac": 0.39788
+  },
+  {
+   "alpha": 0.02163,
+   "h_norm": 1.00633,
+   "dy_norm": 0.82706,
+   "di_norm": 0.02214,
+   "sat_frac": 0.40063
+  },
+  {
+   "alpha": 0.02019,
+   "h_norm": 1.00499,
+   "dy_norm": 0.82794,
+   "di_norm": 0.02276,
+   "sat_frac": 0.40265
+  },
+  {
+   "alpha": 0.0189,
+   "h_norm": 1.0035,
+   "dy_norm": 0.82868,
+   "di_norm": 0.0227,
+   "sat_frac": 0.40459
+  },
+  {
+   "alpha": 0.0167,
+   "h_norm": 0.99943,
+   "dy_norm": 0.82912,
+   "di_norm": 0.01935,
+   "sat_frac": 0.40551
+  },
+  {
+   "alpha": 0.01575,
+   "h_norm": 0.99852,
+   "dy_norm": 0.82969,
+   "di_norm": 0.01959,
+   "sat_frac": 0.40703
+  },
+  {
+   "alpha": 0.01553,
+   "h_norm": 0.99896,
+   "dy_norm": 0.83016,
+   "di_norm": 0.02115,
+   "sat_frac": 0.40842
+  },
+  {
+   "alpha": 0.01576,
+   "h_norm": 1.0005,
+   "dy_norm": 0.83071,
+   "di_norm": 0.02369,
+   "sat_frac": 0.40974
+  },
+  {
+   "alpha": 0.01666,
+   "h_norm": 1.00462,
+   "dy_norm": 0.83139,
+   "di_norm": 0.02842,
+   "sat_frac": 0.41193
+  },
+  {
+   "alpha": 0.01608,
+   "h_norm": 1.00444,
+   "dy_norm": 0.83197,
+   "di_norm": 0.02898,
+   "sat_frac": 0.41325
+  },
+  {
+   "alpha": 0.01267,
+   "h_norm": 0.99761,
+   "dy_norm": 0.83215,
+   "di_norm": 0.02272,
+   "sat_frac": 0.41312
+  },
+  {
+   "alpha": 0.00891,
+   "h_norm": 0.99325,
+   "dy_norm": 0.83328,
+   "di_norm": 0.01901,
+   "sat_frac": 0.41645
+  },
+  {
+   "alpha": 0.00783,
+   "h_norm": 0.99235,
+   "dy_norm": 0.83406,
+   "di_norm": 0.01858,
+   "sat_frac": 0.41862
+  }
+ ],
+ "g_cell_last10": 0.028033,
+ "g_energy_last10": 0.065364
 }
