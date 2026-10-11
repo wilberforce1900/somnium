@@ -41,6 +41,10 @@ def widen_world_model(model: WorldModel, new_d_h: int,
     n = model.n_actions
     if new_d_h <= m:
         raise ValueError(f"new_d_h({new_d_h}) 必须大于当前({m})")
+    if getattr(model.substrate, "norm_kind", "none") != "none":
+        raise NotImplementedError(
+            "潜态归一化下宽度增长未定义（LN/RMS 统计跨维度，非函数保持）——"
+            "ITER7 §2.5 (b) 线不涉生长，勿静默继续")
     dev = next(model.substrate.cell.parameters()).device
     idx = _dup_index(m, new_d_h, rng, dev)          # 新维 → 源维
 

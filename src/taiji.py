@@ -73,13 +73,24 @@ class TaijiGate(nn.Module):
         self, state: LatentState, x: torch.Tensor
     ) -> tuple[LatentState, torch.Tensor]:
         """一步阴阳混合更新。返回 (新潜态, α)。"""
+        s, a, _, _ = self.mixed_step_parts(state, x)
+        return s, a
+
+    def mixed_step_parts(
+        self, state: LatentState, x: torch.Tensor
+    ) -> tuple[LatentState, torch.Tensor, torch.Tensor, torch.Tensor]:
+        """mixed_step 分量版（校准探针用）：额外返回 Δ阳 / Δ阴。
+
+        归一化出口（ITER7 §2.5）：none 时恒等，v0 行为逐位不变。
+        """
         a = self.alpha(state, x)
         s_yang = self.yang.step(state, x)
         s_yin = self.yin.step(state)
         dh_y = s_yang.h - state.h
         dh_i = s_yin.h - state.h
         h_new = state.h + a * dh_y + (1.0 - a) * dh_i
-        return advance(state, h_new), a
+        h_new = self.substrate.norm_state(h_new)
+        return advance(state, h_new), a, dh_y, dh_i
 
     @torch.no_grad()
     def reset_gate(self, bias: float = 0.0) -> None:

@@ -41,6 +41,7 @@ class WorldModel(nn.Module):
         lam_cb: float = 0.1,
         lam_var: float = 0.2,
         cell_kind: str = "linear",
+        norm_kind: str = "none",
     ) -> None:
         super().__init__()
         self.d_obs = d_obs
@@ -60,7 +61,8 @@ class WorldModel(nn.Module):
             nn.Linear(d_obs, hidden), nn.GELU(), nn.Linear(hidden, d_h)
         )
         self.substrate = Substrate(d_x=d_h + n_actions, d_h=d_h,
-                                   init_scale=init_scale, cell_kind=cell_kind)
+                                   init_scale=init_scale, cell_kind=cell_kind,
+                                   norm_kind=norm_kind)
         self.yang = YangMode(self.substrate)
         self.yin = YinMode(self.substrate)
         self.taiji = TaijiGate(self.substrate, self.yang, self.yin, gate_mode=gate_mode)

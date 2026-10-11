@@ -63,6 +63,23 @@ class NoisePrior(nn.Module):
         self.sigma = float(sigma)
 
 
+class RMSNorm(nn.Module):
+    """仅尺度归一化（ITER7 §2.5 (b) 线用）。
+
+    本机 torch 2.2.2 无 nn.RMSNorm（2.4 才内置），本地实现保证双端一致。
+    不除均值——保留逐样本特征均值通道（LN 无此通道，见 ITER7 §2.5 臂设计）。
+    """
+
+    def __init__(self, d: int, eps: float = 1e-6) -> None:
+        super().__init__()
+        self.weight = nn.Parameter(torch.ones(d))
+        self.eps = float(eps)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        rms = x.float().pow(2).mean(dim=-1, keepdim=True).add(self.eps).sqrt()
+        return (x / rms.to(x.dtype)) * self.weight
+
+
 class Substrate(nn.Module):
     """共享主干（公共底座本体）。
 
@@ -72,11 +89,19 @@ class Substrate(nn.Module):
     """
 
     def __init__(self, d_x: int = 32, d_h: int = 64, init_scale: float = 0.1,
-                 cell_kind: str = "linear") -> None:
+                 cell_kind: str = "linear", norm_kind: str = "none") -> None:
         super().__init__()
         self.d_x = d_x
         self.d_h = d_h
         self.cell_kind = cell_kind
+        # 迭代#7 (b) 线：潜态归一化（ITER7 §2.5）。none=恒等（v0 行为逐位不变）。
+        if norm_kind not in ("none", "ln_post", "rms_post", "ln_pre"):
+            raise ValueError(f"norm_kind 未知：{norm_kind}")
+        self.norm_kind = norm_kind
+        if norm_kind in ("ln_post", "ln_pre"):
+            self.state_norm = nn.LayerNorm(d_h)
+        elif norm_kind == "rms_post":
+            self.state_norm = RMSNorm(d_h)
         # cell 工厂（迭代#7 方向 a）：linear=v0 原样；gated/twolayer 见 cell_variants。
         # 变体自带合理初始化，不走下方线性小初始化（init_scale 仅作用于 linear）。
         from .cell_variants import build_cell
@@ -104,10 +129,30 @@ class Substrate(nn.Module):
         linear cell 与变体（gated/twolayer 自带末端 tanh）统一套外层 tanh：
         变体输出再过一次 tanh 会压缩梯度——故变体分支直接返回 cell 输出。
         """
-        z = self.cell(torch.cat([h, x], dim=-1))
+        z = self.cell(torch.cat([self.pre_cell_input(h), x], dim=-1))
         if self.cell_kind == "linear":
             return torch.tanh(z)
         return z
+
+    # ---- 迭代#7 (b) 线：潜态归一化（ITER7 §2.5） ----
+    def pre_cell_input(self, h: torch.Tensor) -> torch.Tensor:
+        """cell 输入侧的 h 分量（ln_pre 臂在此归一化；其余原样）。"""
+        if self.norm_kind == "ln_pre":
+            return self.state_norm(h)
+        return h
+
+    def norm_state(self, h: torch.Tensor) -> torch.Tensor:
+        """混合出口的潜态归一化（ln_post / rms_post 臂；其余恒等）。
+
+        仅施加于混合出口；extra_relax 通道未纳入（(b) 线实验 extra_relax=0）。
+        """
+        if self.norm_kind in ("ln_post", "rms_post"):
+            return self.state_norm(h)
+        return h
+
+    def cell_preact(self, h: torch.Tensor, x: torch.Tensor) -> torch.Tensor:
+        """cell 前置激活 z（饱和探针用；linear cell 下 |z|>2 记饱和）。"""
+        return self.cell(torch.cat([self.pre_cell_input(h), x], dim=-1))
 
     # ---- 阴侧能量地形（yin.py 调用） ----
     def energy_of(self, h: torch.Tensor) -> torch.Tensor:
