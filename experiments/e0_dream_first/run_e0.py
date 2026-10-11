@@ -128,6 +128,10 @@ def main():
     if args.dream_pre:
         cfg["dream_pre_batches"] = args.dream_pre  # R1b 剂量阶梯
     tag = args.tag or "untagged"
+    if args.d_h:
+        # 多 d_h 批量：每档独立文件名（夜三 D 教训——同名 details 相互覆盖，
+        # dh64/256 逐 cycle 数据须从日志恢复）
+        tag = f"{tag}-dh{args.d_h}"
     dev = default_device() if args.device == "auto" else torch.device(args.device)
     torch.manual_seed(args.seed)
     random.seed(args.seed)
