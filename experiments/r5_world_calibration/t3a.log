@@ -1,0 +1,44 @@
+=== T3A START Sun Oct 11 15:32:05 UTC 2026 ===
+>>> T3A T=8 15:32:05
+/home/somnium-ignition/venvs/torch/lib/python3.10/site-packages/torch/_subclasses/functional_tensor.py:368: UserWarning: Failed to initialize NumPy: No module named 'numpy' (Triggered internally at /__w/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+  cpu = _conversion_method_template(device=torch.device("cpu"))
+/home/somnium-ignition/mission_yin_yang/experiments/r5_world_calibration/run_cal.py:58: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  err += float(((h - tgt) ** 2).mean())
+[k=2 d_h=64 s0 T=8] cyc1/30 mse=1.7768 steps=859
+[k=2 d_h=64 s0 T=8] cyc6/30 mse=1.1022 steps=5167
+[k=2 d_h=64 s0 T=8] cyc11/30 mse=1.0093 steps=9332
+[k=2 d_h=64 s0 T=8] cyc16/30 mse=0.9498 steps=13620
+[k=2 d_h=64 s0 T=8] cyc21/30 mse=0.8793 steps=18111
+[k=2 d_h=64 s0 T=8] cyc26/30 mse=0.7742 steps=22153
+[k=2 d_h=64 s0 T=8] cyc30/30 mse=0.6715 steps=25486
+RECORD: {"k": 2, "d_h": 64, "seed": 0, "t_win": 8, "first_mse": 1.77676, "final_mse": 0.6715}
+>>> T3A T=32 15:32:21
+/home/somnium-ignition/venvs/torch/lib/python3.10/site-packages/torch/_subclasses/functional_tensor.py:368: UserWarning: Failed to initialize NumPy: No module named 'numpy' (Triggered internally at /__w/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+  cpu = _conversion_method_template(device=torch.device("cpu"))
+/home/somnium-ignition/mission_yin_yang/experiments/r5_world_calibration/run_cal.py:58: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  err += float(((h - tgt) ** 2).mean())
+[k=2 d_h=64 s0 T=32] cyc1/30 mse=24.8976 steps=859
+[k=2 d_h=64 s0 T=32] cyc6/30 mse=4.3403 steps=5167
+[k=2 d_h=64 s0 T=32] cyc11/30 mse=2.3265 steps=9332
+[k=2 d_h=64 s0 T=32] cyc16/30 mse=1.6509 steps=13620
+[k=2 d_h=64 s0 T=32] cyc21/30 mse=1.4611 steps=18111
+[k=2 d_h=64 s0 T=32] cyc26/30 mse=1.4026 steps=22153
+[k=2 d_h=64 s0 T=32] cyc30/30 mse=1.3673 steps=25486
+RECORD: {"k": 2, "d_h": 64, "seed": 0, "t_win": 32, "first_mse": 24.89762, "final_mse": 1.36735}
+>>> T3A T=64 15:33:05
+/home/somnium-ignition/venvs/torch/lib/python3.10/site-packages/torch/_subclasses/functional_tensor.py:368: UserWarning: Failed to initialize NumPy: No module named 'numpy' (Triggered internally at /__w/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+  cpu = _conversion_method_template(device=torch.device("cpu"))
+/home/somnium-ignition/mission_yin_yang/experiments/r5_world_calibration/run_cal.py:58: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  err += float(((h - tgt) ** 2).mean())
+[k=2 d_h=64 s0 T=64] cyc1/30 mse=104.0178 steps=859
+[k=2 d_h=64 s0 T=64] cyc6/30 mse=14.1017 steps=5167
+[k=2 d_h=64 s0 T=64] cyc11/30 mse=8.9525 steps=9332
+[k=2 d_h=64 s0 T=64] cyc16/30 mse=6.4210 steps=13620
+[k=2 d_h=64 s0 T=64] cyc21/30 mse=4.7640 steps=18111
+[k=2 d_h=64 s0 T=64] cyc26/30 mse=3.5482 steps=22153
+[k=2 d_h=64 s0 T=64] cyc30/30 mse=2.7992 steps=25486
+RECORD: {"k": 2, "d_h": 64, "seed": 0, "t_win": 64, "first_mse": 104.01784, "final_mse": 2.79925}
+=== T3A ALL DONE Sun Oct 11 15:34:29 UTC 2026 ===
