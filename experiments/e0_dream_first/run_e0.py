@@ -68,6 +68,11 @@ def parse_args():
                     help="覆盖 d_h（R1 规模阶梯 64/256/1024；缺省用配置默认）")
     ap.add_argument("--dream-pre", type=int, default=None,
                     help="覆盖梦预训练批数（R1b 剂量实验：∝d_h 放大；缺省用配置默认）")
+    ap.add_argument("--norm-kind",
+                    choices=["none", "ln_post", "rms_post", "ln_pre"], default="none",
+                    help="潜态出口归一化（iter7 (b) 线；夜三 D 阶段=ln_post）")
+    ap.add_argument("--no-registry", action="store_true",
+                    help="跳过 registry 追加（VM 跑用——日期/结论列由收割会话统一登记）")
     return ap.parse_args()
 
 
@@ -129,7 +134,8 @@ def main():
 
     env = LatentGrid(grid=cfg["grid"], slip=0.1, p_threat_move=0.02,
                      horizon=cfg["horizon"], seed=args.seed)
-    model = WorldModel(d_obs=env.d_obs, n_actions=env.n_actions, d_h=cfg["d_h"]).to(dev)
+    model = WorldModel(d_obs=env.d_obs, n_actions=env.n_actions, d_h=cfg["d_h"],
+                       norm_kind=args.norm_kind).to(dev)
     opt = torch.optim.Adam(model.parameters(), lr=cfg["lr"])
     buffer = EpisodeBuffer(capacity=cfg["buffer_cap"])
     dream_log = DreamLog()
@@ -199,23 +205,25 @@ def main():
     final = details[-1] if details else {
         "cycle": start_cycle, "env_steps": env_steps, "pred_mse": -1, "mpc_return": -1}
     scale = "full" if args.full else "smoke"
-    REGISTRY.parent.mkdir(parents=True, exist_ok=True)
-    if not REGISTRY.exists():
-        REGISTRY.write_text(
-            "# Run 登记表\n\n一行一 run，负结果照记（ROADMAP §0）。\n\n"
-            "公平性注记：梦日程（dream_first/alternate）含额外离线梯度步；"
-            "E0 比较基准=真实环境交互步数（PRINCIPLES §11 A3）。\n\n"
-            "| 日期 | 实验 | 日程 | seed | 真实交互步数 | eval 潜态预测 MSE | MPC 回报 | 结论 | 备注 |\n"
-            "|---|---|---|---|---|---|---|---|---|\n",
-            encoding="utf-8",
-        )
-    with open(REGISTRY, "a", encoding="utf-8") as f:
-        f.write(
-            f"| 2026-10-08 | E0 | {args.schedule}+g{cfg['guided_frac']} | {args.seed} "
-            f"| {final['env_steps']} | {final['pred_mse']} | {final['mpc_return']} "
-            f"| 流水线验证 | {scale}/{tag} |\n"
-        )
-    print(f"完成：{time.time() - t0:.1f}s，已登记 results/registry.md")
+    if not args.no_registry:
+        REGISTRY.parent.mkdir(parents=True, exist_ok=True)
+        if not REGISTRY.exists():
+            REGISTRY.write_text(
+                "# Run 登记表\n\n一行一 run，负结果照记（ROADMAP §0）。\n\n"
+                "公平性注记：梦日程（dream_first/alternate）含额外离线梯度步；"
+                "E0 比较基准=真实环境交互步数（PRINCIPLES §11 A3）。\n\n"
+                "| 日期 | 实验 | 日程 | seed | 真实交互步数 | eval 潜态预测 MSE | MPC 回报 | 结论 | 备注 |\n"
+                "|---|---|---|---|---|---|---|---|---|\n",
+                encoding="utf-8",
+            )
+        with open(REGISTRY, "a", encoding="utf-8") as f:
+            f.write(
+                f"| 2026-10-08 | E0 | {args.schedule}+g{cfg['guided_frac']} | {args.seed} "
+                f"| {final['env_steps']} | {final['pred_mse']} | {final['mpc_return']} "
+                f"| 流水线验证 | {scale}/{tag} |\n"
+            )
+    print(f"完成：{time.time() - t0:.1f}s，已登记 results/registry.md" if not args.no_registry
+          else f"完成：{time.time() - t0:.1f}s（--no-registry：未登记）")
 
 
 if __name__ == "__main__":
