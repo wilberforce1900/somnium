@@ -41,12 +41,12 @@ def make_env(k, seed):
     return RichWorld(complexity=k, seed=seed)
 
 
-def train_to_plateau(k, d_h, seed, device, max_cycles=120, t_win=8):
+def train_to_plateau(k, d_h, seed, device, max_cycles=120, t_win=8, hidden=32):
     torch.manual_seed(seed)
     random.seed(seed)
     env = make_env(k, seed)
     model = WorldModel(d_obs=env.d_obs, n_actions=env.n_actions,
-                       d_h=d_h).to(device)
+                       d_h=d_h, hidden=hidden).to(device)
     opt = torch.optim.Adam(model.parameters(), lr=1e-3)
     buffer = EpisodeBuffer(capacity=2000)
     ev = make_env(k, seed + 900)
@@ -97,7 +97,7 @@ def train_to_plateau(k, d_h, seed, device, max_cycles=120, t_win=8):
                 break
     if plateau_mse is None:  # 未达 plateau：取最后 PAT 段均值
         plateau_mse = sum(curve[-PLATEAU_PAT:]) / PLATEAU_PAT
-    return {"k": k, "d_h": d_h, "seed": seed, "t_win": t_win,
+    return {"k": k, "d_h": d_h, "seed": seed, "t_win": t_win, "hidden": hidden,
             "max_cycles": max_cycles, "stopped_at": len(curve),
             "plateau_at": plateau_at,
             "plateau_mse": round(plateau_mse, 5),
@@ -112,12 +112,15 @@ def main():
     ap.add_argument("--device", default="auto")
     ap.add_argument("--max-cycles", type=int, default=120)
     ap.add_argument("--t-win", type=int, default=8)
+    ap.add_argument("--hidden", type=int, default=32,
+                    help="encoder hidden（秩瓶颈假设验证：1024 档配 128）")
     args = ap.parse_args()
     dev = torch.device(args.device) if args.device != "auto" else torch.device(
         "cuda" if torch.cuda.is_available() else "cpu")
     rec = train_to_plateau(args.complexity, args.d_h, args.seed, dev,
-                           max_cycles=args.max_cycles, t_win=args.t_win)
-    tag = f"plateau_k{args.complexity}_dh{args.d_h}_s{args.seed}"
+                           max_cycles=args.max_cycles, t_win=args.t_win,
+                           hidden=args.hidden)
+    tag = f"plateau_k{args.complexity}_dh{args.d_h}_h{args.hidden}_s{args.seed}"
     with open(OUT / f"{tag}.json", "w") as f:
         json.dump(rec, f, indent=1)
     print("RECORD:", json.dumps({k2: v for k2, v in rec.items() if k2 != "curve"}))
