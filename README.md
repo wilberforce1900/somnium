@@ -18,9 +18,9 @@
 
 **Somnium: A Recurrent World Model that Learns to Dream Before It Wakes** · Xiaoming (Will) Wang
 
-📄 [PDF](paper/somnium-paper.pdf) · [LaTeX 源码](paper/main.tex) · [参考文献](paper/refs.bib) · [Zenodo 记录](https://zenodo.org/records/23278220)
+📄 [PDF v1.1](paper/somnium-paper-v1.1.pdf) · [LaTeX 源码](paper/main.tex) · [参考文献](paper/refs.bib) · [Zenodo 记录](https://zenodo.org/records/23300996)
 
-**Cite as:** Wang, X. (2026). *Somnium: A Recurrent World Model that Learns to Dream Before It Wakes*. Zenodo. [10.5281/zenodo.23278220](https://doi.org/10.5281/zenodo.23278220)
+**Cite as:** Wang, X. (2026). *Somnium: A Recurrent World Model that Learns to Dream Before It Wakes*. Zenodo. [DOI 10.5281/zenodo.23278220](https://doi.org/10.5281/zenodo.23278220)（概念 DOI；v1.1 版本 DOI [10.5281/zenodo.23300996](https://doi.org/10.5281/zenodo.23300996)）
 
 > 7 页完整研究报告：预注册协议、五个独立复现的梦增益、规模/剂量/生长三线收敛的
 > 容量边界、负结果登记册（A1/A2/A5）、两夜自主训练（871 轮生长与自愈回滚）。
@@ -45,7 +45,7 @@ hexagram VQ codebooks, gate-over-fixed advantages, dream-reading calibration
 feedback — all falsified with pre-registered thresholds and kept in the registry,
 because *a theory that can be killed is a theory that can evolve*.
 
-Docs: [Paper (PDF)](paper/somnium-paper.pdf) · [DOI: 10.5281/zenodo.23278220](https://doi.org/10.5281/zenodo.23278220) ·
+Docs: [Paper v1.1 (PDF)](paper/somnium-paper-v1.1.pdf) · [DOI: 10.5281/zenodo.23278220](https://doi.org/10.5281/zenodo.23278220) ·
 [MODEL-INTRO](MODEL-INTRO.md) ·
 [PRINCIPLES](PRINCIPLES.md) · [ROADMAP/experiment history](ROADMAP.md) ·
 [MODEL-NAME](MODEL-NAME.md) · [PHASE1](PHASE1.md) ·
