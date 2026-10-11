@@ -75,3 +75,21 @@ sh scripts/cloud_down.sh <USER>@<VM外网IP>   # 结果回本机
 - Spot 抢占：当前 Standard 无此风险；若将来转 Spot，续跑加
   `--resume ckpt_e0_<...>.pt`（断点体系已备）。
 - us-west4 费率或高于 us-central1——每轮实验后核一次 Billing 页实际数字。
+
+## 双身份协作协议（2026-10-11 定版，此后所有会话遵守）
+
+**背景**：VM 上存在两个用户——`<USER_HUMAN>`（人与浏览器 SSH）与
+`somnium-ignition`（自动化代理，元数据钥维护）。双方家目录互为 700，
+跨身份读写是权限折腾的根因（plateau 测试卡点实证）。
+
+**三条协议（奥卡姆版）**：
+1. **代码交换 = GitHub**：唯一权威源在仓库（PUBLIC）。任何身份在任何位置
+   `git clone/pull` 即得最新代码——不跨家目录拷文件。
+2. **结果归属 = 谁启动谁持有**：分离启动（setsid/nohup）的输出重定向到
+   **启动者自己可写的绝对路径**；跨身份要读时由持有方 `chmod a+rX <路径>`。
+3. **分离启动铁律**：`setsid/nohup` 命令中的**每一个路径必须绝对**
+   （detach 后 cwd 失效，相对路径=python 找不到脚本+日志写丢，已三连踩实证）。
+
+**读权限一次性放行（已执行）**：`chmod 755 /home/<USER_HUMAN> &&
+chmod -R a+rX ~/somnium_code ~/plateau.log`（755=可读不可写，单租户 VM 安全）。
+写侧不开放——跨身份写入一律走 GitHub 或 /tmp。
