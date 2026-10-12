@@ -123,6 +123,38 @@ class EpisodeBuffer:
             "rare_frac": rare_frac / n,
         }
 
+    def sample_windows_mixed(
+        self,
+        n: int,
+        t_win: int,
+        rng: Optional[random.Random] = None,
+        only_last: Optional[int] = None,
+        recent_frac: float = 0.5,
+        rare_bias: float = 0.0,
+    ) -> Dict[str, torch.Tensor]:
+        """混合回放（iter8 阶段 0，夜三 k0/1024 近期化漂移的修复）：
+        n 个窗口 = round(n·recent_frac) 个取自最新 only_last 条（新鲜路径）
+        + 其余取自全缓冲（旧数据重回醒期更新）。
+
+        公平性不变：回放只复用已收集的真实数据，不新增环境交互
+        （E0 比较基准 = 真实交互步数，PRINCIPLES §11）。
+        """
+        rng = rng or random.Random()
+        n_recent = max(0, min(n, round(n * recent_frac)))
+        parts = []
+        if n_recent > 0:
+            parts.append(self.sample_windows(n_recent, t_win, rare_bias=rare_bias,
+                                             rng=rng, only_last=only_last))
+        if n - n_recent > 0:
+            parts.append(self.sample_windows(n - n_recent, t_win,
+                                             rare_bias=rare_bias, rng=rng))
+        if len(parts) == 1:
+            return parts[0]
+        out = {k: torch.cat([p[k] for p in parts])
+               for k in ("obs", "act", "obs_next", "rew")}
+        out["rare_frac"] = sum(p["rare_frac"] * p["obs"].shape[0] for p in parts) / n
+        return out
+
 
 class ObsCoverage:
     """obs 空间覆盖统计（读梦 A5 重设版：不依赖已降级的卦码）。

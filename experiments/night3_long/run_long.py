@@ -45,7 +45,8 @@ MILESTONE = 500    # + 每 N cycle 里程碑永久保留
 
 def train_long(k, d_h, seed, device, norm_kind, max_cycles, resume_path=None,
                batch=32, t_win=8, lr=1e-3, hidden=32, ep_per_cycle=8,
-               wake_batches=10, eval_every=5, save_every=100, clip=1.0):
+               wake_batches=10, eval_every=5, save_every=100, clip=1.0,
+               replay="recent"):
     torch.manual_seed(seed)
     random.seed(seed)
     env = RichWorld(complexity=k, seed=seed)
@@ -58,7 +59,8 @@ def train_long(k, d_h, seed, device, norm_kind, max_cycles, resume_path=None,
     for _ in range(10):
         eval_buf.add_episode(*random_rollout(ev))
     sq = math.sqrt(d_h)
-    tag = f"long_k{k}_dh{d_h}_{norm_kind}_s{seed}"
+    # 混合回放run 的文件名加 _mix 标记（防与 recent 协议同名混淆/覆盖）
+    tag = f"long_k{k}_dh{d_h}_{norm_kind}{'_mix' if replay == 'mixed' else ''}_s{seed}"
     jsonl = OUT / f"{tag}.jsonl"
 
     def eval_and_probe(cycle, env_steps):
@@ -118,9 +120,12 @@ def train_long(k, d_h, seed, device, norm_kind, max_cycles, resume_path=None,
             buffer.add_episode(*roll(env))
             env_steps += buffer.episodes[-1]["act"].shape[0]
         for i in range(wake_batches):
-            b = buffer.sample_windows(batch, t_win,
-                                      rng=random.Random(seed * 1000 + cycle * 100 + i),
-                                      only_last=8)
+            b_rng = random.Random(seed * 1000 + cycle * 100 + i)
+            if replay == "mixed":
+                b = buffer.sample_windows_mixed(batch, t_win, rng=b_rng,
+                                                only_last=8, recent_frac=0.5)
+            else:
+                b = buffer.sample_windows(batch, t_win, rng=b_rng, only_last=8)
             loss, _ = model.loss_on_batch(b["obs"], b["act"], b["obs_next"], b["rew"])
             opt.zero_grad()
             loss.backward()
@@ -140,7 +145,8 @@ def train_long(k, d_h, seed, device, norm_kind, max_cycles, resume_path=None,
     if last is not None:
         with open(OUT / f"{tag}.final.json", "w") as f:
             json.dump({"k": k, "d_h": d_h, "seed": seed, "norm_kind": norm_kind,
-                       "max_cycles": max_cycles, "last": last}, f, indent=1)
+                       "replay": replay, "max_cycles": max_cycles, "last": last},
+                      f, indent=1)
     return last
 
 
@@ -157,12 +163,16 @@ def main():
     ap.add_argument("--eval-every", type=int, default=5)
     ap.add_argument("--save-every", type=int, default=100)
     ap.add_argument("--resume", default=None, help="断点档（崩溃续跑）")
+    ap.add_argument("--replay", choices=["recent", "mixed"], default="recent",
+                    help="醒期回放协议（iter8 阶段0）：recent=仅最新8局（历史行为）"
+                         "；mixed=50%%新鲜+50%%全缓冲（近期化漂移修复）")
     args = ap.parse_args()
     dev = torch.device(args.device) if args.device != "auto" else torch.device(
         "cuda" if torch.cuda.is_available() else "cpu")
     rec = train_long(args.complexity, args.d_h, args.seed, dev, args.norm_kind,
                      args.max_cycles, resume_path=args.resume,
-                     eval_every=args.eval_every, save_every=args.save_every)
+                     eval_every=args.eval_every, save_every=args.save_every,
+                     replay=args.replay)
     print("LONG LAST:", json.dumps(rec))
 
 

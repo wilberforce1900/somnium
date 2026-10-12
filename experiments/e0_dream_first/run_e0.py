@@ -71,6 +71,11 @@ def parse_args():
     ap.add_argument("--norm-kind",
                     choices=["none", "ln_post", "rms_post", "ln_pre"], default="none",
                     help="潜态出口归一化（iter7 (b) 线；夜三 D 阶段=ln_post）")
+    ap.add_argument("--cycles", type=int, default=None,
+                    help="覆盖 cycle 数（A3 收敛协议重做：~1200；缺省用配置默认）")
+    ap.add_argument("--replay", choices=["recent", "mixed"], default="recent",
+                    help="醒期回放协议（iter8 阶段0）：recent=仅本 cycle 新鲜局"
+                         "（E0 历史行为）；mixed=50%%新鲜+50%%全缓冲")
     ap.add_argument("--no-registry", action="store_true",
                     help="跳过 registry 追加（VM 跑用——日期/结论列由收割会话统一登记）")
     return ap.parse_args()
@@ -132,6 +137,10 @@ def main():
         # 多 d_h 批量：每档独立文件名（夜三 D 教训——同名 details 相互覆盖，
         # dh64/256 逐 cycle 数据须从日志恢复）
         tag = f"{tag}-dh{args.d_h}"
+    if args.replay == "mixed":
+        tag = f"{tag}-mix"  # 回放协议进文件名（防与 recent 协议同名混淆）
+    if args.cycles:
+        cfg["cycles"] = args.cycles  # A3 收敛协议重做（默认 20 严重欠训练，夜三桥实证）
     dev = default_device() if args.device == "auto" else torch.device(args.device)
     torch.manual_seed(args.seed)
     random.seed(args.seed)
@@ -178,11 +187,17 @@ def main():
             obs, act, rew, rare = roll(env)
             buffer.add_episode(obs, act, rew, rare)
             env_steps += act.shape[0]
-        # 醒期更新：只用本 cycle 新鲜数据
+        # 醒期更新：recent=只采本 cycle 新鲜局（E0 历史行为，各日程公平）；
+        # mixed=半新鲜+半全缓冲（回放只复用真实数据，不新增交互——公平性不变）
         for i in range(cfg["wake_batches"]):
-            b = buffer.sample_windows(cfg["batch"], cfg["t_win"],
-                                      rng=random.Random(args.seed * 1000 + cycle * 100 + i),
-                                      only_last=cfg["episodes_per_cycle"])
+            b_rng = random.Random(args.seed * 1000 + cycle * 100 + i)
+            if args.replay == "mixed":
+                b = buffer.sample_windows_mixed(
+                    cfg["batch"], cfg["t_win"], rng=b_rng,
+                    only_last=cfg["episodes_per_cycle"], recent_frac=0.5)
+            else:
+                b = buffer.sample_windows(cfg["batch"], cfg["t_win"], rng=b_rng,
+                                          only_last=cfg["episodes_per_cycle"])
             sched.wake_update(opt, b)
         # 梦醒交替：追加大梦期（此时 buffer 已有数据，四组件全跑）
         if args.schedule == "alternate":
