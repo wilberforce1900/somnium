@@ -1,0 +1,17 @@
+{
+ "k": 4,
+ "d_h": 1024,
+ "seed": 1,
+ "norm_kind": "ln_post",
+ "max_cycles": 9000,
+ "last": {
+  "cycle": 9000,
+  "env_steps": 12187838,
+  "mse": 0.01241,
+  "alpha": 1.0,
+  "h_norm": 0.15715,
+  "dy": 0.9542,
+  "di": 1.04011,
+  "sat": 0.81194
+ }
+}
