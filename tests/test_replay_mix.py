@@ -67,3 +67,21 @@ class TestMixedReplay:
         c = buf.sample_windows_mixed(8, 8, rng=random.Random(7),
                                      only_last=4, recent_frac=0.5)
         assert torch.equal(a["obs"], c["obs"])
+
+    def test_short_recent_episodes_width_align(self):
+        """P0-A 实崩复现：最近 only_last 条全部短于 t_win 时，新鲜半被
+        sample_windows 降级为更短窗口 → 两部宽度不一致，cat 前必须对齐。"""
+        buf = EpisodeBuffer(capacity=50)
+        for i in range(20):
+            buf.add_episode(*_ep(i, T=20))    # 旧局长
+        for i in range(20, 28):
+            buf.add_episode(*_ep(i, T=5))     # 最新 8 条全短（< t_win=8）
+        b = buf.sample_windows_mixed(16, 8, rng=random.Random(5),
+                                     only_last=8, recent_frac=0.5)
+        w = b["obs"].shape[1]
+        assert w == 5, "应全部对齐到短窗宽（sample_windows 降级行为）"
+        assert torch.equal(b["obs_next"][:, :-1], b["obs"][:, 1:])
+        # 新鲜半（前 8 行）仍来自最新 8 局（idx 20..27）
+        assert (b["rew"].mean(dim=1)[:8] >= 19.5).all()
+        # 全缓冲半（后 8 行）必含旧局
+        assert (b["rew"].mean(dim=1)[8:] < 19.5).any()

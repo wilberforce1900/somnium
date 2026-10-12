@@ -150,6 +150,12 @@ class EpisodeBuffer:
                                              rare_bias=rare_bias, rng=rng))
         if len(parts) == 1:
             return parts[0]
+        # 对齐窗口宽：sample_windows 对"全短 episode"会降级到更短窗口宽
+        # （P0-A 实崩教训：最近 8 局全短时两部宽 5≠8 → cat 尺寸不匹配）
+        w_min = min(p["obs"].shape[1] for p in parts)
+        if any(p["obs"].shape[1] != w_min for p in parts):
+            parts = [{k: (v[:, :w_min] if k in ("obs", "act", "obs_next", "rew")
+                          else v) for k, v in p.items()} for p in parts]
         out = {k: torch.cat([p[k] for p in parts])
                for k in ("obs", "act", "obs_next", "rew")}
         out["rare_frac"] = sum(p["rare_frac"] * p["obs"].shape[0] for p in parts) / n
