@@ -1,0 +1,50 @@
+>>> P0-C START Mon Oct 12 18:25:54 UTC 2026
+>>> P0-C pilot seed=0 Mon Oct 12 18:25:54 UTC 2026
+/home/somnium-ignition/venvs/torch/lib/python3.10/site-packages/torch/_subclasses/functional_tensor.py:368: UserWarning: Failed to initialize NumPy: No module named 'numpy' (Triggered internally at /__w/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+  cpu = _conversion_method_template(device=torch.device("cpu"))
+[pilot s0] c100/2000 pre m0=0.1789 m1=0.1421
+[pilot s0] c200/2000 pre m0=0.1165 m1=0.0989
+[pilot s0] c300/2000 pre m0=0.0933 m1=0.0792
+[pilot s0] c400/2000 pre m0=0.0721 m1=0.0628
+[pilot s0] c500/2000 pre m0=0.0616 m1=0.0569
+[pilot s0] c600/2000 pre m0=0.0566 m1=0.0488
+[pilot s0] c700/2000 pre m0=0.0559 m1=0.0476
+[pilot s0] c800/2000 pre m0=0.0521 m1=0.0461
+[pilot s0] c900/2000 pre m0=0.0447 m1=0.0424
+[pilot s0] c1000/2000 pre m0=0.0430 m1=0.0404
+[pilot s0] c1100/2000 post m0=0.0402 m1=0.0380
+[pilot s0] c1200/2000 post m0=0.0381 m1=0.0353
+[pilot s0] c1300/2000 post m0=0.0393 m1=0.0378
+[pilot s0] c1400/2000 post m0=0.0363 m1=0.0349
+[pilot s0] c1500/2000 post m0=0.0378 m1=0.0360
+[pilot s0] c1600/2000 post m0=0.0369 m1=0.0336
+[pilot s0] c1700/2000 post m0=0.0352 m1=0.0331
+[pilot s0] c1800/2000 post m0=0.0390 m1=0.0346
+[pilot s0] c1900/2000 post m0=0.0353 m1=0.0340
+[pilot s0] c2000/2000 post m0=0.0364 m1=0.0343
+PILOT s0: {"seed": 0, "d_h": 64, "pre": 1000, "post": 1000, "slip_rho0": 0.1, "slip_rho1": 0.45, "m1_at_switch": 0.040376, "m1_end": 0.034623, "m0_end": 0.037047, "m0_pre_end": 0.043236, "rho0_retention_rise": -0.006189, "tau50": 120, "tau90": 208}
+>>> P0-C pilot seed=1 Mon Oct 12 18:40:25 UTC 2026
+/home/somnium-ignition/venvs/torch/lib/python3.10/site-packages/torch/_subclasses/functional_tensor.py:368: UserWarning: Failed to initialize NumPy: No module named 'numpy' (Triggered internally at /__w/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+  cpu = _conversion_method_template(device=torch.device("cpu"))
+[pilot s1] c100/2000 pre m0=0.1991 m1=0.1475
+[pilot s1] c200/2000 pre m0=0.1310 m1=0.1087
+[pilot s1] c300/2000 pre m0=0.0980 m1=0.0783
+[pilot s1] c400/2000 pre m0=0.0779 m1=0.0640
+[pilot s1] c500/2000 pre m0=0.0636 m1=0.0571
+[pilot s1] c600/2000 pre m0=0.0550 m1=0.0468
+[pilot s1] c700/2000 pre m0=0.0531 m1=0.0442
+[pilot s1] c800/2000 pre m0=0.0530 m1=0.0438
+[pilot s1] c900/2000 pre m0=0.0457 m1=0.0400
+[pilot s1] c1000/2000 pre m0=0.0416 m1=0.0375
+[pilot s1] c1100/2000 post m0=0.0389 m1=0.0356
+[pilot s1] c1200/2000 post m0=0.0403 m1=0.0376
+[pilot s1] c1300/2000 post m0=0.0394 m1=0.0333
+[pilot s1] c1400/2000 post m0=0.0357 m1=0.0291
+[pilot s1] c1500/2000 post m0=0.0344 m1=0.0288
+[pilot s1] c1600/2000 post m0=0.0343 m1=0.0288
+[pilot s1] c1700/2000 post m0=0.0325 m1=0.0296
+[pilot s1] c1800/2000 post m0=0.0334 m1=0.0287
+[pilot s1] c1900/2000 post m0=0.0328 m1=0.0295
+[pilot s1] c2000/2000 post m0=0.0370 m1=0.0278
+PILOT s1: {"seed": 1, "d_h": 64, "pre": 1000, "post": 1000, "slip_rho0": 0.1, "slip_rho1": 0.45, "m1_at_switch": 0.037546, "m1_end": 0.027907, "m0_end": 0.033034, "m0_pre_end": 0.044542, "rho0_retention_rise": -0.011508, "tau50": 312, "tau90": 402}
+=== P0-C ALL DONE Mon Oct 12 18:55:35 UTC 2026

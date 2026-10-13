@@ -1,0 +1,15 @@
+{
+ "seed": 1,
+ "d_h": 64,
+ "pre": 1000,
+ "post": 1000,
+ "slip_rho0": 0.1,
+ "slip_rho1": 0.45,
+ "m1_at_switch": 0.037546,
+ "m1_end": 0.027907,
+ "m0_end": 0.033034,
+ "m0_pre_end": 0.044542,
+ "rho0_retention_rise": -0.011508,
+ "tau50": 312,
+ "tau90": 402
+}
