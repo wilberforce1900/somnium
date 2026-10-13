@@ -22,9 +22,9 @@
 
 **Somnium: A Recurrent World Model that Learns to Dream Before It Wakes** · Xiaoming (Will) Wang
 
-📄 [PDF v1.2](paper/somnium-paper-v1.2.pdf) · [LaTeX 源码](paper/main.tex) · [参考文献](paper/refs.bib) · [Zenodo 记录](https://zenodo.org/records/23278220)
+📄 [PDF v1.2](paper/somnium-paper-v1.2.pdf) · [LaTeX 源码](paper/main.tex) · [参考文献](paper/refs.bib) · [Zenodo 记录](https://zenodo.org/records/23333007)
 
-**Cite as:** Wang, X. (2026). *Somnium: A Recurrent World Model that Learns to Dream Before It Wakes*. Zenodo. [DOI 10.5281/zenodo.23278220](https://doi.org/10.5281/zenodo.23278220)（概念 DOI；v1.1 版本 DOI [10.5281/zenodo.23300996](https://doi.org/10.5281/zenodo.23300996)，v1.2 版本 DOI 待上传）
+**Cite as:** Wang, X. (2026). *Somnium: A Recurrent World Model that Learns to Dream Before It Wakes*. Zenodo. [DOI 10.5281/zenodo.23278220](https://doi.org/10.5281/zenodo.23278220)（概念 DOI；v1.2 版本 DOI [10.5281/zenodo.23333007](https://doi.org/10.5281/zenodo.23333007)）
 
 > 9 页完整研究报告：预注册协议、五个独立复现的梦增益、容量边界三线证据、
 > **宽潜态病态的排除链与治愈（含对自家 v1.1"表达力天花板"结论的公开撤回）、
