@@ -1,0 +1,34 @@
+>>> P0-D2 (reward-head pilot) START Tue Oct 13 10:47:27 UTC 2026
+>>> P0-D2 seed=0 Tue Oct 13 10:47:27 UTC 2026
+/home/somnium-ignition/venvs/torch/lib/python3.10/site-packages/torch/_subclasses/functional_tensor.py:368: UserWarning: Failed to initialize NumPy: No module named 'numpy' (Triggered internally at /__w/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+  cpu = _conversion_method_template(device=torch.device("cpu"))
+[pilotD2 s0] c100/1200 pre e0=0.0475 e1=0.0604
+[pilotD2 s0] c200/1200 pre e0=0.1113 e1=0.1142
+[pilotD2 s0] c300/1200 pre e0=0.0473 e1=0.0847
+[pilotD2 s0] c400/1200 pre e0=0.0877 e1=0.0829
+[pilotD2 s0] c500/1200 pre e0=0.0380 e1=0.0342
+[pilotD2 s0] c600/1200 pre e0=0.0539 e1=0.0367
+[pilotD2 s0] c700/1200 post e0=0.0414 e1=0.0290
+[pilotD2 s0] c800/1200 post e0=0.0331 e1=0.0331
+[pilotD2 s0] c900/1200 post e0=0.0591 e1=0.0529
+[pilotD2 s0] c1000/1200 post e0=0.0419 e1=0.0708
+[pilotD2 s0] c1100/1200 post e0=0.0427 e1=0.0443
+[pilotD2 s0] c1200/1200 post e0=0.0341 e1=0.0309
+PILOTD2 s0: {"seed": 0, "d_h": 64, "pre": 600, "post": 600, "e1_at_flip": 0.03667, "e1_end": 0.0366, "e0_end": 0.04276, "e0_pre_end": 0.0537, "rho0_retention_rise": -0.01094, "tau50": 5, "tau90": 5}
+>>> P0-D2 seed=1 Tue Oct 13 10:58:30 UTC 2026
+/home/somnium-ignition/venvs/torch/lib/python3.10/site-packages/torch/_subclasses/functional_tensor.py:368: UserWarning: Failed to initialize NumPy: No module named 'numpy' (Triggered internally at /__w/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+  cpu = _conversion_method_template(device=torch.device("cpu"))
+[pilotD2 s1] c100/1200 pre e0=0.0668 e1=0.0563
+[pilotD2 s1] c200/1200 pre e0=0.0301 e1=0.0290
+[pilotD2 s1] c300/1200 pre e0=0.1013 e1=0.0521
+[pilotD2 s1] c400/1200 pre e0=0.0343 e1=0.0443
+[pilotD2 s1] c500/1200 pre e0=0.0185 e1=0.0336
+[pilotD2 s1] c600/1200 pre e0=0.0320 e1=0.0427
+[pilotD2 s1] c700/1200 post e0=0.0556 e1=0.0510
+[pilotD2 s1] c800/1200 post e0=0.0202 e1=0.0338
+[pilotD2 s1] c900/1200 post e0=0.0229 e1=0.0274
+[pilotD2 s1] c1000/1200 post e0=0.0426 e1=0.0389
+[pilotD2 s1] c1100/1200 post e0=0.0480 e1=0.0400
+[pilotD2 s1] c1200/1200 post e0=0.0252 e1=0.0499
+PILOTD2 s1: {"seed": 1, "d_h": 64, "pre": 600, "post": 600, "e1_at_flip": 0.04265, "e1_end": 0.04332, "e0_end": 0.03795, "e0_pre_end": 0.03819, "rho0_retention_rise": -0.00024, "tau50": 10, "tau90": 10}
+=== P0-D2 ALL DONE Tue Oct 13 11:09:39 UTC 2026 ===

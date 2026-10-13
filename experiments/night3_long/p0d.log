@@ -1,0 +1,34 @@
+>>> P0-D (ENV-E v2 pilot) START Tue Oct 13 09:12:10 UTC 2026
+>>> P0-D pilot2 seed=0 Tue Oct 13 09:12:10 UTC 2026
+/home/somnium-ignition/venvs/torch/lib/python3.10/site-packages/torch/_subclasses/functional_tensor.py:368: UserWarning: Failed to initialize NumPy: No module named 'numpy' (Triggered internally at /__w/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+  cpu = _conversion_method_template(device=torch.device("cpu"))
+[pilot2 s0] c100/1200 pre m0=-0.210 m1=-0.067
+[pilot2 s0] c200/1200 pre m0=-0.500 m1=-0.697
+[pilot2 s0] c300/1200 pre m0=-0.243 m1=-0.000
+[pilot2 s0] c400/1200 pre m0=-0.420 m1=-0.500
+[pilot2 s0] c500/1200 pre m0=-0.500 m1=-0.393
+[pilot2 s0] c600/1200 pre m0=0.463 m1=-0.327
+[pilot2 s0] c700/1200 post m0=-0.703 m1=-0.027
+[pilot2 s0] c800/1200 post m0=-0.500 m1=-0.500
+[pilot2 s0] c900/1200 post m0=-0.500 m1=-0.500
+[pilot2 s0] c1000/1200 post m0=-0.500 m1=-0.000
+[pilot2 s0] c1100/1200 post m0=-0.500 m1=-0.500
+[pilot2 s0] c1200/1200 post m0=-0.033 m1=-0.500
+PILOT2 s0: {"seed": 0, "d_h": 64, "pre": 600, "post": 600, "m1_at_flip": -0.3267, "m1_end": -0.3677, "m0_end": -0.472, "m0_pre_end": 0.1083, "rho0_retention_drop": 0.5803, "tau50": 10, "tau90": 10}
+>>> P0-D pilot2 seed=1 Tue Oct 13 09:24:40 UTC 2026
+/home/somnium-ignition/venvs/torch/lib/python3.10/site-packages/torch/_subclasses/functional_tensor.py:368: UserWarning: Failed to initialize NumPy: No module named 'numpy' (Triggered internally at /__w/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+  cpu = _conversion_method_template(device=torch.device("cpu"))
+[pilot2 s1] c100/1200 pre m0=0.333 m1=-0.500
+[pilot2 s1] c200/1200 pre m0=-0.500 m1=-0.877
+[pilot2 s1] c300/1200 pre m0=0.423 m1=-0.170
+[pilot2 s1] c400/1200 pre m0=-0.057 m1=-0.747
+[pilot2 s1] c500/1200 pre m0=0.160 m1=-0.223
+[pilot2 s1] c600/1200 pre m0=0.443 m1=0.483
+[pilot2 s1] c700/1200 post m0=-0.500 m1=-0.670
+[pilot2 s1] c800/1200 post m0=-0.680 m1=-0.500
+[pilot2 s1] c900/1200 post m0=-0.003 m1=-0.500
+[pilot2 s1] c1000/1200 post m0=-0.500 m1=-0.500
+[pilot2 s1] c1100/1200 post m0=-0.500 m1=-0.740
+[pilot2 s1] c1200/1200 post m0=-0.000 m1=-0.500
+PILOT2 s1: {"seed": 1, "d_h": 64, "pre": 600, "post": 600, "m1_at_flip": 0.4833, "m1_end": -0.2153, "m0_end": -0.4507, "m0_pre_end": 0.074, "rho0_retention_drop": 0.5247, "tau50": 240, "tau90": 90}
+=== P0-D ALL DONE Tue Oct 13 09:37:02 UTC 2026 ===

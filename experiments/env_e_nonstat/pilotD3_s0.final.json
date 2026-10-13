@@ -1,0 +1,13 @@
+{
+ "seed": 0,
+ "d_h": 64,
+ "pre": 600,
+ "post": 600,
+ "acc1_at_flip": 0.29411764705882354,
+ "acc1_end": 0.4723,
+ "acc0_end": 0.4668,
+ "acc0_pre_end": 0.5537,
+ "rho0_retention_drop": 0.0869,
+ "tau50": 5,
+ "tau90": 5
+}
