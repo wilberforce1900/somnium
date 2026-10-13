@@ -1,11 +1,14 @@
 """★ ENV-D `rich_world`（迭代 #7）—— 参数化富世界，复杂度旋钮 k=0..4。
 
-拍板方案（2026-10-10，用户确认"文档默认 + k≥3 部分可观测"）：
+拍板方案（2026-10-10，用户确认"文档默认 + k≥3 部分可观测"；k5/6 于 2026-10-13 增补）：
     k=0  现 ENV-A 等价（d_obs=8，对照组；内部复用 LatentGrid）
     k=1  视野 3×3 + 单房间 + 钥匙-门
     k=2  视野 5×5 + 双房间 + 钥匙-门 + 多目标(2)
     k=3  视野 5×5 + 四房间 + 推箱 + 多目标(3) + 部分可观测（视野外遮蔽）
     k=4  k=3 + 门周期开闭（非平稳：让"排练/稀有事件"组件再次有活干）
+    k=5  结构轴深化：12×12 四房间 + **有序多目标(4)（须按序收集）** + 钥匙(3)
+    k=6  k=5 + **巡逻 hazard**（每 5 步向 agent 逼近一格——对抗性动力学）
+（k5/6 为 iter8 阶段 1"世界先变大"扩展：压 O(1) 状态的记忆/规划轴。）
 
 观测协议（ ITER7 §1.4 约定）：
     obs[:2] = 位置归一化 (x/G, y/G)   ← ObsCoverage dims=(0,1) 继续有效
@@ -34,8 +37,8 @@ class RichWorld:
 
     def __init__(self, complexity: int = 1, horizon: Optional[int] = None,
                  seed: Optional[int] = None) -> None:
-        if complexity not in (0, 1, 2, 3, 4):
-            raise ValueError(f"complexity 必须 0..4，得到 {complexity}")
+        if complexity not in (0, 1, 2, 3, 4, 5, 6):
+            raise ValueError(f"complexity 必须 0..6，得到 {complexity}")
         self.k = complexity
         if self.k == 0:  # 对照组：ENV-A 等价（含 hazard/rare）
             from .latent_grid import LatentGrid
@@ -65,12 +68,15 @@ class RichWorld:
         # ---- k≥1 参数表 ----
         self.view = 3 if self.k == 1 else 5                     # 视野边长
         self.rooms = 1 if self.k == 1 else (2 if self.k == 2 else 4)
-        self.n_keys = 1 if self.k <= 2 else 2
-        self.n_goals = 1 if self.k == 1 else (2 if self.k == 2 else 3)
+        self.n_keys = 1 if self.k <= 2 else (2 if self.k <= 4 else 3)
+        self.n_goals = 1 if self.k == 1 else (2 if self.k == 2
+                                              else (3 if self.k <= 4 else 4))
+        self.ordered_goals = self.k >= 5      # k5/6：目标须按布置顺序收集
+        self.patrol_hazard = self.k >= 6      # k6：hazard 每 5 步逼近 agent
         self.push_boxes = self.k >= 3
         self.partial_obs = self.k >= 3
         self.doors_oscillate = self.k >= 4
-        self.G = 10 if self.k >= 2 else 8
+        self.G = 12 if self.k >= 5 else (10 if self.k >= 2 else 8)
         self.H = horizon or (60 + 40 * self.k)
         self._rng = random.Random(seed)
         self.d_obs = 2 + self.view * self.view + (2 if self.k >= 2 else 0) + 2
@@ -232,11 +238,42 @@ class RichWorld:
         self._t += 1
         done, reward = False, -0.01
         if self._agent in self.goals_pos and self._agent not in self._goals_done:
-            # 终点门（k=1）：最后一个目标需持钥登记
-            if not (self.exit_gate and len(self._goals_done) == self.n_goals - 1
-                    and not self._keys_held):
-                self._goals_done.add(self._agent)
-                rare = True
+            # 有序收集（k≥5）：只有"下一个该收的"目标格才登记
+            nxt = self.goals_pos[len(self._goals_done)] \
+                if self.ordered_goals else self._agent
+            if self._agent == nxt or not self.ordered_goals:
+                # 终点门（k=1）：最后一个目标需持钥登记
+                if not (self.exit_gate and len(self._goals_done) == self.n_goals - 1
+                        and not self._keys_held):
+                    self._goals_done.add(self._agent)
+                    rare = True
+        # 巡逻 hazard（k≥6）：每 5 步向 agent 逼近一格（墙挡；若本步已完成全部
+        # 目标则不巡逻——目标完成优先结算）
+        if (self.patrol_hazard and self._t % 5 == 0
+                and len(self._goals_done) < self.n_goals):
+            hx, hy = self.hazard
+            ax, ay = self._agent
+            dx = (ax > hx) - (ax < hx)
+            dy = (ay > hy) - (ay < hy)
+            moves = []
+            if abs(ax - hx) >= abs(ay - hy):
+                if dx:
+                    moves.append((hx + dx, hy))
+                if dy:
+                    moves.append((hx, hy + dy))
+            else:
+                if dy:
+                    moves.append((hx, hy + dy))
+                if dx:
+                    moves.append((hx + dx, hy))
+            for mx, my in moves:
+                if (0 <= mx < self.G and 0 <= my < self.G
+                        and (mx, my) not in self.walls):
+                    self.hazard = (mx, my)
+                    break
+            if self.hazard == self._agent:
+                return self._obs(), -1.0, True, {"rare": True,
+                                                 "progress": len(self._goals_done)}
         if len(self._goals_done) >= self.n_goals:
             reward, done = 1.0, True
         elif self._agent == self.hazard:

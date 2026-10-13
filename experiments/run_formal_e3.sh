@@ -1,6 +1,6 @@
 #!/bin/sh
 # E3a 正式跑（A4 梦功能分解）：6 变体 × 2 seed = 12 run。口径见 run_e3.py docstring。
-R=/Users/<USER_MAC>/Documents/dsh/mission_yin_yang
+R="$(cd "$(dirname "$0")/.." && pwd)"  # 仓库根（脚本相对定位）
 PY=$R/.venv/bin/python
 cd "$R" || exit 1
 echo "=== E3 FORMAL START $(date) ==="

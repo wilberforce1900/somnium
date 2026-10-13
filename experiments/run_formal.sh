@@ -1,7 +1,7 @@
 #!/bin/sh
 # mission_yin_yang 全量正式跑（2026-10-08，口径见 ROADMAP §1.7）
 # E0(9) → E1(8) → E2(12)，串行。日志：results/formal_run.log
-R=/Users/<USER_MAC>/Documents/dsh/mission_yin_yang
+R="$(cd "$(dirname "$0")/.." && pwd)"  # 仓库根（脚本相对定位）
 PY=$R/.venv/bin/python
 cd "$R" || exit 1
 echo "=== FORMAL RUN START $(date) ==="

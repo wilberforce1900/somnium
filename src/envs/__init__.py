@@ -2,5 +2,6 @@
 from .latent_grid import LatentGrid, guided_rollout, random_rollout
 from .maze import Maze
 from .rich_world import RichWorld
+from .nonstat_world import NonStatWorld
 
-__all__ = ["LatentGrid", "Maze", "RichWorld", "random_rollout", "guided_rollout"]
+__all__ = ["LatentGrid", "Maze", "RichWorld", "NonStatWorld", "random_rollout", "guided_rollout"]

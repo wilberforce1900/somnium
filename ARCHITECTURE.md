@@ -102,5 +102,5 @@ A2（阴阳门控，PRINCIPLES §11）：`TaijiGate(gate_mode=...)`
 
 ## 运行测试
 
-    cd /Users/<USER_MAC>/Documents/dsh/mission_yin_yang
+    cd mission_yin_yang   # 仓库根（相对你的 dsh 工作区）
     .venv/bin/python -m pytest tests/ -q

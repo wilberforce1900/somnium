@@ -78,7 +78,7 @@ sh scripts/cloud_down.sh <USER>@<VM外网IP>   # 结果回本机
 
 ## 双身份协作协议（2026-10-11 定版，此后所有会话遵守）
 
-**背景**：VM 上存在两个用户——`<USER_HUMAN>`（人与浏览器 SSH）与
+**背景**：VM 上存在两个用户——`<USER_HUMAN>`（人与浏览器 SSH；真实值见本地记忆/ssh config）与
 `somnium-ignition`（自动化代理，元数据钥维护）。双方家目录互为 700，
 跨身份读写是权限折腾的根因（plateau 测试卡点实证）。
 

@@ -12,7 +12,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-R = Path("/Users/<USER_MAC>/Documents/dsh/mission_yin_yang")
+R = Path(__file__).resolve().parents[1]  # 仓库根（文件相对定位）
 FIG = R / "paper/figs"
 FIG.mkdir(parents=True, exist_ok=True)
 
