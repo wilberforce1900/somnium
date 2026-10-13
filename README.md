@@ -10,21 +10,27 @@
 
 **头条结果**：梦期预训练（先梦后醒）在 16K 参数尺度五次独立运行复现 ~40% 真实数据
 样本效率增益（E0 三 seed + R1 跨平台两 seed，全部预注册）；R1 规模阶梯显示该增益
-随容量衰减（210K/3.2M 档不再过阈），R1b 剂量对照证明加大梦预算不救——"从做梦开始"
-是**容量受限 regime 的真实现象**，机制为能量平滑（睡眠调节能量地形理论的工程对应）。
+随容量衰减，R1b 剂量对照证明加大梦预算不救。**v1.2 更新（2026-10）**：五连灭排除链
++ 四臂归一化对照证明宽潜态病态（d_h≥256）是**可修复的优化几何缺陷**（出口 LayerNorm
+治愈：1024 档 1.03→0.17，"d_h≤256 天花板" 论撤销）；仪器三修（解码 R² 替代移动标尺、
+收敛协议、混合回放止漂 0.415→0.011）后 A3 重测——**容量受限结论在健康仪器上更干净
+地重新成立**：梦增益只存活于 wake 自身容量受限的 64 档（0.56–0.69），256/1024 归零
+（0.74–0.98/未达标），且全梦电池不优于"带回放的醒"——**回放是载荷组件**。
 完整证伪史见登记表。
 
 ## 论文（Preprint）
 
 **Somnium: A Recurrent World Model that Learns to Dream Before It Wakes** · Xiaoming (Will) Wang
 
-📄 [PDF v1.1](paper/somnium-paper-v1.1.pdf) · [LaTeX 源码](paper/main.tex) · [参考文献](paper/refs.bib) · [Zenodo 记录](https://zenodo.org/records/23300996)
+📄 [PDF v1.2](paper/somnium-paper-v1.2.pdf) · [LaTeX 源码](paper/main.tex) · [参考文献](paper/refs.bib) · [Zenodo 记录](https://zenodo.org/records/23278220)
 
-**Cite as:** Wang, X. (2026). *Somnium: A Recurrent World Model that Learns to Dream Before It Wakes*. Zenodo. [DOI 10.5281/zenodo.23278220](https://doi.org/10.5281/zenodo.23278220)（概念 DOI；v1.1 版本 DOI [10.5281/zenodo.23300996](https://doi.org/10.5281/zenodo.23300996)）
+**Cite as:** Wang, X. (2026). *Somnium: A Recurrent World Model that Learns to Dream Before It Wakes*. Zenodo. [DOI 10.5281/zenodo.23278220](https://doi.org/10.5281/zenodo.23278220)（概念 DOI；v1.1 版本 DOI [10.5281/zenodo.23300996](https://doi.org/10.5281/zenodo.23300996)，v1.2 版本 DOI 待上传）
 
-> 7 页完整研究报告：预注册协议、五个独立复现的梦增益、规模/剂量/生长三线收敛的
-> 容量边界、负结果登记册（A1/A2/A5）、两夜自主训练（871 轮生长与自愈回滚）。
-> 写作说明：科学工作（实验设计、代码、90+ 次运行记录）由项目主导完成；文字起草
+> 9 页完整研究报告：预注册协议、五个独立复现的梦增益、容量边界三线证据、
+> **宽潜态病态的排除链与治愈（含对自家 v1.1"表达力天花板"结论的公开撤回）、
+> 移动标尺与仪器修复、健康仪器上的 A3 重测**、负结果登记册（A1/A2/A5）、
+> 两夜自主训练（871 轮生长与自愈回滚）。
+> 写作说明：科学工作（实验设计、代码、150+ 次运行记录）由项目主导完成；文字起草
 > 由 AI 助手协作完成，作者对全部内容负责。
 
 ## English
@@ -39,13 +45,20 @@ rollouts + energy smoothing + replay consolidation) before any real data arrives
 
 What survives experiments: dream-first pretraining cuts the real-interaction steps
 needed to reach a fixed accuracy by ~60% — replicated five times at 16K params,
-and shown to **fade with scale** (R1 ladder, pre-registered; dose-scaling control R1b
-confirms the fade is real, not under-dosing). What doesn't:
+and shown to **fade with scale** (R1 ladder; dose control R1b confirms the fade
+is real). **v1.2:** the wide-model pathology turned out to be a *fixable
+optimization defect* — output LayerNorm restores wide models to small-model
+accuracy, retracting the earlier "expressivity ceiling" — and with the
+measurement instruments repaired (scale-invariant decode fidelity, converged
+protocols, mixed replay), the capacity-bound conclusion returns in cleaner
+form: the dream advantage lives only where wake itself is capacity-limited,
+and *replay* is the load-bearing component. What doesn't survive:
 hexagram VQ codebooks, gate-over-fixed advantages, dream-reading calibration
-feedback — all falsified with pre-registered thresholds and kept in the registry,
-because *a theory that can be killed is a theory that can evolve*.
+feedback, and our own v1.1 ceiling claim — all falsified with pre-registered
+thresholds and kept in the registry, because *a theory that can be killed is
+a theory that can evolve*.
 
-Docs: [Paper v1.1 (PDF)](paper/somnium-paper-v1.1.pdf) · [DOI: 10.5281/zenodo.23278220](https://doi.org/10.5281/zenodo.23278220) ·
+Docs: [Paper v1.2 (PDF)](paper/somnium-paper-v1.2.pdf) · [DOI: 10.5281/zenodo.23278220](https://doi.org/10.5281/zenodo.23278220) ·
 [MODEL-INTRO](MODEL-INTRO.md) ·
 [PRINCIPLES](PRINCIPLES.md) · [ROADMAP/experiment history](ROADMAP.md) ·
 [MODEL-NAME](MODEL-NAME.md) · [PHASE1](PHASE1.md) ·
@@ -76,12 +89,16 @@ Docs: [Paper v1.1 (PDF)](paper/somnium-paper-v1.1.pdf) · [DOI: 10.5281/zenodo.2
 
 ## 当前状态
 
-阶段 0 收官（六消融判定）+ 六轮本机迭代 + R1 规模阶梯 + R1b 剂量对照 +
-两夜自主训练（871 轮生长/自愈回滚）。开源决策门已执行（本仓库即产物）。
-arXiv 首次提交需个人背书（2026-01 新政），暂以本仓库 + 可引用 DOI 路线替代。
-待办：**迭代 #7「世界先变大」**（环境族升级 ENV-D + 世界校准 + R5，设计见
-[ITER7-WORLD-FIRST.md](ITER7-WORLD-FIRST.md)）、R2-R4、ENV-B（ARC 数据集）。
-Zenodo DOI 闭环已完成（[10.5281/zenodo.23278220](https://doi.org/10.5281/zenodo.23278220)）。
+**iter8 仪器修复轮收官（2026-10-13）**：阶段 0 判定齐——P0-A 混合回放治愈近期化
+漂移（9000 轮 0.011，门限 19× 下方）；P0-B A3 重测（18 run）：容量受限衰减在
+健康仪器上重新成立、回放=载荷组件；P0-C ENV-E 校时钟 pilot：slip-only 预测层太
+温和（预切换已泛化）→ 原 48-run 矩阵否决，v2 方向=策略层 regime 差异。
+此前：iter7 (b) 线（出口归一化治愈，[ITER7-WORLD-FIRST.md](ITER7-WORLD-FIRST.md) §2.5）、
+夜三 62 run（富世界长训/协议桥/种子复现，[NIGHT3-PLAN.md](NIGHT3-PLAN.md)）、
+[ITER8-PLAN.md](ITER8-PLAN.md) 全链预注册。
+**下一步（待拍板排序）**：ENV-E v2（策略层非平稳）、ENV-D k5/6 结构轴
+（R5 门复活=收敛协议下 256→1024 改善 ≥10%）、器官线（梦调节器——触发条件
+=非平稳矩阵对调度敏感；"副手不模拟世界，它模拟做梦者"）。
 三大纪律：预注册阈值跑前锁定、负结果照记登记表、哲学词必须绑定机制。
 
 ## 纪律
