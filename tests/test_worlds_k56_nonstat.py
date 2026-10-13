@@ -70,11 +70,42 @@ class TestRichWorldK6:
 
     def test_k56_rejected_k7(self):
         try:
-            RichWorld(complexity=7)
+            RichWorld(complexity=8)
         except ValueError:
             pass
         else:
-            raise AssertionError("k=7 应拒绝")
+            raise AssertionError("k=8 应拒绝")
+
+
+class TestRichWorldK7:
+    def test_k7_params(self):
+        e = RichWorld(complexity=7, seed=0)
+        assert e.G == 12 and e.H == 340 and e.n_goals == 5
+        assert e.n_hazards == 2 and len(e.hazards) == 2
+        assert e.patrol_hazard and e.ordered_goals
+        assert e.d_obs == 31
+
+    def test_k7_dual_patrol_converges(self):
+        e = RichWorld(complexity=7, seed=0)
+        e.reset()
+        d0 = [abs(h[0] - e._agent[0]) + abs(h[1] - e._agent[1])
+              for h in e.hazards]
+        seen = 0
+        for _ in range(30):
+            e.step(random.randrange(4))
+            d = [abs(h[0] - e._agent[0]) + abs(h[1] - e._agent[1])
+                 for h in e.hazards]
+            if all(d[i] < d0[i] for i in (0, 1)):
+                seen += 1
+                if seen >= 2:
+                    break
+        assert seen >= 2, "双巡逻体须同拍持续逼近（协同夹击）"
+
+    def test_k7_deterministic_and_rollout(self):
+        e1, e2 = RichWorld(complexity=7, seed=7), RichWorld(complexity=7, seed=7)
+        assert torch.equal(e1.reset(), e2.reset())
+        obs, act, rew, rare = random_rollout(RichWorld(complexity=7, seed=1))
+        assert obs.shape[1] == 31 and act.shape[0] > 0
 
 
 class TestNonStatWorld:

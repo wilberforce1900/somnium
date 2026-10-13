@@ -8,7 +8,10 @@
     k=4  k=3 + 门周期开闭（非平稳：让"排练/稀有事件"组件再次有活干）
     k=5  结构轴深化：12×12 四房间 + **有序多目标(4)（须按序收集）** + 钥匙(3)
     k=6  k=5 + **巡逻 hazard**（每 5 步向 agent 逼近一格——对抗性动力学）
-（k5/6 为 iter8 阶段 1"世界先变大"扩展：压 O(1) 状态的记忆/规划轴。）
+    k=7  k=6 + **双巡逻体协同夹击**（两个 hazard 每 5 步同时逼近）+ 有序目标(5)
+（k5/6/7 为 iter8 阶段 1"世界先变大"扩展：压 O(1) 状态的记忆/规划/对抗轴。
+k7 动机=K56 裁决：256→1024 梯度 0.6→0.6→3.4pp 单调上升——对抗深度在
+购买宽度价值，k7 冲门。）
 
 观测协议（ ITER7 §1.4 约定）：
     obs[:2] = 位置归一化 (x/G, y/G)   ← ObsCoverage dims=(0,1) 继续有效
@@ -37,8 +40,8 @@ class RichWorld:
 
     def __init__(self, complexity: int = 1, horizon: Optional[int] = None,
                  seed: Optional[int] = None) -> None:
-        if complexity not in (0, 1, 2, 3, 4, 5, 6):
-            raise ValueError(f"complexity 必须 0..6，得到 {complexity}")
+        if complexity not in (0, 1, 2, 3, 4, 5, 6, 7):
+            raise ValueError(f"complexity 必须 0..7，得到 {complexity}")
         self.k = complexity
         if self.k == 0:  # 对照组：ENV-A 等价（含 hazard/rare）
             from .latent_grid import LatentGrid
@@ -64,13 +67,16 @@ class RichWorld:
             self._goals_done: set = set()
             self._doors_open: dict = {}
             self.exit_gate = False
+            self.hazards: list = []
             return
         # ---- k≥1 参数表 ----
         self.view = 3 if self.k == 1 else 5                     # 视野边长
         self.rooms = 1 if self.k == 1 else (2 if self.k == 2 else 4)
         self.n_keys = 1 if self.k <= 2 else (2 if self.k <= 4 else 3)
         self.n_goals = 1 if self.k == 1 else (2 if self.k == 2
-                                              else (3 if self.k <= 4 else 4))
+                                              else (3 if self.k <= 4
+                                                    else (4 if self.k <= 6 else 5)))
+        self.n_hazards = 2 if self.k >= 7 else 1  # k7：双巡逻体协同夹击
         self.ordered_goals = self.k >= 5      # k5/6：目标须按布置顺序收集
         self.patrol_hazard = self.k >= 6      # k6：hazard 每 5 步逼近 agent
         self.push_boxes = self.k >= 3
@@ -122,7 +128,8 @@ class RichWorld:
         avoid |= set(self.goals_pos)
         self.boxes_pos = empty_cells(2, avoid) if self.push_boxes else []
         avoid |= set(self.boxes_pos)
-        self.hazard = empty_cells(1, avoid)[0]
+        self.hazards = empty_cells(self.n_hazards, avoid)
+        self.hazard = self.hazards[0]          # 兼容别名（首个）
         # 钥匙-门对应：每扇门绑一把钥匙（顺序取）。
         # k=1 单房间无墙门：钥匙绑定"终点门"——最后一个目标格需持钥才能登记完成
         # （踩上无钥=不登记，奖励不发；这是 k=1 钥匙的存在意义）。
@@ -149,7 +156,7 @@ class RichWorld:
             return 0.3
         if (x, y) in self.goals_pos and (x, y) not in self._goals_done:
             return 0.4
-        if (x, y) == self.hazard:
+        if (x, y) in self.hazards:
             return 0.6
         if (x, y) in self._boxes:
             return 0.2
@@ -225,7 +232,7 @@ class RichWorld:
                         and (bx, by) not in self.walls
                         and (bx, by) not in self.doors
                         and (bx, by) not in self._boxes
-                        and (bx, by) != self.hazard):
+                        and (bx, by) not in self.hazards):
                     self._boxes[self._boxes.index((nx, ny))] = (bx, by)
                 else:
                     blocked = True
@@ -247,36 +254,37 @@ class RichWorld:
                         and not self._keys_held):
                     self._goals_done.add(self._agent)
                     rare = True
-        # 巡逻 hazard（k≥6）：每 5 步向 agent 逼近一格（墙挡；若本步已完成全部
-        # 目标则不巡逻——目标完成优先结算）
+        # 巡逻 hazard（k≥6）：每 5 步逼近；k7 双体同拍协同（夹击）。
+        # 若本步已完成全部目标则不巡逻——目标完成优先结算
         if (self.patrol_hazard and self._t % 5 == 0
                 and len(self._goals_done) < self.n_goals):
-            hx, hy = self.hazard
             ax, ay = self._agent
-            dx = (ax > hx) - (ax < hx)
-            dy = (ay > hy) - (ay < hy)
-            moves = []
-            if abs(ax - hx) >= abs(ay - hy):
-                if dx:
-                    moves.append((hx + dx, hy))
-                if dy:
-                    moves.append((hx, hy + dy))
-            else:
-                if dy:
-                    moves.append((hx, hy + dy))
-                if dx:
-                    moves.append((hx + dx, hy))
-            for mx, my in moves:
-                if (0 <= mx < self.G and 0 <= my < self.G
-                        and (mx, my) not in self.walls):
-                    self.hazard = (mx, my)
-                    break
-            if self.hazard == self._agent:
+            for i, (hx, hy) in enumerate(self.hazards):
+                dx = (ax > hx) - (ax < hx)
+                dy = (ay > hy) - (ay < hy)
+                moves = []
+                if abs(ax - hx) >= abs(ay - hy):
+                    if dx:
+                        moves.append((hx + dx, hy))
+                    if dy:
+                        moves.append((hx, hy + dy))
+                else:
+                    if dy:
+                        moves.append((hx, hy + dy))
+                    if dx:
+                        moves.append((hx + dx, hy))
+                for mx, my in moves:
+                    if (0 <= mx < self.G and 0 <= my < self.G
+                            and (mx, my) not in self.walls):
+                        self.hazards[i] = (mx, my)
+                        break
+            self.hazard = self.hazards[0]
+            if self._agent in self.hazards:
                 return self._obs(), -1.0, True, {"rare": True,
                                                  "progress": len(self._goals_done)}
         if len(self._goals_done) >= self.n_goals:
             reward, done = 1.0, True
-        elif self._agent == self.hazard:
+        elif self._agent in self.hazards:
             reward, done = -1.0, True
         elif self._t >= self.H:
             done = True
