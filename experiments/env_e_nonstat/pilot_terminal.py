@@ -67,9 +67,40 @@ def terminal_acc(model, env, episodes=40):
     return hits / n, errs / n, n
 
 
+def _rollout_toward(env, dims, p_greedy=0.8):
+    """朝指定偏移维（dims=(2,3)=A / (4,5)=B）的引导局（P0-D4 垫高用）。
+
+    与 latent_grid.guided_rollout 同逻辑，仅目标维可配——NonStatWorld 的
+    B 局（反引导）在 ρ0 下故意收集 −1 终局事件，平衡奖励头的 ±1 曝光。
+    """
+    obs0 = env.reset()
+    obs_list, act_list, rew_list, rare_list = [obs0], [], [], []
+    cur, done = obs0, False
+    while not done:
+        if env.rng.random() < p_greedy:
+            gdx, gdy = cur[dims[0]].item() * env.G, cur[dims[1]].item() * env.G
+            if abs(gdx) >= abs(gdy) and abs(gdx) > 1e-6:
+                a = 1 if gdx > 0 else 3
+            elif abs(gdy) > 1e-6:
+                a = 0 if gdy > 0 else 2
+            else:
+                a = env.rng.randrange(4)
+        else:
+            a = env.rng.randrange(4)
+        cur, r, done, info = env.step(a)
+        obs_list.append(cur)
+        act_list.append(a)
+        rew_list.append(r)
+        rare_list.append(info["rare"])
+    return (torch.stack(obs_list),
+            torch.tensor(act_list, dtype=torch.long),
+            torch.tensor(rew_list, dtype=torch.float32),
+            torch.tensor(rare_list, dtype=torch.bool))
+
+
 def train_pilot(seed, device, d_h=64, pre=600, post=600, eval_every=5,
                 batch=32, t_win=8, lr=1e-3, hidden=32, ep_per_cycle=8,
-                wake_batches=10, clip=1.0):
+                wake_batches=10, clip=1.0, frac_a=0.3, frac_b=0.0):
     torch.manual_seed(seed)
     random.seed(seed)
     env = NonStatWorld(grid=8, slip=0.1, lam=0.0, horizon=50, seed=seed,
@@ -88,8 +119,13 @@ def train_pilot(seed, device, d_h=64, pre=600, post=600, eval_every=5,
         if cycle == pre + 1:
             env.regime = 1
         for _ in range(ep_per_cycle):
-            roll = guided_rollout if env.rng.random() < 0.3 else random_rollout
-            buffer.add_episode(*roll(env))
+            r = env.rng.random()
+            if r < frac_a:
+                buffer.add_episode(*_rollout_toward(env, (2, 3)))
+            elif r < frac_a + frac_b:
+                buffer.add_episode(*_rollout_toward(env, (4, 5)))
+            else:
+                buffer.add_episode(*random_rollout(env))
         for i in range(wake_batches):
             b = buffer.sample_windows_mixed(
                 batch, t_win, rng=random.Random(seed * 1000 + cycle * 100 + i),
@@ -130,6 +166,7 @@ def train_pilot(seed, device, d_h=64, pre=600, post=600, eval_every=5,
         return None
 
     rec = {"seed": seed, "d_h": d_h, "pre": pre, "post": post,
+           "frac_a": frac_a, "frac_b": frac_b,
            "acc1_at_flip": a1_at_flip, "acc1_end": round(a1_end, 4),
            "acc0_end": round(a0_end, 4), "acc0_pre_end": round(a0_pre, 4),
            "rho0_retention_drop": round(a0_pre - a0_end, 4),
@@ -147,10 +184,14 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--device", default="auto")
+    ap.add_argument("--frac-a", type=float, default=0.3,
+                    help="奔 A 引导局占比（ρ0 下=+1 事件源）")
+    ap.add_argument("--frac-b", type=float, default=0.0,
+                    help="奔 B 引导局占比（反引导，ρ0 下=−1 事件源；P0-D4=0.15）")
     a = ap.parse_args()
     dev = torch.device(a.device) if a.device != "auto" else torch.device(
         "cuda" if torch.cuda.is_available() else "cpu")
-    train_pilot(a.seed, dev)
+    train_pilot(a.seed, dev, frac_a=a.frac_a, frac_b=a.frac_b)
 
 
 if __name__ == "__main__":
