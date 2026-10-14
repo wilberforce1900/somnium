@@ -85,7 +85,8 @@ def _mean_last(rows, key, k=10, upto=None):
 
 def train_scale(seed, device, d_h=64, lam_rew=1.0, cycles=2400, eval_every=5,
                 batch=32, t_win=8, lr=1e-3, hidden=32, ep_per_cycle=8,
-                wake_batches=10, clip=1.0, frac_a=0.3, frac_b=0.15):
+                wake_batches=10, clip=1.0, frac_a=0.3, frac_b=0.15,
+                tag_suffix=""):
     torch.manual_seed(seed)
     random.seed(seed)
     env = NonStatWorld(grid=8, slip=0.1, lam=0.0, horizon=50, seed=seed,
@@ -142,7 +143,7 @@ def train_scale(seed, device, d_h=64, lam_rew=1.0, cycles=2400, eval_every=5,
            "mae_end": last.get("mae0"), "n_end": last.get("n0"),
            "split_acc_pos": split[0], "split_acc_neg": split[1],
            "split_n_pos": split[2], "split_n_neg": split[3]}
-    name = f"term_scale_dh{d_h}_lam{lam_rew:g}_s{seed}"
+    name = f"term_scale_dh{d_h}_lam{lam_rew:g}_s{seed}{tag_suffix}"
     with open(OUT / f"{name}.jsonl", "w") as f:
         for r in rows:
             f.write(json.dumps(r) + "\n")
@@ -159,11 +160,14 @@ def main():
     ap.add_argument("--d-h", type=int, default=64)
     ap.add_argument("--lam-rew", type=float, default=1.0)
     ap.add_argument("--cycles", type=int, default=2400)
+    ap.add_argument("--tag-suffix", default="",
+                    help="输出文件名后缀（升级臂防覆盖；默认空=逐位不变）")
     ap.add_argument("--device", default="auto")
     a = ap.parse_args()
     dev = torch.device(a.device) if a.device != "auto" else torch.device(
         "cuda" if torch.cuda.is_available() else "cpu")
-    train_scale(a.seed, dev, d_h=a.d_h, lam_rew=a.lam_rew, cycles=a.cycles)
+    train_scale(a.seed, dev, d_h=a.d_h, lam_rew=a.lam_rew, cycles=a.cycles,
+                tag_suffix=a.tag_suffix)
 
 
 if __name__ == "__main__":
