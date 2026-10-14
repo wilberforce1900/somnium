@@ -93,9 +93,9 @@ a2.set_ylabel(r"res$_{norm}$")
 a2.axhline(0.6, color="crimson", ls="--", lw=0.8)
 a2.axhline(1.2, color="tab:red", ls=":", lw=0.8)
 a2.annotate("night 1: unclipped divergence at $d_h{=}729$",
-            (n1_end - 100, 2.6), fontsize=6.5, color="dimgray", ha="right")
+            (n1_end - 100, 6.5), fontsize=6.5, color="dimgray", ha="right")
 a2.annotate("night 2: clipped, stable\nat $d_h{=}1024$ for 3000+ rounds",
-            (2400, 1.9), fontsize=6.5, color="tab:blue", ha="left")
+            (2400, 4.5), fontsize=6.5, color="tab:blue", ha="left")
 fig.savefig(FIG / "fig_overnight.pdf")
 plt.close(fig)
 print("figures written:", list(p.name for p in FIG.glob("*.pdf")))
