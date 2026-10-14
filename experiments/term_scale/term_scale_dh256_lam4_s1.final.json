@@ -1,0 +1,20 @@
+{
+ "seed": 1,
+ "d_h": 256,
+ "lam_rew": 4.0,
+ "norm": "ln_post",
+ "cycles": 2400,
+ "eval_every": 5,
+ "frac_a": 0.3,
+ "frac_b": 0.15,
+ "acc0_at600": 0.784060180482983,
+ "acc0_at1200": 0.7981529003668592,
+ "acc0_end": 0.8494454670678927,
+ "delta_1200_end": 0.05129256670103355,
+ "mae_end": 0.8720029528873662,
+ "n_end": 24,
+ "split_acc_pos": 0.6153846153846154,
+ "split_acc_neg": 0.8,
+ "split_n_pos": 13,
+ "split_n_neg": 5
+}
