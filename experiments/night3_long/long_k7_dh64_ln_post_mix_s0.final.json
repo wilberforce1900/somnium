@@ -1,0 +1,18 @@
+{
+ "k": 7,
+ "d_h": 64,
+ "seed": 0,
+ "norm_kind": "ln_post",
+ "replay": "mixed",
+ "max_cycles": 9000,
+ "last": {
+  "cycle": 9000,
+  "env_steps": 10076198,
+  "mse": 0.12029,
+  "alpha": 0.81186,
+  "h_norm": 0.58935,
+  "dy": 0.70891,
+  "di": 8.97152,
+  "sat": 0.22998
+ }
+}
