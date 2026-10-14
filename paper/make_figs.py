@@ -92,10 +92,13 @@ a2.set_xlabel("autonomous round")
 a2.set_ylabel(r"res$_{norm}$")
 a2.axhline(0.6, color="crimson", ls="--", lw=0.8)
 a2.axhline(1.2, color="tab:red", ls=":", lw=0.8)
-a2.annotate("night 1: unclipped divergence at $d_h{=}729$",
-            (n1_end - 100, 6.5), fontsize=6.5, color="dimgray", ha="right")
+# 注释定位（v1.3 视觉验收 R2，裁判建议采纳）：两注释均放在底子图右侧
+# 空白区（night-2 数据段自 round 870 后贴 0.6 线，上方 y≈2–3 为空）；
+# y 必须在 ylim 数据范围内（R1 曾设 6.5 超出渲染区致注释丢失）
+a2.annotate("night 1: divergence at $d_h{=}729$",
+            (4850, 1.62), fontsize=6.5, color="dimgray", ha="right")
 a2.annotate("night 2: clipped, stable\nat $d_h{=}1024$ for 3000+ rounds",
-            (2400, 4.5), fontsize=6.5, color="tab:blue", ha="left")
+            (2500, 2.4), fontsize=6.5, color="tab:blue", ha="left")
 fig.savefig(FIG / "fig_overnight.pdf")
 plt.close(fig)
 print("figures written:", list(p.name for p in FIG.glob("*.pdf")))
