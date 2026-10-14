@@ -1,0 +1,34 @@
+>>> P0-D4 (balanced-exposure pilot) START Wed Oct 14 03:47:10 UTC 2026
+>>> P0-D4 seed=0 Wed Oct 14 03:47:10 UTC 2026
+/home/somnium-ignition/venvs/torch/lib/python3.10/site-packages/torch/_subclasses/functional_tensor.py:368: UserWarning: Failed to initialize NumPy: No module named 'numpy' (Triggered internally at /__w/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+  cpu = _conversion_method_template(device=torch.device("cpu"))
+[pilotD3 s0] c100/1200 pre acc0=0.42105263157894735 acc1=0.47368421052631576 (n1=19)
+[pilotD3 s0] c200/1200 pre acc0=0.5714285714285714 acc1=0.5 (n1=16)
+[pilotD3 s0] c300/1200 pre acc0=0.6666666666666666 acc1=0.6153846153846154 (n1=13)
+[pilotD3 s0] c400/1200 pre acc0=0.4583333333333333 acc1=0.631578947368421 (n1=19)
+[pilotD3 s0] c500/1200 pre acc0=0.6190476190476191 acc1=0.5833333333333334 (n1=24)
+[pilotD3 s0] c600/1200 pre acc0=0.5 acc1=0.29411764705882354 (n1=17)
+[pilotD3 s0] c700/1200 post acc0=0.5652173913043478 acc1=0.35294117647058826 (n1=17)
+[pilotD3 s0] c800/1200 post acc0=0.30434782608695654 acc1=0.5416666666666666 (n1=24)
+[pilotD3 s0] c900/1200 post acc0=0.42105263157894735 acc1=0.55 (n1=20)
+[pilotD3 s0] c1000/1200 post acc0=0.391304347826087 acc1=0.5555555555555556 (n1=18)
+[pilotD3 s0] c1100/1200 post acc0=0.47368421052631576 acc1=0.5789473684210527 (n1=19)
+[pilotD3 s0] c1200/1200 post acc0=0.6 acc1=0.34782608695652173 (n1=23)
+PILOTD3 s0: {"seed": 0, "d_h": 64, "pre": 600, "post": 600, "frac_a": 0.3, "frac_b": 0.15, "acc1_at_flip": 0.29411764705882354, "acc1_end": 0.4956, "acc0_end": 0.4417, "acc0_pre_end": 0.5424, "rho0_retention_drop": 0.1008, "tau50": 5, "tau90": 5}
+>>> P0-D4 seed=1 Wed Oct 14 04:08:40 UTC 2026
+/home/somnium-ignition/venvs/torch/lib/python3.10/site-packages/torch/_subclasses/functional_tensor.py:368: UserWarning: Failed to initialize NumPy: No module named 'numpy' (Triggered internally at /__w/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+  cpu = _conversion_method_template(device=torch.device("cpu"))
+[pilotD3 s1] c100/1200 pre acc0=0.3684210526315789 acc1=0.3888888888888889 (n1=18)
+[pilotD3 s1] c200/1200 pre acc0=0.625 acc1=0.5 (n1=20)
+[pilotD3 s1] c300/1200 pre acc0=0.6153846153846154 acc1=0.47619047619047616 (n1=21)
+[pilotD3 s1] c400/1200 pre acc0=0.5263157894736842 acc1=0.7 (n1=20)
+[pilotD3 s1] c500/1200 pre acc0=0.5416666666666666 acc1=0.47368421052631576 (n1=19)
+[pilotD3 s1] c600/1200 pre acc0=0.5294117647058824 acc1=0.5652173913043478 (n1=23)
+[pilotD3 s1] c700/1200 post acc0=0.35294117647058826 acc1=0.5333333333333333 (n1=15)
+[pilotD3 s1] c800/1200 post acc0=0.4166666666666667 acc1=0.5 (n1=24)
+[pilotD3 s1] c900/1200 post acc0=0.55 acc1=0.5 (n1=22)
+[pilotD3 s1] c1000/1200 post acc0=0.4444444444444444 acc1=0.5 (n1=24)
+[pilotD3 s1] c1100/1200 post acc0=0.42105263157894735 acc1=0.5263157894736842 (n1=19)
+[pilotD3 s1] c1200/1200 post acc0=0.30434782608695654 acc1=0.68 (n1=25)
+PILOTD3 s1: {"seed": 1, "d_h": 64, "pre": 600, "post": 600, "frac_a": 0.3, "frac_b": 0.15, "acc1_at_flip": 0.5652173913043478, "acc1_end": 0.5531, "acc0_end": 0.4391, "acc0_pre_end": 0.5064, "rho0_retention_drop": 0.0673, "tau50": 35, "tau90": 30}
+=== P0-D4 ALL DONE Wed Oct 14 04:30:39 UTC 2026 ===
