@@ -1,0 +1,21 @@
+{
+ "seed": 0,
+ "d_h": 1024,
+ "schedule": "dream_first",
+ "dream_batches": 200,
+ "norm": "ln_post",
+ "cycles": 2400,
+ "eval_every": 5,
+ "frac_a": 0.3,
+ "frac_b": 0.15,
+ "acc0_at600": 0.8292948305688916,
+ "acc0_at1200": 0.9132403362380478,
+ "acc0_end": 0.9525474628570605,
+ "delta_1200_end": 0.0393071266190127,
+ "mae_end": 0.6100217238999903,
+ "n_end": 20,
+ "split_acc_pos": 0.8888888888888888,
+ "split_acc_neg": 1.0,
+ "split_n_pos": 9,
+ "split_n_neg": 10
+}
