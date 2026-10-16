@@ -38,12 +38,20 @@ HERE = Path(__file__).resolve().parent
 OUT = HERE
 
 
-def train_switch(seed, device, schedule="wake", dwell=750, d_h=64,
+def train_switch(seed, device, schedule="wake", dwell=None, d_h=64,
                  dream_batches=200, pre=2400, post=2400, eval_every=5,
                  batch=32, t_win=8, lr=1e-3, hidden=32, ep_per_cycle=8,
                  wake_batches=10, clip=1.0, frac_a=0.3, frac_b=0.15,
-                 tag_suffix=""):
-    lam = 1.0 / dwell
+                 lam=None, tag_suffix=""):
+    # lam 直接给定（ITER12 §6 修正版：由 180 步/周期校准换算 dwell-周期阶梯）；
+    # 缺省走 dwell=步 的旧路径（ITER12 §5-R 作废的首矩阵）。
+    if lam is None:
+        dwell = 750 if dwell is None else int(dwell)
+        lam = 1.0 / dwell
+        name = f"switch_{schedule}_dwell{dwell}_s{seed}{tag_suffix}"
+    else:
+        dwell = None
+        name = f"switch_{schedule}_lam{lam:.3e}_s{seed}{tag_suffix}"
     torch.manual_seed(seed)
     random.seed(seed)
     env = NonStatWorld(grid=8, slip=0.1, lam=0.0, horizon=50, seed=seed,
@@ -142,7 +150,6 @@ def train_switch(seed, device, schedule="wake", dwell=750, d_h=64,
            "n_sw_end": last.get("n1" if last.get("regime") == 1 else "n0"),
            "split_acc_pos": split[0], "split_acc_neg": split[1],
            "split_n_pos": split[2], "split_n_neg": split[3]}
-    name = f"switch_{schedule}_dwell{dwell}_s{seed}{tag_suffix}"
     with open(OUT / f"{name}.jsonl", "w") as f:
         for r in rows:
             f.write(json.dumps(r) + "\n")
@@ -159,8 +166,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--schedule", choices=["wake", "dream"], default="wake")
-    ap.add_argument("--dwell", type=int, default=750,
-                    help="平均驻留（步）：λ=1/dwell；阶梯 {750,150,50}")
+    ap.add_argument("--dwell", type=int, default=None,
+                    help="平均驻留（步）：λ=1/dwell（旧路径；ITER12 §6 修正版请用 --lam）")
+    ap.add_argument("--lam", type=float, default=None,
+                    help="直接给每步切换率（§6 修正版：λ={1/(750·180),1/(150·180),1/(50·180)}）")
     ap.add_argument("--d-h", type=int, default=64)
     ap.add_argument("--dream-pre", type=int, default=200)
     ap.add_argument("--pre", type=int, default=2400)
@@ -172,7 +181,7 @@ def main():
         "cuda" if torch.cuda.is_available() else "cpu")
     train_switch(a.seed, dev, schedule=a.schedule, dwell=a.dwell, d_h=a.d_h,
                  dream_batches=a.dream_pre, pre=a.pre, post=a.post,
-                 tag_suffix=a.tag_suffix)
+                 lam=a.lam, tag_suffix=a.tag_suffix)
 
 
 if __name__ == "__main__":

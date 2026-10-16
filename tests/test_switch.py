@@ -80,3 +80,18 @@ class TestSwitchPipeline:
         for k in ("acc_sw_end", "acc_sw_phase", "acc0_sw_end", "acc1_sw_end",
                   "cross_pre", "acc1_at_switch"):
             assert k in rec
+
+
+class TestLamMode:
+    def test_lam_direct_mode(self, tmp_path, monkeypatch):
+        """§6 修正版路径：--lam 直给（单位=每步），文件名带 lam，dwell=None。"""
+        import experiments.env_e_v3.pilot_switch as P12
+
+        monkeypatch.setattr(P12, "OUT", tmp_path)
+        rec = P12.train_switch(0, torch.device("cpu"), schedule="wake",
+                               lam=0.02, pre=5, post=5, eval_every=5,
+                               batch=8, t_win=4, hidden=8, ep_per_cycle=2,
+                               wake_batches=2)
+        assert rec["lam"] == 0.02 and rec["dwell"] is None
+        assert (tmp_path / "switch_wake_lam2.000e-02_s0.jsonl").exists()
+        assert rec["acc_sw_phase"] is not None
