@@ -27,9 +27,9 @@
 
 **Somnium: A Recurrent World Model that Learns to Dream Before It Wakes** · Xiaoming (Will) Wang
 
-📄 [PDF v1.4](paper/somnium-paper-v1.4.pdf) · [LaTeX 源码](paper/main.tex) · [参考文献](paper/refs.bib) · [Zenodo 记录](https://zenodo.org/records/23360320)
+📄 [PDF v1.4](paper/somnium-paper-v1.4.pdf) · [LaTeX 源码](paper/main.tex) · [参考文献](paper/refs.bib) · [Zenodo 记录](https://zenodo.org/records/23419489)
 
-**Cite as:** Wang, X. (2026). *Somnium: A Recurrent World Model that Learns to Dream Before It Wakes*. Zenodo. [DOI 10.5281/zenodo.23278220](https://doi.org/10.5281/zenodo.23278220)（概念 DOI；最新 v1.3 版本 DOI [10.5281/zenodo.23360320](https://doi.org/10.5281/zenodo.23360320)、v1.4 待上传；v1.2 版本 DOI [10.5281/zenodo.23333007](https://doi.org/10.5281/zenodo.23333007)）
+**Cite as:** Wang, X. (2026). *Somnium: A Recurrent World Model that Learns to Dream Before It Wakes*. Zenodo. [DOI 10.5281/zenodo.23278220](https://doi.org/10.5281/zenodo.23278220)（概念 DOI；最新 v1.4 版本 DOI [10.5281/zenodo.23419489](https://doi.org/10.5281/zenodo.23419489)；v1.3 版本 DOI [10.5281/zenodo.23360320](https://doi.org/10.5281/zenodo.23360320)；v1.2 版本 DOI [10.5281/zenodo.23333007](https://doi.org/10.5281/zenodo.23333007)）
 
 > 12 页完整研究报告：预注册协议、五个独立复现的梦增益、容量边界三线证据、
 > 宽潜态病态的排除链与治愈（含对自家 v1.1"表达力天花板"结论的公开撤回）、
@@ -70,7 +70,7 @@ establishment head start where wake is capacity-limited, and nothing after —
 all falsified or found out with pre-registered thresholds and kept in the
 registry, because *a theory that can be killed is a theory that can evolve*.
 
-Docs: [Paper v1.4 (PDF)](paper/somnium-paper-v1.4.pdf) · [DOI: 10.5281/zenodo.23278220](https://doi.org/10.5281/zenodo.23278220) · latest version [10.5281/zenodo.23360320](https://doi.org/10.5281/zenodo.23360320) ·
+Docs: [Paper v1.4 (PDF)](paper/somnium-paper-v1.4.pdf) · [DOI: 10.5281/zenodo.23278220](https://doi.org/10.5281/zenodo.23278220) · latest version [10.5281/zenodo.23419489](https://doi.org/10.5281/zenodo.23419489) ·
 [MODEL-INTRO](MODEL-INTRO.md) ·
 [PRINCIPLES](PRINCIPLES.md) · [ROADMAP/experiment history](ROADMAP.md) ·
 [MODEL-NAME](MODEL-NAME.md) · [PHASE1](PHASE1.md) ·
