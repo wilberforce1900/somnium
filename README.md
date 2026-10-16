@@ -18,21 +18,25 @@
 （0.74–0.98/未达标），且全梦电池不优于"带回放的醒"——**回放是载荷组件**。
 **v1.3 更新（2026-10）**：四世界宽度天花板（ENV-D 家族 256→1024 增益饱和于 ~3pp，
 身体带 [256, 1024] 钉死）；非平稳轴经三台仪器迭代后诚实关闭（仪器迭代史入正文）。
-两侧同时封顶——重开口 = 更大尺度或更富奖励通道。完整证伪史见登记表。
+**v1.4 更新（2026-10）**：**非平稳轴的关闭被撤回并完整测量**——"不可建"=预算伪因
+（预算修正后成立：容量 5.4×/λ_rew 2×@16K 速率旋钮）→ 语义三段曲线（建立慢/反转快
+一个数量级/维持=以 τ 为时间常数的遗忘曲线）；**梦的适用域=出生期**（建立期 ~1.4×
+加速、反转与维持全档调度无关）；仪器单位错误事件（~180×）如实入档。完整证伪史见登记表。
 
 ## 论文（Preprint）
 
 **Somnium: A Recurrent World Model that Learns to Dream Before It Wakes** · Xiaoming (Will) Wang
 
-📄 [PDF v1.3](paper/somnium-paper-v1.3.pdf) · [LaTeX 源码](paper/main.tex) · [参考文献](paper/refs.bib) · [Zenodo 记录](https://zenodo.org/records/23360320)
+📄 [PDF v1.4](paper/somnium-paper-v1.4.pdf) · [LaTeX 源码](paper/main.tex) · [参考文献](paper/refs.bib) · [Zenodo 记录](https://zenodo.org/records/23360320)
 
-**Cite as:** Wang, X. (2026). *Somnium: A Recurrent World Model that Learns to Dream Before It Wakes*. Zenodo. [DOI 10.5281/zenodo.23278220](https://doi.org/10.5281/zenodo.23278220)（概念 DOI；最新 v1.3 版本 DOI [10.5281/zenodo.23360320](https://doi.org/10.5281/zenodo.23360320)；v1.2 版本 DOI [10.5281/zenodo.23333007](https://doi.org/10.5281/zenodo.23333007)）
+**Cite as:** Wang, X. (2026). *Somnium: A Recurrent World Model that Learns to Dream Before It Wakes*. Zenodo. [DOI 10.5281/zenodo.23278220](https://doi.org/10.5281/zenodo.23278220)（概念 DOI；最新 v1.3 版本 DOI [10.5281/zenodo.23360320](https://doi.org/10.5281/zenodo.23360320)、v1.4 待上传；v1.2 版本 DOI [10.5281/zenodo.23333007](https://doi.org/10.5281/zenodo.23333007)）
 
-> 10 页完整研究报告：预注册协议、五个独立复现的梦增益、容量边界三线证据、
+> 12 页完整研究报告：预注册协议、五个独立复现的梦增益、容量边界三线证据、
 > 宽潜态病态的排除链与治愈（含对自家 v1.1"表达力天花板"结论的公开撤回）、
-> 移动标尺与仪器修复、健康仪器上的 A3 重测、**四世界宽度天花板与非平稳轴的
-> 诚实关闭（含三台仪器的迭代史）**、负结果登记册（A1/A2/A5）、两夜自主训练
-> （871 轮生长与自愈回滚）。
+> 移动标尺与仪器修复、健康仪器上的 A3 重测、四世界宽度天花板、
+> **非平稳轴的撤回-重开-完整测量（建立/反转/维持三段曲线 + 仪器两代修正史，
+> 含一次单位错误事件的如实留档）与"梦的适用域=出生期"划定**、
+> 负结果登记册（A1/A2/A5）、两夜自主训练（871 轮生长与自愈回滚）。
 > 写作说明：科学工作（实验设计、代码、150+ 次运行记录）由项目主导完成；文字起草
 > 由 AI 助手协作完成，作者对全部内容负责。
 
@@ -57,11 +61,16 @@ protocols, mixed replay), the capacity-bound conclusion returns in cleaner
 form: the dream advantage lives only where wake itself is capacity-limited,
 and *replay* is the load-bearing component. What doesn't survive:
 hexagram VQ codebooks, gate-over-fixed advantages, dream-reading calibration
-feedback, and our own v1.1 ceiling claim — all falsified with pre-registered
-thresholds and kept in the registry, because *a theory that can be killed is
-a theory that can evolve*.
+feedback, our own v1.1 ceiling claim, and — as of v1.4 — our own *closure* of the
+non-stationary axis: reopened on a corrected budget, the axis is now fully
+measured (semantics establish slowly under capacity/weight rate knobs, re-invert
+an order of magnitude faster, and decay under switching with that same time
+constant), and the dream's contribution is bounded precisely to *birth* — an
+establishment head start where wake is capacity-limited, and nothing after —
+all falsified or found out with pre-registered thresholds and kept in the
+registry, because *a theory that can be killed is a theory that can evolve*.
 
-Docs: [Paper v1.3 (PDF)](paper/somnium-paper-v1.3.pdf) · [DOI: 10.5281/zenodo.23278220](https://doi.org/10.5281/zenodo.23278220) · latest version [10.5281/zenodo.23360320](https://doi.org/10.5281/zenodo.23360320) ·
+Docs: [Paper v1.4 (PDF)](paper/somnium-paper-v1.4.pdf) · [DOI: 10.5281/zenodo.23278220](https://doi.org/10.5281/zenodo.23278220) · latest version [10.5281/zenodo.23360320](https://doi.org/10.5281/zenodo.23360320) ·
 [MODEL-INTRO](MODEL-INTRO.md) ·
 [PRINCIPLES](PRINCIPLES.md) · [ROADMAP/experiment history](ROADMAP.md) ·
 [MODEL-NAME](MODEL-NAME.md) · [PHASE1](PHASE1.md) ·
@@ -92,17 +101,17 @@ Docs: [Paper v1.3 (PDF)](paper/somnium-paper-v1.3.pdf) · [DOI: 10.5281/zenodo.2
 
 ## 当前状态
 
-**v1.3 已发布（2026-10-14，Zenodo 版本 DOI [10.5281/zenodo.23360320](https://doi.org/10.5281/zenodo.23360320)）**：
-四世界宽度天花板（~3pp 饱和）+ 非平稳轴诚实关闭 + 仪器迭代史入正文；10 页全卷视觉验收通过。
-**iter8 仪器修复轮收官**：P0-A 混合回放治愈近期化漂移（9000 轮 0.011，门限 19× 下方）；
-P0-B A3 重测（18 run）：容量受限衰减在健康仪器上重新成立、回放=载荷组件；P0-C/D ENV-E
-非平稳轴三台仪器迭代后基础现象在 d_h64 不可建（0.542/0.506）——线降级存档、器官触发门阻断。
-此前：iter7 (b) 线（[ITER7-WORLD-FIRST.md](ITER7-WORLD-FIRST.md) §2.5）、夜三 62 run
-（[NIGHT3-PLAN.md](NIGHT3-PLAN.md)）、[ITER8-PLAN.md](ITER8-PLAN.md) 全链预注册。
-**进行中（iter9 · 梦侧深挖第一站）**：终局语义的容量阶梯与 λ_rew 加权——
-[ITER9-PLAN.md](ITER9-PLAN.md) 预登记锁版（T64/W64/T256/W256/T1024 × 2 seed，2400 周期；
-容量假说 vs 优化配比假说，锚点门含 D4 逐位复刻自检）。
-三大纪律：预注册阈值跑前锁定、负结果照记登记表、哲学词必须绑定机制。
+**v1.4 已发布（2026-10-16，Zenodo 待上传）**：非平稳轴撤回关闭并完整测量 +
+"梦的适用域=出生期"划定 + fig_switch（维护度悬崖）；12 页全卷视觉验收通过
+（judge 配额不可用期间按规程回退为作者自查，待 10-19 后可补独立复验）。
+**本轮链条（iter9→12，全部零失败 ~33h GPU）**：ITER9 预算假说确认（终局语义全带可建，
+容量 5.4×/λ_rew 2×@16K 速率旋钮不叠加）；ITER10 梦=容量受限档建立加速（~1.4×，
+高容量零效应）；ITER11 单翻转恢复快一个数量级且调度不敏感（梦=出生优惠非再读优惠）；
+ITER12 切换维护=τ 时间常数遗忘曲线（含一次单位错误事件如实留档后修正重跑）。
+此前：iter7 (b) 线、夜三 62 run、iter8 仪器修复轮（[ITER7-WORLD-FIRST.md](ITER7-WORLD-FIRST.md)、
+[NIGHT3-PLAN.md](NIGHT3-PLAN.md)、[ITER8-PLAN.md](ITER8-PLAN.md)、[ITER9](ITER9-PLAN.md)–[ITER12](ITER12-PLAN.md) 各计划档）。
+**下一步开放岔**：③ R2-R4 外部基线（潜态 vs 自回归对照）/ staging 分阶假说（三连空后暂缓候选）/
+④ 休耕。三大纪律：预注册阈值跑前锁定、负结果照记登记表、哲学词必须绑定机制。
 
 ## 纪律
 
