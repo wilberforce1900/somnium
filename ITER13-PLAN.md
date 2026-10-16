@@ -88,6 +88,25 @@
   （梦护旧判据沿用 A4 组件分解口径：旧任务改善 pp）。
 - **执行**：R2 之后（薄站，双层门先行省钱）。
 
+### 3-R · R3 补锁（2026-10-17 执行前锁定；Stage A→B 由 VM 自动化桥执行）
+
+- **环境**：NonStatWorld ρ0（grid8/obs8；收集=iter9 家族 fracA.3+fracB.15+随机；
+  mixed 回放；无噪声）。
+- **镜像变换（锁）**：phase 2 收集期 obs 坐标 x 镜像——out[0]=1−obs[0]、
+  out[2]=−obs[2]、out[4]=−obs[4]（x 位置与 x 增量反号；任务不变、观测翻转）。
+- **读数**：旧坐标固定 eval 集（seed+900 随机局 10 条）解码 MSE + 潜态 MSE 于
+  flip/end 两测；**retention_decode = mse_end/mse_flip**；终局符号 acc_old 用冻结
+  仪器 terminal_acc（同源）。
+- **Stage A（arm=wake ×2 seed、4800cyc）门**：retention_decode > 1.05 双 seed →
+  遗忘可构造 → Stage B；否则负结果（与迭代#6"遗忘不可构造"一致，照记）。
+- **Stage B 臂（各 ×2 seed、4800cyc）**：dream（E0 前奏 200 于出生）+
+  replay_old（phase 2 半数批次来自冻结旧缓冲=排练式保护）。
+- **梦护旧判据（收割时判，描述性为主）**：retention_dream < retention_wake − 0.05
+  双 seed → 正结果；否则负/描述性（replay_old 同口径报告）。
+- **自动化桥（VM 端 run_r3_auto.sh，nohup 自跑）**：等 R2 双链 ALL DONE → R2 门
+  摘要入日志 → Stage A（2 并行）→ 门判 → Stage B（4 并行）或停——无需人工唤醒；
+  官方裁决/registry/提交仍由主会话收割时执行（VM 非 git 仓）。
+
 ## 4. 运行与不授权
 
 - 顺序 R4 → R2 → R3（每站独立收获+登记+提交；用户唤醒模式）。
