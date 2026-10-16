@@ -1,0 +1,17 @@
+{
+ "seed": 0,
+ "world": "k4",
+ "d_h": 64,
+ "cycles": 2400,
+ "eval_every": 100,
+ "params_som": 18279,
+ "params_ar": 17431,
+ "param_gap_pct": -4.64,
+ "dec_r2_som_end": 73.77,
+ "dec_r2_ar_end": 98.22,
+ "delta_end": -24.45,
+ "dec_r2_som_half": 66.78,
+ "dec_r2_ar_half": 97.27,
+ "copy_r2_end": 29.72,
+ "obs_var_end": 0.17354
+}

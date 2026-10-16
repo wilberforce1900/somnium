@@ -1,0 +1,17 @@
+{
+ "seed": 0,
+ "world": "rho0",
+ "d_h": 64,
+ "cycles": 2400,
+ "eval_every": 100,
+ "params_som": 16048,
+ "params_ar": 16028,
+ "param_gap_pct": -0.12,
+ "dec_r2_som_end": 73.49,
+ "dec_r2_ar_end": 98.7,
+ "delta_end": -25.21,
+ "dec_r2_som_half": 60.04,
+ "dec_r2_ar_half": 98.55,
+ "copy_r2_end": 91.09,
+ "obs_var_end": 0.06066
+}
