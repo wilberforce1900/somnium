@@ -1,0 +1,17 @@
+{
+ "seed": 1,
+ "arm": "dream",
+ "d_h": 64,
+ "pre": 2400,
+ "post": 2400,
+ "dream_batches": 200,
+ "replay_old": false,
+ "dec_mse_flip": 0.009286,
+ "dec_mse_end": 0.016737,
+ "retention_decode": 1.8024,
+ "lat_mse_flip": 0.05356,
+ "lat_mse_end": 0.058096,
+ "retention_latent": 1.0847,
+ "acc_old_flip": 0.9565217391304348,
+ "acc_old_end": 0.6470588235294118
+}

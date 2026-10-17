@@ -1,0 +1,2 @@
+{"cycle": 2400, "phase": "pre", "dec_mse_old": 0.012427, "lat_mse_old": 0.057519, "acc_old": 0.7391304347826086}
+{"cycle": 4800, "phase": "post", "dec_mse_old": 0.020674, "lat_mse_old": 0.050249, "acc_old": 0.8823529411764706}
