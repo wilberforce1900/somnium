@@ -30,9 +30,12 @@
 
 - ☑ MODEL-CARD.md（参数实测表/已测边界/适用与不适用/局限/引用；与 registry 终版同步）
 - ☑ 卫生终检：test_repo_hygiene 绿 + tarball grep=0 + PDF 元数据/全文扫描 0
-- ☑ **git 历史零残留净化重写**（2026-10-19：filter-repo 三模式全历史替换；四重验证全过；
-      树哈希逐位不变；回滚备份=dsh/somnium_pre_rewrite_20261019.bundle，确认后可删）
+- ☑ **git 历史零残留净化重写（两遍）**（2026-10-19：第一遍 filter-repo 三模式全历史替换；
+      第二遍定向移除旧 v1.2 源码包内的本机绝对路径、以脱敏重建包回填并统一提交显示名；
+      两遍均四重验证全过、树哈希除被替换资产外逐位不变；回滚备份=
+      dsh/somnium_pre_rewrite_20261019.bundle 与 dsh/somnium_pre_gc2_20261019.bundle，确认后可删）
 - ☑ 密钥/凭证历史深扫：0 真实命中（唯一 BEGIN OPENSSH 模式命中=卫生测试自身词表）
+- ☑ 源码包/PDF/Release 资产全量扫描：v1.3–v1.5 包零路径；v1.2 包已脱敏重建并替换资产
 - ☑ GitHub 公开面完整可导航（论文/代码/registry/模型卡/Release 资产）
 
 ## E. 结项归档 ✅
