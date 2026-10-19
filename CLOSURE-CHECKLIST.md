@@ -30,12 +30,15 @@
 
 - ☑ MODEL-CARD.md（参数实测表/已测边界/适用与不适用/局限/引用；与 registry 终版同步）
 - ☑ 卫生终检：test_repo_hygiene 绿 + tarball grep=0 + PDF 元数据/全文扫描 0
-- ☑ **git 历史零残留净化重写（两遍）**（2026-10-19：第一遍 filter-repo 三模式全历史替换；
-      第二遍定向移除旧 v1.2 源码包内的本机绝对路径、以脱敏重建包回填并统一提交显示名；
-      两遍均四重验证全过、树哈希除被替换资产外逐位不变；回滚备份=
-      dsh/somnium_pre_rewrite_20261019.bundle 与 dsh/somnium_pre_gc2_20261019.bundle，确认后可删）
+- ☑ **git 历史零残留净化重写（三遍）**（2026-10-19/20：①三模式全历史替换；
+      ②定向移除旧 v1.2 源码包内的本机绝对路径、以脱敏重建包回填并统一提交显示名；
+      ③备用邮箱（自用别名）全历史抹除，公开面不再出现其字面量；三遍均验证全过、树哈希除被替换资产外逐位不变；
+      回滚备份=dsh/somnium_pre_rewrite_20261019.bundle、somnium_pre_gc2_20261019.bundle
+      与 somnium_pre_email_scrub_20261020.bundle，确认后可删）
 - ☑ 密钥/凭证历史深扫：0 真实命中（唯一 BEGIN OPENSSH 模式命中=卫生测试自身词表）
 - ☑ 源码包/PDF/Release 资产全量扫描：v1.3–v1.5 包零路径；v1.2 包已脱敏重建并替换资产
+- ☑ 公开仓以全新对象库迁移（github.com/wilberforce1900/somnium；旧仓
+      somnium-private-archive 私有留档；114 提交/11 资产/匿名可达；Release 源码快照指向终版）
 - ☑ GitHub 公开面完整可导航（论文/代码/registry/模型卡/Release 资产）
 
 ## E. 结项归档 ✅
@@ -50,7 +53,8 @@
 - ☑ 记忆终版（项目记忆+索引行改 🏁 结项态）
 - ☑ VM 已 Stop（用户）
 - ☐ （可选，未执行）tabghach org 展示页挂载 somnium——用户此前拍板"先不迁"，结项后可再议
-- ☐ （可选，未执行）GitHub support 请求旧对象立即 GC——当前不可达态已满足常规实践
+- ☑ （由迁移解决）旧对象 GC 不再适用于公开面：公开仓为全新对象库；旧仓
+      somnium-private-archive 仅私有留档
 
 ## F. 复活触发器（结项后重启项目的条件）
 
