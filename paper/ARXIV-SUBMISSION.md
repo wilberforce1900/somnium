@@ -57,8 +57,8 @@ https://github.com/wilberforce1900/somnium
 
 ## 流程与时间
 
-1. arxiv.org 注册：用户名/密码 + **邮箱用 xwang755@asu.edu**（机构邮箱加 `xwang755@asu.edu`
-   类别的收信验证；部分类目对 .edu 自动通过首次提交审核）
+1. arxiv.org 注册：用户名/密码 + **邮箱用 xwang755@asu.edu**（机构邮箱可过收信验证；
+   部分类目对 .edu 自动通过首次提交审核）
 2. Start New Submission → 上传 tar.gz → arXiv 自动编译（可先点 Preview PDF 核对）
 3. 填元数据（上表）→ 选类目 → 提交
 4. **截止时间**：工作日 14:00 ET 前提交，次日凌晨（ET）announce；超时顺延一天
