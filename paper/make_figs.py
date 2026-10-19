@@ -95,7 +95,7 @@ a2.axhline(1.2, color="tab:red", ls=":", lw=0.8)
 # 注释定位（v1.3 视觉验收 R2，裁判建议采纳）：两注释均放在底子图右侧
 # 空白区（night-2 数据段自 round 870 后贴 0.6 线，上方 y≈2–3 为空）；
 # y 必须在 ylim 数据范围内（R1 曾设 6.5 超出渲染区致注释丢失）
-a2.annotate("night 1: divergence at $d_h{=}729$",
+a2.annotate("night 1: destabilization at $d_h{=}729$",
             (4850, 1.62), fontsize=6.5, color="dimgray", ha="right")
 a2.annotate("night 2: clipped, stable\nat $d_h{=}1024$ for 3000+ rounds",
             (2500, 2.4), fontsize=6.5, color="tab:blue", ha="left")
