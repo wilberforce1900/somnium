@@ -1,0 +1,22 @@
+{
+ "seed": 0,
+ "arm": "C",
+ "d_h": 64,
+ "k": 5,
+ "sigma_n": 0.2,
+ "cycles": 2400,
+ "eval_every": 100,
+ "consol_steps": 2400,
+ "cov95_end": 0.9409,
+ "cov95_term_end": 0.0,
+ "bins_end": [
+  0.7796,
+  0.9954,
+  0.993,
+  0.9954,
+  0.9954
+ ],
+ "n_end": 1725,
+ "mean_sig_end": 0.0192,
+ "mae_end": 0.0076
+}
