@@ -91,6 +91,6 @@ Somnium 是一个**非 Transformer 的小型循环世界模型**：单个潜态 
 ## 8. 引用
 
 Wang, X. (2026). *Somnium: A Recurrent World Model that Learns to Dream Before
-It Wakes*. Zenodo. DOI 10.5281/zenodo.23278220（概念 DOI；版本链见 README）。
+It Wakes*. Zenodo. DOI 10.5281/zenodo.23278219（概念 DOI，始终指向最新版；v1.5 版本 DOI 10.5281/zenodo.23479114；版本链见 README）。
 
 代码：github.com/wilberforce1900/somnium（Release v0.1-paper）。

@@ -34,7 +34,8 @@
 
 📄 [PDF v1.5](paper/somnium-paper-v1.5.pdf) · [LaTeX 源码](paper/main.tex) · [参考文献](paper/refs.bib) · [模型卡](MODEL-CARD.md) · [Zenodo 记录](https://zenodo.org/records/23479114)
 
-**Cite as:** Wang, X. (2026). *Somnium: A Recurrent World Model that Learns to Dream Before It Wakes*. Zenodo. [DOI 10.5281/zenodo.23278220](https://doi.org/10.5281/zenodo.23278220)（概念 DOI；最新 **v1.5 终版** DOI [10.5281/zenodo.23479114](https://doi.org/10.5281/zenodo.23479114)；v1.4 版本 DOI [10.5281/zenodo.23419489](https://doi.org/10.5281/zenodo.23419489)；v1.3 版本 DOI [10.5281/zenodo.23360320](https://doi.org/10.5281/zenodo.23360320)；v1.2 版本 DOI [10.5281/zenodo.23333007](https://doi.org/10.5281/zenodo.23333007)）
+**Cite as:** Wang, X. (2026). *Somnium: A Recurrent World Model that Learns to Dream Before It Wakes*. Zenodo. [DOI 10.5281/zenodo.23278219](https://doi.org/10.5281/zenodo.23278219)（概念 DOI，始终指向最新版；最新 **v1.5 终版** DOI [10.5281/zenodo.23479114](https://doi.org/10.5281/zenodo.23479114)；v1.4 版本 DOI [10.5281/zenodo.23419489](https://doi.org/10.5281/zenodo.23419489)；v1.3 版本 DOI [10.5281/zenodo.23360320](https://doi.org/10.5281/zenodo.23360320)；v1.2 版本 DOI [10.5281/zenodo.23333007](https://doi.org/10.5281/zenodo.23333007)）
+> 版本 PDF 说明：v1.5 首页印刷 v1.5 版本 DOI；v1.1–v1.4 首页的 DOI 字样指向 v1.0 记录，引用旧版本时请使用上列对应版本 DOI。
 
 > 13 页完整研究报告（v1.5 终版）：预注册协议、五个独立复现的梦增益、容量边界三线证据、
 > 宽潜态病态的排除链与治愈（含对自家 v1.1"表达力天花板"结论的公开撤回）、
@@ -80,7 +81,7 @@ bit-identical batches, wins both teacher-forced one-step and 16-step
 open-loop observation prediction at this scale — leaving Somnium a registered
 residue (slower error compounding) and a closed external-baseline question.
 
-Docs: [Paper v1.5 (PDF)](paper/somnium-paper-v1.5.pdf) · [MODEL-CARD](MODEL-CARD.md) · [DOI: 10.5281/zenodo.23278220](https://doi.org/10.5281/zenodo.23278220) · latest version [10.5281/zenodo.23479114](https://doi.org/10.5281/zenodo.23479114) ·
+Docs: [Paper v1.5 (PDF)](paper/somnium-paper-v1.5.pdf) · [MODEL-CARD](MODEL-CARD.md) · [DOI: 10.5281/zenodo.23278219](https://doi.org/10.5281/zenodo.23278219) · latest version [10.5281/zenodo.23479114](https://doi.org/10.5281/zenodo.23479114) ·
 [MODEL-INTRO](MODEL-INTRO.md) ·
 [PRINCIPLES](PRINCIPLES.md) · [ROADMAP/experiment history](ROADMAP.md) ·
 [MODEL-NAME](MODEL-NAME.md) · [PHASE1](PHASE1.md) ·

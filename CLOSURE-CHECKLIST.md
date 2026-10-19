@@ -38,7 +38,7 @@
 - ☑ 密钥/凭证历史深扫：0 真实命中（唯一 BEGIN OPENSSH 模式命中=卫生测试自身词表）
 - ☑ 源码包/PDF/Release 资产全量扫描：v1.3–v1.5 包零路径；v1.2 包已脱敏重建并替换资产
 - ☑ 公开仓以全新对象库迁移（github.com/wilberforce1900/somnium；旧仓
-      somnium-private-archive 私有留档；114 提交/11 资产/匿名可达；Release 源码快照指向终版）
+      somnium-private-archive 私有留档；完整提交历史/11 资产/匿名可达；Release 源码快照指向终版）
 - ☑ GitHub 公开面完整可导航（论文/代码/registry/模型卡/Release 资产）
 
 ## E. 结项归档 ✅
