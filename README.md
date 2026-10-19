@@ -21,23 +21,28 @@
 **v1.4 更新（2026-10）**：**非平稳轴的关闭被撤回并完整测量**——"不可建"=预算伪因
 （预算修正后成立：容量 5.4×/λ_rew 2×@16K 速率旋钮）→ 语义三段曲线（建立慢/反转快
 一个数量级/维持=以 τ 为时间常数的遗忘曲线）；**梦的适用域=出生期**（建立期 ~1.4×
-加速、反转与维持全档调度无关）；仪器单位错误事件（~180×）如实入档。完整证伪史见登记表。
+加速、反转与维持全档调度无关）；仪器单位错误事件（~180×）如实入档。
+**v1.5 终版更新（2026-10）**：**外部标尺双负**——参数匹配 AR 锁步对照一步（−25pp）
+与 16 步开环（−51/−82pp）全胜，本尺度外基线问题全面关闭（注册残迹=误差复合更慢
+4.4-4.9× vs 5.8-6.8×）；防遗忘（梦不护旧/回放护旧）与校准终局（噪声下有余量、
+读梦不修）入册；夜一事实序列勘误（健康生长实至 729、失稳在 729）+参数公式精确化。
+完整证伪史见登记表。
 
 ## 论文（Preprint）
 
 **Somnium: A Recurrent World Model that Learns to Dream Before It Wakes** · Xiaoming (Will) Wang
 
-📄 [PDF v1.4](paper/somnium-paper-v1.4.pdf) · [LaTeX 源码](paper/main.tex) · [参考文献](paper/refs.bib) · [Zenodo 记录](https://zenodo.org/records/23419489)
+📄 [PDF v1.5](paper/somnium-paper-v1.5.pdf) · [LaTeX 源码](paper/main.tex) · [参考文献](paper/refs.bib) · [模型卡](MODEL-CARD.md) · [Zenodo 记录](https://zenodo.org/records/23419489)
 
-**Cite as:** Wang, X. (2026). *Somnium: A Recurrent World Model that Learns to Dream Before It Wakes*. Zenodo. [DOI 10.5281/zenodo.23278220](https://doi.org/10.5281/zenodo.23278220)（概念 DOI；最新 v1.4 版本 DOI [10.5281/zenodo.23419489](https://doi.org/10.5281/zenodo.23419489)；v1.3 版本 DOI [10.5281/zenodo.23360320](https://doi.org/10.5281/zenodo.23360320)；v1.2 版本 DOI [10.5281/zenodo.23333007](https://doi.org/10.5281/zenodo.23333007)）
+**Cite as:** Wang, X. (2026). *Somnium: A Recurrent World Model that Learns to Dream Before It Wakes*. Zenodo. [DOI 10.5281/zenodo.23278220](https://doi.org/10.5281/zenodo.23278220)（概念 DOI；最新 v1.4 版本 DOI [10.5281/zenodo.23419489](https://doi.org/10.5281/zenodo.23419489)、v1.5 待上传；v1.3 版本 DOI [10.5281/zenodo.23360320](https://doi.org/10.5281/zenodo.23360320)；v1.2 版本 DOI [10.5281/zenodo.23333007](https://doi.org/10.5281/zenodo.23333007)）
 
-> 12 页完整研究报告：预注册协议、五个独立复现的梦增益、容量边界三线证据、
+> 13 页完整研究报告（v1.5 终版）：预注册协议、五个独立复现的梦增益、容量边界三线证据、
 > 宽潜态病态的排除链与治愈（含对自家 v1.1"表达力天花板"结论的公开撤回）、
 > 移动标尺与仪器修复、健康仪器上的 A3 重测、四世界宽度天花板、
-> **非平稳轴的撤回-重开-完整测量（建立/反转/维持三段曲线 + 仪器两代修正史，
-> 含一次单位错误事件的如实留档）与"梦的适用域=出生期"划定**、
+> **非平稳轴的撤回-重开-完整测量（建立/反转/维持三段曲线）与"梦的适用域=出生期"划定、
+> 外部标尺双负（参数匹配 AR 一步+开环全胜）、防遗忘与校准终局**、
 > 负结果登记册（A1/A2/A5）、两夜自主训练（871 轮生长与自愈回滚）。
-> 写作说明：科学工作（实验设计、代码、150+ 次运行记录）由项目主导完成；文字起草
+> 写作说明：科学工作（实验设计、代码、180+ 次运行记录）由项目主导完成；文字起草
 > 由 AI 助手协作完成，作者对全部内容负责。
 
 ## English
@@ -69,8 +74,13 @@ constant), and the dream's contribution is bounded precisely to *birth* — an
 establishment head start where wake is capacity-limited, and nothing after —
 all falsified or found out with pre-registered thresholds and kept in the
 registry, because *a theory that can be killed is a theory that can evolve*.
+And as of v1.5, the flank this line of work most invites has been measured too:
+a parameter-matched autoregressive transformer, trained lockstep on
+bit-identical batches, wins both teacher-forced one-step and 16-step
+open-loop observation prediction at this scale — leaving Somnium a registered
+residue (slower error compounding) and a closed external-baseline question.
 
-Docs: [Paper v1.4 (PDF)](paper/somnium-paper-v1.4.pdf) · [DOI: 10.5281/zenodo.23278220](https://doi.org/10.5281/zenodo.23278220) · latest version [10.5281/zenodo.23419489](https://doi.org/10.5281/zenodo.23419489) ·
+Docs: [Paper v1.5 (PDF)](paper/somnium-paper-v1.5.pdf) · [MODEL-CARD](MODEL-CARD.md) · [DOI: 10.5281/zenodo.23278220](https://doi.org/10.5281/zenodo.23278220) · latest version [10.5281/zenodo.23419489](https://doi.org/10.5281/zenodo.23419489) ·
 [MODEL-INTRO](MODEL-INTRO.md) ·
 [PRINCIPLES](PRINCIPLES.md) · [ROADMAP/experiment history](ROADMAP.md) ·
 [MODEL-NAME](MODEL-NAME.md) · [PHASE1](PHASE1.md) ·
@@ -101,17 +111,15 @@ Docs: [Paper v1.4 (PDF)](paper/somnium-paper-v1.4.pdf) · [DOI: 10.5281/zenodo.2
 
 ## 当前状态
 
-**v1.4 已发布（2026-10-16，Zenodo 待上传）**：非平稳轴撤回关闭并完整测量 +
-"梦的适用域=出生期"划定 + fig_switch（维护度悬崖）；12 页全卷视觉验收通过
-（judge 配额不可用期间按规程回退为作者自查，待 10-19 后可补独立复验）。
-**本轮链条（iter9→12，全部零失败 ~33h GPU）**：ITER9 预算假说确认（终局语义全带可建，
-容量 5.4×/λ_rew 2×@16K 速率旋钮不叠加）；ITER10 梦=容量受限档建立加速（~1.4×，
-高容量零效应）；ITER11 单翻转恢复快一个数量级且调度不敏感（梦=出生优惠非再读优惠）；
-ITER12 切换维护=τ 时间常数遗忘曲线（含一次单位错误事件如实留档后修正重跑）。
-此前：iter7 (b) 线、夜三 62 run、iter8 仪器修复轮（[ITER7-WORLD-FIRST.md](ITER7-WORLD-FIRST.md)、
-[NIGHT3-PLAN.md](NIGHT3-PLAN.md)、[ITER8-PLAN.md](ITER8-PLAN.md)、[ITER9](ITER9-PLAN.md)–[ITER12](ITER12-PLAN.md) 各计划档）。
-**下一步开放岔**：③ R2-R4 外部基线（潜态 vs 自回归对照）/ staging 分阶假说（三连空后暂缓候选）/
-④ 休耕。三大纪律：预注册阈值跑前锁定、负结果照记登记表、哲学词必须绑定机制。
+**🏁 v1.5 终版已发布（2026-10-19）——项目进入结项收尾**。13 页全卷 visual-judge
+独立验收通过（含夜一事实序列勘误：注释/图注/正文与数据三处统一）；模型卡
+[MODEL-CARD.md](MODEL-CARD.md) 与结项清单 [CLOSURE-CHECKLIST.md](CLOSURE-CHECKLIST.md) 就绪。
+**终局图景**：梦的适用域=出生期（五条独立证据：行为迁移/语义建立/反转/维持/防遗忘）；
+回放在学-存-护三维均为载荷组件；宽度健康带 [256,1024] 由世界与架构双侧钉死；
+外部标尺双负（参数匹配 AR 一步+开环全胜，残迹=复合更慢）；校准余量在噪声下实存
+而读梦不修。全链预登记实验 60+ 族/180+ run 零未决；三次公开撤回自家结论
+（表达力天花板/非平稳关闭/夜一序列描述）。**待办**：Zenodo v1.5 上传→结项归档。
+三大纪律：预注册阈值跑前锁定、负结果照记登记表、哲学词必须绑定机制。
 
 ## 纪律
 
