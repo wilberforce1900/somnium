@@ -81,7 +81,7 @@ bit-identical batches, wins both teacher-forced one-step and 16-step
 open-loop observation prediction at this scale — leaving Somnium a registered
 residue (slower error compounding) and a closed external-baseline question.
 
-Docs: [Paper v1.5 (PDF)](paper/somnium-paper-v1.5.pdf) · [MODEL-CARD](MODEL-CARD.md) · [DOI: 10.5281/zenodo.23278219](https://doi.org/10.5281/zenodo.23278219) · latest version [10.5281/zenodo.23479114](https://doi.org/10.5281/zenodo.23479114) ·
+Docs: [Paper v1.5 (PDF)](paper/somnium-paper-v1.5.pdf) · [MODEL-CARD](MODEL-CARD.md) · [FUTURE-WORK](FUTURE-WORK.md) · [DOI: 10.5281/zenodo.23278219](https://doi.org/10.5281/zenodo.23278219) · latest version [10.5281/zenodo.23479114](https://doi.org/10.5281/zenodo.23479114) ·
 [MODEL-INTRO](MODEL-INTRO.md) ·
 [PRINCIPLES](PRINCIPLES.md) · [ROADMAP/experiment history](ROADMAP.md) ·
 [MODEL-NAME](MODEL-NAME.md) · [PHASE1](PHASE1.md) ·
