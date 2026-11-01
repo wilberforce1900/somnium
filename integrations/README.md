@@ -15,15 +15,17 @@ python3 -m venv .venv && .venv/bin/pip install torch --index-url https://downloa
 
 ## 1. 各 harness 配置
 
-### ZCode（✅ 原生插件化进行中）
-设置 → MCP Servers，或 `~/.zcode/cli/config.json` 的 `mcp.servers`：
+### ZCode（✅ 原生插件已构建 v0.1.0）
+两种接入方式：
+
+- **插件（推荐）**：源码在 [`integrations/zcode-plugin/somnium/`](zcode-plugin/somnium/)（manifest + MCP 启动器 + `somnium-demo` skill）。启动器经 `SOMNIUM_REPO` 环境变量定位仓库（缺省 `~/somnium`）。本地开发市场：`<workspace>/plugins/marketplace.json` → Plugin Marketplace → Add → 粘贴该 workspace 路径 → 安装 somnium → 在 composer 选 `somnium-demo` skill 按 3 分钟脚本演示。
+- **裸 MCP**：设置 → MCP Servers：
 
 ```json
 { "somnium": { "command": "<REPO>/.venv/bin/python", "args": ["<REPO>/mcp/server.py"] } }
 ```
 
 验证：会话内应出现 `mcp__somnium__somnium_info` 等五个工具；调用 `somnium_info` 返回模型卡即通。
-（正式 ZCode plugin 包装——skill/命令/manifest——见 roadmap，用 plugin-creator 构建。）
 
 ### Codex CLI（OpenAI）
 `~/.codex/config.toml` 追加：
