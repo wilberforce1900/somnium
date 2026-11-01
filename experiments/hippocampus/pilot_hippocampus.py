@@ -50,6 +50,21 @@ SMOKE = dict(FULL, cycles_chunk=2, episodes_per_cycle=3, d_h=32, batch=8,
              replay_batch=8, horizon=20)
 
 
+def mirror_obs_grid8(obs):
+    """ITER15b 镜像块（预登记 ITER15b-PLAN §2）：x 分量镜像，其余维度不动。
+
+    grid8 布局 [ax/G, ay/G, gdx/G, gdy/G, hdx/G, hdy/G, t/H, 1]——x 位置
+    （0/2/4 列）取 1−x。与 R3 的 d_obs=31 版（位置 1−x、增量反号）同一构造
+    思想，列义按 grid8 布局适配；动作不镜像——镜像流自身是自洽马尔可夫
+    动力学（动作的表观效应反向），与正常块构成权重冲突（R3 机制）。
+    """
+    out = obs.clone()
+    out[..., 0] = 1.0 - obs[..., 0]
+    out[..., 2] = 1.0 - obs[..., 2]
+    out[..., 4] = 1.0 - obs[..., 4]
+    return out
+
+
 def eval_rho0(model, cfg, seed):
     """固定 ρ0 eval 集（两组独立种子）：pred MSE（锁 4242）+ 解码 R²（对拷贝）。"""
     out = {}
@@ -77,7 +92,7 @@ def eval_rho0(model, cfg, seed):
     return out
 
 
-def run_arm(arm: str, seed: int, cfg: dict, dev) -> dict:
+def run_arm(arm: str, seed: int, cfg: dict, dev, variant: str = "a") -> dict:
     torch.manual_seed(seed)
     random.seed(seed)
     model = WorldModel(d_obs=8, n_actions=4, d_h=cfg["d_h"], norm_kind="none").to(dev)
@@ -86,12 +101,17 @@ def run_arm(arm: str, seed: int, cfg: dict, dev) -> dict:
     history, t0 = [], time.time()
 
     for chunk, rho in enumerate(CHUNK_RHOS):
-        env = LatentGrid(grid=cfg["grid"], slip=rho, p_threat_move=0.02,
+        # variant a：ρ 交替（ITER15，slip 随块切换）；variant b：固定 ρ0，镜像块（1/3）
+        slip = RHO0 if variant == "b" else rho
+        mirror = (variant == "b" and chunk in (1, 3))
+        env = LatentGrid(grid=cfg["grid"], slip=slip, p_threat_move=0.02,
                          horizon=cfg["horizon"], seed=seed * 100 + chunk)
         for cycle in range(cfg["cycles_chunk"]):
             for _ in range(cfg["episodes_per_cycle"]):
                 roll = guided_rollout if env.rng.random() < cfg["guided_frac"] else random_rollout
                 obs, act, rew, rare = roll(env)
+                if mirror:
+                    obs = mirror_obs_grid8(obs)
                 buffer.add_episode(obs, act, rew, rare)
             for i in range(cfg["wake_batches"]):
                 b_rng = random.Random(seed * 100000 + chunk * 10000 + cycle * 100 + i)
@@ -124,11 +144,13 @@ def run_arm(arm: str, seed: int, cfg: dict, dev) -> dict:
         else:  # W
             buffer = EpisodeBuffer(capacity=cfg["buffer_cap"])
         ev = eval_rho0(model, cfg, seed)
-        history.append({"chunk": chunk, "rho": rho, "eval": ev, "boundary": extra})
-        print(f"[{arm} s{seed}] chunk{chunk}(ρ={rho}) e999={ev['e999']['pred_mse']:.4f} "
-              f"r2={ev['e999']['decode_r2']:.3f} boundary={extra}", flush=True)
+        history.append({"chunk": chunk, "rho": slip, "mirror": mirror, "eval": ev,
+                        "boundary": extra})
+        print(f"[{arm} s{seed}] chunk{chunk}(ρ={slip}{',M' if mirror else ''}) "
+              f"e999={ev['e999']['pred_mse']:.4f} r2={ev['e999']['decode_r2']:.3f} "
+              f"boundary={extra}", flush=True)
 
-    return {"arm": arm, "seed": seed, "history": history,
+    return {"arm": arm, "seed": seed, "variant": variant, "history": history,
             "seconds": round(time.time() - t0, 1)}
 
 
@@ -136,21 +158,25 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--arm", choices=["W", "WR", "WS"], required=True)
     ap.add_argument("--seed", type=int, required=True)
+    ap.add_argument("--variant", choices=["a", "b"], default="a",
+                    help="a=ρ 交替（ITER15）；b=镜像冲突交替（ITER15b）")
     ap.add_argument("--smoke", action="store_true")
     ap.add_argument("--device", default="auto")
+    ap.add_argument("--tag-suffix", default="",
+                    help="输出文件名后缀（variant b 用 _b，防覆盖 variant a 产物）")
     args = ap.parse_args()
     cfg = dict(SMOKE if args.smoke else FULL)
     dev = default_device() if args.device == "auto" else torch.device(args.device)
 
-    res = run_arm(args.arm, args.seed, cfg, dev)
+    res = run_arm(args.arm, args.seed, cfg, dev, variant=args.variant)
     OUT.mkdir(parents=True, exist_ok=True)
     suffix = "smoke" if args.smoke else "full"
-    with open(OUT / f"details_{args.arm.lower()}_s{args.seed}_{suffix}.jsonl", "w") as f:
+    with open(OUT / f"details_{args.arm.lower()}_s{args.seed}_{suffix}{args.tag_suffix}.jsonl", "w") as f:
         for h in res["history"]:
             f.write(json.dumps(h) + "\n")
     if not args.smoke:
         # 保持分数汇总（主判据输入）：需要 W 臂的终值，收割时跨文件配对计算
-        with open(OUT / f"final_{args.arm.lower()}_s{args.seed}.json", "w") as f:
+        with open(OUT / f"final_{args.arm.lower()}_s{args.seed}{args.tag_suffix}.json", "w") as f:
             json.dump(res, f, ensure_ascii=False, indent=1)
     print(f"[done] {args.arm} s{args.seed} {res['seconds']}s", flush=True)
 
