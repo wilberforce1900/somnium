@@ -9,3 +9,7 @@ __pycache__/
 # 模型断点档（云/本机 spot 续跑用，不入库）
 *.pt
 .DS_Store
+
+# MCP 打包产物：规范 checkpoint 随仓库在档（自描述、84KB）
+!mcp/*.pt
+experiments/hippocampus/details_*_smoke.jsonl
