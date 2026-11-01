@@ -1,0 +1,80 @@
+{
+ "arm": "W",
+ "seed": 4,
+ "variant": "b",
+ "history": [
+  {
+   "chunk": 0,
+   "rho": 0.1,
+   "mirror": false,
+   "eval": {
+    "e999": {
+     "pred_mse": 0.102291,
+     "decode_r2": 0.4914,
+     "copy_mse": 0.00536
+    },
+    "e900": {
+     "pred_mse": 0.104008,
+     "decode_r2": 0.4875,
+     "copy_mse": 0.004994
+    }
+   },
+   "boundary": null
+  },
+  {
+   "chunk": 1,
+   "rho": 0.1,
+   "mirror": true,
+   "eval": {
+    "e999": {
+     "pred_mse": 0.092002,
+     "decode_r2": -0.6015,
+     "copy_mse": 0.00536
+    },
+    "e900": {
+     "pred_mse": 0.104266,
+     "decode_r2": -0.4043,
+     "copy_mse": 0.004994
+    }
+   },
+   "boundary": null
+  },
+  {
+   "chunk": 2,
+   "rho": 0.1,
+   "mirror": false,
+   "eval": {
+    "e999": {
+     "pred_mse": 0.065967,
+     "decode_r2": 0.7602,
+     "copy_mse": 0.00536
+    },
+    "e900": {
+     "pred_mse": 0.071569,
+     "decode_r2": 0.8338,
+     "copy_mse": 0.004994
+    }
+   },
+   "boundary": null
+  },
+  {
+   "chunk": 3,
+   "rho": 0.1,
+   "mirror": true,
+   "eval": {
+    "e999": {
+     "pred_mse": 0.069112,
+     "decode_r2": -0.0663,
+     "copy_mse": 0.00536
+    },
+    "e900": {
+     "pred_mse": 0.078111,
+     "decode_r2": 0.1551,
+     "copy_mse": 0.004994
+    }
+   },
+   "boundary": null
+  }
+ ],
+ "seconds": 208.8
+}
