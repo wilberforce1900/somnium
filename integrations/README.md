@@ -72,6 +72,25 @@ args = ["<REPO>/mcp/server.py"]
 ### WorkBuddy
 无公开插件规范可核对（待核实）——若其支持 stdio MCP，用与 Cursor 相同的 JSON（`{"mcpServers": …}`）或其设置界面的 "Custom MCP / Add MCP Server" 入口填 command+args。验证标准与上同：能看到 5 个 `somnium_*` 工具。
 
+### Claude Code（✅ 片段）
+两种接法（`<REPO>` 替换为克隆路径）：
+
+- **用户级（推荐，一次配置全项目可用）**：
+
+```bash
+claude mcp add -s user somnium -- <REPO>/.venv/bin/python <REPO>/mcp/server.py
+```
+
+- **项目级**：仓库根放 `.mcp.json`（该文件可随仓库分发，但注意**不要**把含本机绝对路径的版本提交进公开仓——用环境变量展开 `${SOMNIUM_REPO}` 并自设该变量，或保持本地不提交）：
+
+```json
+{ "mcpServers": { "somnium": { "command": "<REPO>/.venv/bin/python",
+                               "args": ["<REPO>/mcp/server.py"] } } }
+```
+
+验证：`claude mcp list` 应显示 somnium ✓ connected；会话内 `/mcp` 面板可见 5 个 `somnium_*` 工具。首次调用约 3–10s（torch 导入）。
+另注：Claude Desktop（非 Code）的接法同 Cursor JSON，配置文件在 `~/Library/Application Support/Claude/claude_desktop_config.json`。
+
 ## 2. 五个工具速览
 
 | 工具 | 输入 | 返回 | 演示话术 |
@@ -94,10 +113,10 @@ args = ["<REPO>/mcp/server.py"]
 
 | Harness | 配置就绪 | 端到端验证 |
 |---|---|---|
-| ZCode | ✅ | 待插件正式包装后跑通 |
+| ZCode | ✅ 插件 v0.1.0 已构建 | 待用户 UI 安装后实机 |
 | Codex | ✅ 片段 | 待用户实机 |
 | Cursor | ✅ 片段 | 待用户实机 |
 | OpenCode | ✅ 片段 | 待用户实机 |
 | DS Harness (DeepSeek) | ⚠️ 模式已验证、字段待核对 | 待核实 |
 | WorkBuddy | ⚠️ 通用 stdio | 待核实（无公开规范） |
-| Claude Code | 暂缓（用户拍板） | — |
+| Claude Code | ✅ 片段（CLI 一行 + 项目 .mcp.json） | 待用户实机（`claude mcp list` 验证） |
