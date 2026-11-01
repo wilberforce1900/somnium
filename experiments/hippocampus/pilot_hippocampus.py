@@ -65,7 +65,7 @@ def eval_rho0(model, cfg, seed):
         with torch.no_grad():
             _, parts = model.loss_on_batch(b["obs"], b["act"], b["obs_next"], b["rew"])
             h_T, _ = model.forward(b["obs"], b["act"])
-            dec = model.decode_obs(h_T)
+            dec = model.decode_obs(h_T).cpu()  # 模型可能在 cuda：解码回传 cpu 与观测对齐
             tgt = b["obs"][:, -1, :]
             prev = b["obs"][:, -2, :]
             ss_tot = ((tgt - tgt.mean(dim=0, keepdim=True)) ** 2).sum().item()
