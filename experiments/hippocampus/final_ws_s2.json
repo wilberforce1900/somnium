@@ -1,0 +1,75 @@
+{
+ "arm": "WS",
+ "seed": 2,
+ "history": [
+  {
+   "chunk": 0,
+   "rho": 0.1,
+   "eval": {
+    "e999": {
+     "pred_mse": 0.125584,
+     "decode_r2": 0.8217,
+     "copy_mse": 0.005543
+    },
+    "e900": {
+     "pred_mse": 0.137222,
+     "decode_r2": 0.8819,
+     "copy_mse": 0.007801
+    }
+   },
+   "boundary": "dream100@14s"
+  },
+  {
+   "chunk": 1,
+   "rho": 0.45,
+   "eval": {
+    "e999": {
+     "pred_mse": 0.077032,
+     "decode_r2": 0.8787,
+     "copy_mse": 0.005543
+    },
+    "e900": {
+     "pred_mse": 0.079006,
+     "decode_r2": 0.9102,
+     "copy_mse": 0.007801
+    }
+   },
+   "boundary": "dream100@14s"
+  },
+  {
+   "chunk": 2,
+   "rho": 0.1,
+   "eval": {
+    "e999": {
+     "pred_mse": 0.071538,
+     "decode_r2": 0.8509,
+     "copy_mse": 0.005543
+    },
+    "e900": {
+     "pred_mse": 0.071898,
+     "decode_r2": 0.8683,
+     "copy_mse": 0.007801
+    }
+   },
+   "boundary": "dream100@14s"
+  },
+  {
+   "chunk": 3,
+   "rho": 0.45,
+   "eval": {
+    "e999": {
+     "pred_mse": 0.064584,
+     "decode_r2": 0.863,
+     "copy_mse": 0.005543
+    },
+    "e900": {
+     "pred_mse": 0.067058,
+     "decode_r2": 0.9048,
+     "copy_mse": 0.007801
+    }
+   },
+   "boundary": "dream100@14s"
+  }
+ ],
+ "seconds": 269.8
+}

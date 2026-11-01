@@ -1,0 +1,75 @@
+{
+ "arm": "WR",
+ "seed": 1,
+ "history": [
+  {
+   "chunk": 0,
+   "rho": 0.1,
+   "eval": {
+    "e999": {
+     "pred_mse": 0.105603,
+     "decode_r2": 0.5987,
+     "copy_mse": 0.00536
+    },
+    "e900": {
+     "pred_mse": 0.104628,
+     "decode_r2": 0.6809,
+     "copy_mse": 0.00536
+    }
+   },
+   "boundary": "replay100"
+  },
+  {
+   "chunk": 1,
+   "rho": 0.45,
+   "eval": {
+    "e999": {
+     "pred_mse": 0.07327,
+     "decode_r2": 0.7256,
+     "copy_mse": 0.00536
+    },
+    "e900": {
+     "pred_mse": 0.072367,
+     "decode_r2": 0.7918,
+     "copy_mse": 0.00536
+    }
+   },
+   "boundary": "replay100"
+  },
+  {
+   "chunk": 2,
+   "rho": 0.1,
+   "eval": {
+    "e999": {
+     "pred_mse": 0.063377,
+     "decode_r2": 0.7698,
+     "copy_mse": 0.00536
+    },
+    "e900": {
+     "pred_mse": 0.06222,
+     "decode_r2": 0.8232,
+     "copy_mse": 0.00536
+    }
+   },
+   "boundary": "replay100"
+  },
+  {
+   "chunk": 3,
+   "rho": 0.45,
+   "eval": {
+    "e999": {
+     "pred_mse": 0.058796,
+     "decode_r2": 0.8061,
+     "copy_mse": 0.00536
+    },
+    "e900": {
+     "pred_mse": 0.057904,
+     "decode_r2": 0.9018,
+     "copy_mse": 0.00536
+    }
+   },
+   "boundary": "replay100"
+  }
+ ],
+ "seconds": 224.7
+}

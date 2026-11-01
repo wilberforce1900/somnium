@@ -1,0 +1,75 @@
+{
+ "arm": "WS",
+ "seed": 1,
+ "history": [
+  {
+   "chunk": 0,
+   "rho": 0.1,
+   "eval": {
+    "e999": {
+     "pred_mse": 0.108337,
+     "decode_r2": 0.6574,
+     "copy_mse": 0.00536
+    },
+    "e900": {
+     "pred_mse": 0.108605,
+     "decode_r2": 0.7256,
+     "copy_mse": 0.00536
+    }
+   },
+   "boundary": "dream100@14s"
+  },
+  {
+   "chunk": 1,
+   "rho": 0.45,
+   "eval": {
+    "e999": {
+     "pred_mse": 0.073773,
+     "decode_r2": 0.7094,
+     "copy_mse": 0.00536
+    },
+    "e900": {
+     "pred_mse": 0.072763,
+     "decode_r2": 0.8147,
+     "copy_mse": 0.00536
+    }
+   },
+   "boundary": "dream100@14s"
+  },
+  {
+   "chunk": 2,
+   "rho": 0.1,
+   "eval": {
+    "e999": {
+     "pred_mse": 0.062008,
+     "decode_r2": 0.7852,
+     "copy_mse": 0.00536
+    },
+    "e900": {
+     "pred_mse": 0.061339,
+     "decode_r2": 0.8663,
+     "copy_mse": 0.00536
+    }
+   },
+   "boundary": "dream100@14s"
+  },
+  {
+   "chunk": 3,
+   "rho": 0.45,
+   "eval": {
+    "e999": {
+     "pred_mse": 0.056577,
+     "decode_r2": 0.8022,
+     "copy_mse": 0.00536
+    },
+    "e900": {
+     "pred_mse": 0.057092,
+     "decode_r2": 0.892,
+     "copy_mse": 0.00536
+    }
+   },
+   "boundary": "dream100@14s"
+  }
+ ],
+ "seconds": 261.9
+}
