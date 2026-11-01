@@ -1,0 +1,4 @@
+{"chunk": 0, "rho": 0.1, "mirror": false, "eval": {"e999": {"pred_mse": 0.125584, "decode_r2": 0.8217, "copy_mse": 0.005543}, "e900": {"pred_mse": 0.137222, "decode_r2": 0.8819, "copy_mse": 0.007801}}, "boundary": "dream100@14s"}
+{"chunk": 1, "rho": 0.1, "mirror": true, "eval": {"e999": {"pred_mse": 0.162744, "decode_r2": -0.1034, "copy_mse": 0.005543}, "e900": {"pred_mse": 0.163038, "decode_r2": 0.1023, "copy_mse": 0.007801}}, "boundary": "dream100@14s"}
+{"chunk": 2, "rho": 0.1, "mirror": false, "eval": {"e999": {"pred_mse": 0.073578, "decode_r2": 0.8511, "copy_mse": 0.005543}, "e900": {"pred_mse": 0.074669, "decode_r2": 0.8924, "copy_mse": 0.007801}}, "boundary": "dream100@14s"}
+{"chunk": 3, "rho": 0.1, "mirror": true, "eval": {"e999": {"pred_mse": 0.088109, "decode_r2": -0.0463, "copy_mse": 0.005543}, "e900": {"pred_mse": 0.092127, "decode_r2": 0.1873, "copy_mse": 0.007801}}, "boundary": "dream100@14s"}

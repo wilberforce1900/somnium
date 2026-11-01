@@ -5,21 +5,22 @@
 set -u
 cd "$(dirname "$0")/../.."   # repo root
 PY=${PY:-.venv/bin/python}
-VARIANT=${VARIANT:-a}   # a=ITER15（ρ 交替）；b=ITER15b（镜像冲突）
+VARIANT=${VARIANT:-a}   # a=ITER15（ρ 交替）；b=ITER15b/c（镜像冲突）
+SEEDS=${SEEDS:-"0 1 2"}
 SUFFIX=""; [ "$VARIANT" = "b" ] && SUFFIX="_b"
 
 if [ "${SMOKE:-0}" = "1" ]; then
   for arm in W WR WS; do
-    $PY experiments/hippocampus/pilot_hippocampus.py --arm "$arm" --seed 0 --variant "$VARIANT" --smoke || exit 1
+    $PY experiments/hippocampus/pilot_hippocampus.py --arm "$arm" --seed 0 --variant "$VARIANT" --tag-suffix "$SUFFIX" --smoke || exit 1
   done
   echo "[run_15] smoke OK (variant $VARIANT)"
   exit 0
 fi
 
-for seed in 0 1 2; do
+for seed in $SEEDS; do
   for arm in W WR WS; do
     echo "=== $(date -u '+%H:%M:%S') arm=$arm seed=$seed variant=$VARIANT ==="
-    $PY experiments/hippocampus/pilot_hippocampus.py --arm "$arm" --seed "$seed" --variant "$VARIANT" || exit 1
+    $PY experiments/hippocampus/pilot_hippocampus.py --arm "$arm" --seed "$seed" --variant "$VARIANT" --tag-suffix "$SUFFIX" || exit 1
   done
 done
-echo "[run_15] all 9 runs done (variant $VARIANT)"
+echo "[run_15] all runs done (variant $VARIANT, seeds: $SEEDS)"
