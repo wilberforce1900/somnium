@@ -1,0 +1,13 @@
+{
+  "name": "somnium",
+  "version": "0.1.0",
+  "description": "Somnium recurrent world model (published preprint, 16K-param checkpoint bundled) as five MCP tools: observe O(1) latent state, closed-loop imagination, dream consolidation, real-episode sampling, model card",
+  "author": { "name": "Xiaoming (Will) Wang" },
+  "mcpServers": {
+    "somnium": {
+      "command": "${CLAUDE_PLUGIN_ROOT}/scripts/launch.sh",
+      "args": []
+    }
+  },
+  "skills": "./skills"
+}
