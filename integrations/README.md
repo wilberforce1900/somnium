@@ -18,7 +18,7 @@ python3 -m venv .venv && .venv/bin/pip install torch --index-url https://downloa
 ### ZCode（✅ 原生插件已构建 v0.1.0）
 两种接入方式：
 
-- **插件（推荐）**：源码在 [`integrations/zcode-plugin/somnium/`](zcode-plugin/somnium/)（manifest + MCP 启动器 + `somnium-demo` skill）。启动器经 `SOMNIUM_REPO` 环境变量定位仓库（缺省 `~/somnium`）。本地开发市场：**仓库即市场**（`.claude-plugin/marketplace.json`，随 git 分发，克隆即可装）→ Plugin Marketplace → Add → 粘贴**仓库根路径**（如 `/Users/you/Documents/dsh/mission_yin_yang`）→ 安装 somnium → 在 composer 选 `somnium-demo` skill 按 3 分钟脚本演示。**沙箱已验**：16/16（manifest/资源/`CLAUDE_PLUGIN_ROOT` 解析/启动器拉起 3s/五工具全流程/梦后权重生效/失败模式干净退出），仅剩 app 内 UI 安装步骤。
+- **插件（推荐）**：源码在 [`integrations/zcode-plugin/somnium/`](zcode-plugin/somnium/)（manifest + MCP 启动器 + `somnium-demo` skill）。启动器经 `SOMNIUM_REPO` 环境变量定位仓库（缺省 `~/somnium`）。本地开发市场（已实装验证的工作流）：workspace 根放 `marketplace.json`（source 指向插件目录，本机=dsh/marketplace.json）→ Plugin Marketplace → Add → 粘贴 workspace 根 → 安装 somnium。注：仓库 `.claude-plugin/marketplace.json` 已按不冗余原则移除（同名插件不可重复安装，第二市场无意义）；克隆者在自己的 workspace 照此建一份即可 → 在 composer 选 `somnium-demo` skill 按 3 分钟脚本演示。**沙箱已验**：16/16（manifest/资源/`CLAUDE_PLUGIN_ROOT` 解析/启动器拉起 3s/五工具全流程/梦后权重生效/失败模式干净退出），仅剩 app 内 UI 安装步骤。
 - **裸 MCP**：设置 → MCP Servers：
 
 ```json
